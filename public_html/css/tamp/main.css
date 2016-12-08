@@ -267,7 +267,7 @@ div#preview {
 	margin-bottom: 30px;
 	color: #ffffff;
 	text-shadow: 0px 2px 3px #d3d4aa;
-	font-size: 12px;
+	font-size: 17px;
 	font-weight: bold;
 	border-bottom: 2px solid #21a5ca;
 
@@ -280,7 +280,7 @@ div#preview {
 }
 
 .navcenter {
-	width: 960px;
+	width: 1100px;
 	margin: 0 auto;
 	text-align:center;
 }

@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Education HTML Template</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<!--
+Template 2067 Education
+http://www.tooplate.com/view/2067-education
+-->
+<link href="tooplate_style.css" rel="stylesheet" type="text/css" />
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+   Angular Material Library 
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script type="text/JavaScript" src="../js/jquery-1.6.3.js"></script> 
+<script type="text/JavaScript" src="../js/tamp/fancyalert.js"></script> 
+<script type="text/JavaScript" src="../js/tamp/jquery.js"></script> 
+<script type="text/JavaScript" src="../js/tamp/tagscomplete.js"></script> 
+<script type="text/JavaScript" src="../js/tamp/prettify/prettify.js"></script> 
+
+<script type="text/JavaScript" src="../js/pages/questions.js"></script> 
+
+<link rel="stylesheet" type="text/css" href="../css/ddsmoothmenu.css" />
+<link rel="stylesheet" type="text/css" href="../css/tamp/main.css" />
+<link rel="stylesheet" type="text/css" href="../css/tamp/prettify.css" />
+<link rel="stylesheet" type="text/css" href="../css/tamp/tagscomplete.css" />
+
+
+<script type="text/javascript" src="../js/ddsmoothmenu.js">
+
+/***********************************************
+* Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+<script type="text/javascript">
+
+ddsmoothmenu.init({
+	mainmenuid: "tooplate_menu", //menu DIV id
+	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+	classname: 'ddsmoothmenu', //class added to menu's outer DIV
+	//customtheme: ["#1c5a80", "#18374a"],
+	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+})
+
+</script>
+
+<link rel="stylesheet" href="../css/slimbox2.css" type="text/css" media="screen" /> 
+<script type="text/JavaScript" src="../js/slimbox2.js"></script> 
+
+<link rel="stylesheet" href="../css/nivo-slider.css" type="text/css" media="screen" />
+
+</head>
+<body>
+
+
+<!--<h1><?php if($nopagination != 1):?><?php echo $questionscount;?> <?php endif;?>Questions <i><?php echo $extratitle;?></i></h1>
+
+<div style="clear:both"></div>
+<?php if ($questionscount != 0):?>
+
+<?php if($nopagination != 1):?>
+<div class="questionsgrid_toppagination">
+<div style="clear:both"></div>
+<?php if($questionscount > QUESTIONS_PER_PAGE  && $nopagination != 1):?>
+<div class="pagination" style="margin-left:5px;"><?php echo $pagination;?></div>
+<?php endif;?>
+<div class="pagination" style="margin-left:5px;float:right;margin-right:5px;"><?php echo $orderOptions;?></div>
+<div style="clear:both"></div>
+</div> 
+<?php endif;?>-->
+
+<body onload="prettyPrint()">
+    <img src="../images/logo.png" style="float: left; width: 120px;margin-left: 50px"></img>
+<div id="navigation"><div class="navcenter">
+      
+<form action="<?php echo basePath();?>/questions" method="get" style="float:left;width:400px;text-align:left;"><input type="textbox" name="search" style="color: #999" value="<?php if (!empty($searchstring)):?><?php echo $searchstring;?><?php endif?>"></form>
+
+<div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9;"><ol><li><a href="<?php echo basePath();?>/">Home</a></li><li><a href="<?php echo basePath();?>/questions">Questions</a></li><li><a href="<?php echo basePath();?>/tags">Tags</a></li><li><a href="<?php echo basePath();?>/users">Users</a></li><li><a href="<?php echo basePath();?>/questions?type=unanswered">Unanswered</a></li><li><a href="<?php echo basePath();?>/questions/ask">Ask or Contribute</a></li></ol></div>
+
+</div>
+<div style="clear:both"></div>
+</div>
+
+<div id="container">
+	<div id="leftpanel">
+<h1>Questions </h1>
+<div style="clear:both;height:30px;"></div>
+
+<div ng-app="myApp" ng-controller="QuestionsCtr">
+    <div ng-repeat="x in questions">
+	<div class="questionsview_userbox">
+<!--                 <?php echo getUser($question['userid']);?>-->
+                       {{x.use  rId}}
+        </div>
+    <div class="questionsview_details">
+<!--<span style="color:#999" title="<?php echo datify($question['created']);?>"><?php echo timeAgo(strtotime($question['created']));?></span>-->
+<span style="color:#999" title="{{x.createdOn}}"> {{x.createdOn}}</span>
+
+    </div>
+    
+    <div ng-if="x.answers === ''">
+<div class="questionsview_details q">
+<!--<?php echo $question['answers'];?> ans | <?php echo $question['votes'];?> votes-->
+{{x.answers}} ans | {{x.votes}} votes
+</div>
+</div>
+    <div ng-if="x.answers !== ''">
+   <div class="questionsview_details">
+<!--<?php echo $question['answers'];?> cmts | <?php echo $question['votes'];?> votes-->
+
+{{x.answers}} ans | {{x.votes}} votes
+</div>
+</div>
+    
+    
+    <div class="questionsview_answer" id="{{x.id}}">
+<div class="questionsgrid_title">
+<a href="/question/view/{{x.id}}">{{x.title}}</a>
+<br/><span class="questionsgrid_description"><a href="/question/view/{{x.id}}">{{x.content}}</a></span>
+<div style="clear:both"></div>
+
+</div>
+   
+  <ul class="holder noborder">
+    <li class="bit-box nopadding">
+            <a href="/questions?tag={{x.tags}}">{{x.tags}}</a>
+   </li>
+ </ul>
+        
+        
+        
+        
+<!--<ul class="holder noborder">
+    <li class="bit-box nopadding">
+        <div ng-controller="forEachController">
+        <div ng-repeat="tag in {{x.tags}}">
+            <a href="/questions?tag={{x.tag}}">{{x.tag}}</a>
+        </div>
+    </div>
+   </li>
+ </ul>       -->
+
+<div style="clear:both;"></div>
+</div>
+    
+<!-- <?php if($nopagination != 1):?>
+<div class="questionsgrid_bottompagination">
+<div style="clear:both"></div>
+<?php if($questionscount > QUESTIONS_PER_PAGE):?>
+<div class="pagination" style="margin-left:5px;"><?php echo $pagination;?></div>
+<?php endif;?>
+<div class="pagination" style="margin-left:5px;float:right;margin-right:5px;"><?php echo $orderOptions;?></div>
+
+<div style="clear:both"></div>
+</div> 
+<?php endif;?>
+
+<?php else:?><h3>Sorry, we could not find what you were looking for. You may want to have a look at 
+<a href="<?php echo basePath();?>/tags">tags</a>. <br/><br/> Or <a href="<?php echo basePath();?>/questions/ask">ask questions</a>.</h3><?php endif;?>
+   -->
+</div>
+
+</div>
+
+</div>
+
+
+
+<script src="js/scroll-startstop.events.jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		var $elem = $('#content');
+		
+		$('#nav_up').fadeIn('slow');
+		
+		$(window).bind('scrollstart', function(){
+			$('#nav_up,#nav_down').stop().animate({'opacity':'0.2'});
+		});
+		$(window).bind('scrollstop', function(){
+			$('#nav_up,#nav_down').stop().animate({'opacity':'1'});
+		});
+		
+		$('#nav_up').click(
+			function (e) {
+				$('html, body').animate({scrollTop: '0px'}, 800);
+			}
+		);
+	});
+</script>
+
+</body>
+</html>
