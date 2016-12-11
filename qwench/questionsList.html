@@ -1,7 +1,8 @@
 <h1>Questions <i> active</i></h1>
 
+<div ng-repeat="x in questions">
 <div style="clear:both"></div>
-<div style="clear:both;height:30px;"></div>
+<div style="clear:both;height:10px;"></div>
 <div class="questionsview_userbox">
 <div class="userbox"> 
 <a href="/qwench/users/view/880/guy">guy | 1</a> 
@@ -15,8 +16,8 @@ days ago</span>
 </div>
 <div class="questionsview_answer" id="a445">
 <div class="questionsgrid_title">
-<a href="/qwench/questions/view/445/546456546546546546546">546456546546546546546</a>
-<br/><span class="questionsgrid_description"><a href="/qwench/questions/view/445/546456546546546546546">546546546546546546456קראקראקראקרא</a></span>
+<a href="/qwench/questions/view/445/546456546546546546546">{{x.title}}</a>
+<br/><span class="questionsgrid_description"><a href="/qwench/questions/view/445/546456546546546546546">{{x.content}}</a></span>
 <div style="clear:both"></div>
 </div>  
 
@@ -25,34 +26,4 @@ days ago</span>
 
 <div style="clear:both;"></div>
 </div>
-
-<!-- end of first Question!" -->
-
-<div class="questionsview_userbox">
-<div class="userbox"> 
-<a href="/qwench/users/view/869/websnmz">websnmz | 11</a> 
-</div></div>
-
-<div class="questionsview_details">
-<span style="color:#999" title="12:15PM Oct 15th">12:15PM Oct 15th</span>
-</div>
- 
-<div class="questionsview_details">
-0 cmts | 0 votes
-</div>
-
- 
-
-<div class="questionsview_answer" id="a437">
-<div class="questionsgrid_title">
-<a href="/qwench/questions/view/437/goll-goll-goll-yes-yes-yes">Goll goll goll yes yes yes</a>
-<br/><span class="questionsgrid_description"><a href="/qwench/questions/view/437/goll-goll-goll-yes-yes-yes">bruma gol attı gol işte böyle bbe gol oldu beeeeeeeeeee</a></span>
-<div style="clear:both"></div>
-
-</div>
-
-<ul class="holder noborder">
-</ul>
-
-<div style="clear:both;"></div>
 </div>
