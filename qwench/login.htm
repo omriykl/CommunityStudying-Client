@@ -1,0 +1,69 @@
+<html>
+
+<head>
+  <meta name="google-signin-client_id" content="1087559644393-55ot5mt3safubjl2knm302rj2uasr0gl.apps.googleusercontent.com">
+    <style>
+    body {
+background: rgba(181,211,238,1);
+background: -moz-linear-gradient(top, rgba(181,211,238,1) 0%, rgba(42,154,229,1) 0%, rgba(190,217,239,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(181,211,238,1)), color-stop(0%, rgba(42,154,229,1)), color-stop(100%, rgba(190,217,239,1)));
+background: -webkit-linear-gradient(top, rgba(181,211,238,1) 0%, rgba(42,154,229,1) 0%, rgba(190,217,239,1) 100%);
+background: -o-linear-gradient(top, rgba(181,211,238,1) 0%, rgba(42,154,229,1) 0%, rgba(190,217,239,1) 100%);
+background: -ms-linear-gradient(top, rgba(181,211,238,1) 0%, rgba(42,154,229,1) 0%, rgba(190,217,239,1) 100%);
+background: linear-gradient(to bottom, rgba(181,211,238,1) 0%, rgba(42,154,229,1) 0%, rgba(190,217,239,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5d3ee', endColorstr='#bed9ef', GradientType=0 );
+    }
+    h1{
+      color: white;
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+
+    }
+    h3{
+      color: white;
+      font-family: "Roboto", sans-serif;
+      font-weight: 100;
+
+    }
+    .center{
+      margin-top: 10%;
+      text-align:center;
+	 
+    }
+	.g-signin2 > div{
+	  margin: 0 auto;
+	}
+  </style>
+  </head>
+<body>
+<div class='center'>
+<img src="http://or.test.com/file.png" alt="Logo" style="max-width:120px; max-height:120px;">
+<h1>TAU Tests</h1>
+  <h3>All the answers in one place.</h3>
+<br><br>
+   <div class="g-signin2" data-onsuccess="onSuccess" data-theme="light" data-width="240" data-height="50" data-longtitle="true"></div>
+   <br><br>
+   <div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+	          // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+</html>
