@@ -8,15 +8,15 @@ app.config(function($routeProvider){
       controllerAs: "app"
     }
   );
+  $routeProvider.when("/questions/new",
+    {
+      templateUrl: "views/questions/newQuestion.html",
+      controller: "newQuestion",
+      controllerAs: "app"
+    }
+  );
 });
 
-app.controller('QuestionsCtr', function($scope,$http) {
-	$scope.questions =[];
-	
-	$http.get('http://localhost:8080/question/all').success(function(data){
-		$scope.questions = data;
-	});
-});
 
 //example to use params. add to when :paramName. like that .when("/questions/:param1"
 app.controller('AppCtrl', function($routeParams) {

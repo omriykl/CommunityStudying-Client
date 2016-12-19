@@ -1,0 +1,145 @@
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js" type="text/javascript"></script>
+
+    <script src='../../js/text/textAngular-rangy.min.js'></script>
+    <script src='../../controllers/newQuestion.js'></script>
+    
+    <script src='../../js/text/textAngular.min.js'></script>
+
+	<script src="../../js/fileupload/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->	
+	<script src="../../js/fileupload/ng-file-upload.min.js"></script>
+	
+	<link rel="shortcut icon" href="images/favicon.png">
+    <link rel="author" href="https://www.linkedin.com/in/austinanderson1">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
+    <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css">
+	 <link rel="stylesheet" href="../../css/textAngular.css" type="text/css">
+
+	
+	<style>
+        textarea.ta-bind {
+            width: 100%;
+        }
+		.drop-box {
+            background: #F8F8F8;
+            border: 5px dashed #DDD;
+            width: 200px;
+            height: 65px;
+            text-align: center;
+            padding-top: 25px;
+            margin: 10px;
+        }
+        .dragover {
+            border: 5px dashed blue;
+        }
+		.button {
+            -moz-appearance: button;
+            /* Firefox */
+            -webkit-appearance: button;
+            /* Safari and Chrome */
+            padding: 10px;
+            margin: 10px;
+            width: 70px;
+        }
+    </style>
+	
+
+<h1>New Question </h1>
+
+
+<div ng-app="myApp" ng-controller="newQuestion">
+  <form novalidate>
+     Name:
+    <input type="text" ng-model="user.firstName" disabled> 
+    <input type="text" ng-model="user.lastName" disabled>
+    <br><br>
+	Faculty:
+	<select ng-model="selectedFaculty" 
+        ng-options="item.Id as item.Name for item in faculties" ng-change="facultySelected(id)>
+    <option value="">Select Faculty</option>
+	</select>
+	
+	Course:
+	<select ng-model="selectedCourse" 
+        ng-options="item.Id as item.Name for item in courses">
+    <option value="">Select Course</option>
+	</select>
+	Year:
+	<input type="number" ng-model="year" min="1970" max="2020">
+	Moed:
+	<select ng-model="selectedMoed">
+    <option value="">Select Course
+    <option value="A">A
+    <option value="B">B
+    <option value="C">C
+	</select>
+	
+	Question Number:
+	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber($event)">
+	
+	<br/><br/>
+	
+	Title:
+	<input type="textbox" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1"/><br/>
+
+	  <div class="container lighter">
+            <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="clearfix border-around container" ta-html-editor-class="border-around"></div>
+        </div>
+		
+<div ng-app="fileUpload" ng-controller="MyCtrl">Username
+    <input type="text" ng-model="username"><br/><br/>
+    watching model:
+    <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
+    on file change multiple:
+    <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
+    Drop File:
+    <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+        ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+        accept="image/*,application/pdf" 
+        ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    Files:
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+    </ul>
+    Upload Log:
+    <pre>{{log}}</pre>
+</div>
+</div>
+		
+		
+    <button ng-click="reset()">RESET</button>
+  </form>
+  <p>form = {{user}}</p>
+  <p>master = {{master}}</p>
+</div>
+
+
+
+<form action="<?php echo generateLink("questions","post");?>" method="post" onsubmit="javascript:return cform();">
+
+<h1>What would you like to ask or contribute?</h1>
+<input type="textbox" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1"/><br/>
+ 
+      
+
+<div id="wmd-editor" class="wmd-panel" style="padding-top:10px">
+<div id="wmd-button-bar"></div>
+<textarea id="wmd-input" name="description" tabindex="2" ></textarea>
+</div>
+<div id="wmd-preview" class="markdown"></div>
+ 
+
+<h3 style="padding-top:20px">Share a Link</h3>
+<input type="textbox" class="textbox" name="link" id="link" tabindex="3"/><br/>
+
+<h3>Tags</h3>
+<select class="textbox" placeholder="Tag your question" name="tags" id="tags" tabindex="4"/></select>
+<br/>
+<input type="checkbox" id="answercheck" name="answercheck" value="1" onclick="fanswer();" tabindex="4"> Make this a knowledge-base article
+<br/><br/>
+<input type="submit" value="Ask Question" class="button" id="askquestion" tabindex="5">
+</form>
