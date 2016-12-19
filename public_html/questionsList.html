@@ -1,0 +1,32 @@
+    <script src='../controllers/questionsList.js'></script>
+
+
+<h1>Questions <i> active</i></h1>
+
+<div ng-repeat="x in questions">
+<div style="clear:both"></div>
+<div style="clear:both;height:10px;"></div>
+<div class="questionsview_userbox">
+<div class="userbox"> 
+<a href="/qwench/users/view/880/guy">guy | 1</a> 
+</div></div>
+<div class="questionsview_details">
+<span style="color:#999" title="7:32AM Dec 05th">5
+days ago</span>
+</div>
+<div class="questionsview_details q">
+1 ans | 0 votes
+</div>
+<div class="questionsview_answer" id="a445">
+<div class="questionsgrid_title">
+<a href="/qwench/questions/view/445/546456546546546546546">{{x.title}}</a>
+<br/><span class="questionsgrid_description"><a href="/qwench/questions/view/445/546456546546546546546">{{x.content}}</a></span>
+<div style="clear:both"></div>
+</div>  
+
+<ul class="holder noborder">
+</ul>
+
+<div style="clear:both;"></div>
+</div>
+</div>

@@ -5,7 +5,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 <head>
-<meta name="google-signin-client_id" content="1087559644393-55ot5mt3safubjl2knm302rj2uasr0gl.apps.googleusercontent.com">
 <title>Study Buddy</title>
 <link type="text/css" rel="stylesheet" href="css/main.css">
 <link type="text/css" rel="stylesheet" href="css/tagscomplete.css">
@@ -29,7 +28,7 @@
 
 <form action="/qwench/questions" method="get" style="float:left;width:420px;text-align:left;"><input type="textbox" name="search" style="color: #999" value=""></form>
 
-<div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9;"><ol><li><a href="/qwench">Home</a></li><li><a href="/questions">Questions</a></li><li><a href="/qwench/tags">Tags</a></li><li><a href="/qwench/users">Users</a></li><li><a href="/qwench/questions?type=unanswered">Unanswered</a></li><li><a href="/questions/new">Ask or Contribute</a></li></ol></div>
+<div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9;"><ol><li><a href="/qwench">Home</a></li><li><a href="/qwench/questions">Questions</a></li><li><a href="/qwench/tags">Tags</a></li><li><a href="/qwench/users">Users</a></li><li><a href="/qwench/questions?type=unanswered">Unanswered</a></li><li><a href="/qwench/questions/ask">Ask or Contribute</a></li></ol></div>
 
 </div>
 <div style="clear:both"></div>
@@ -45,29 +44,14 @@
 <div style="clear:both"></div>
 
 		<div class="userlogin">
-		   <div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="228" data-height="46" data-longtitle="true"></div>
-   <div>
-  <script>
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-	          
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-  </script>
-  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+		<form action="/qwench/users/validate" method="post">
+		<h3>E-mail</h3>
+		<input type="textbox" class="textbox" name="email" style="width:215px;"/>
+		<h3>Password</h3>
+		<input type="password" class="textbox" name="password" style="width:215px;"/>
+		<input type="hidden" name="returnurl" value="http://anantgarg.com/qwench/">
+		<div style="padding-top:10px"><input type="submit" value="Login" class="button"> or <i><a href="/qwench/users/register">click here to register</a></i>
+		</form>
 	</div>
 	</div>
 <div style="clear:both"></div>
