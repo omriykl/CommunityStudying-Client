@@ -1,6 +1,3 @@
-var app = angular.module('indexApp', ['ngRoute']);
-
-
 
 app.controller('QuestionsCtr', function($scope,$http) {
 	$scope.questions =[];
