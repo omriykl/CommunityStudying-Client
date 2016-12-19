@@ -1,15 +1,14 @@
-var app = angular.module('indexApp', ['ngRoute']);
 
 app.controller('newQuestion', function($scope) {
     $scope.firstname = "John";
-	$scope.htmlContent = 'Place your question';
+    $scope.htmlContent = 'Place your question';
 	
-	$scope.selectedFaculty = null;
+    $scope.selectedFaculty = null;
     $scope.faculties = [];
 	
-	$scope.selectedCourse = null;
+    $scope.selectedCourse = null;
     $scope.courses = [];
-
+    
     $http({
             method: 'GET',
             url: 'http://localhost:8080/faculty/getall',
@@ -29,26 +28,25 @@ app.controller('newQuestion', function($scope) {
         $scope.courses = result;
     });
 	
-	$scope.onAddQuestionNumber= function($event){
-			var res=null;
-			var data=$.param({
-                faculty: selectedFaculty,id,
-				course: selectedCourse.id,
-				year: $scope.year,
-				moed: $scope.selectedMoed.value,
-				qnum:  $scope.qnumber
+	$scope.onAddQuestionNumber= function(){
+		var data=$.param({
+                    faculty: selectedFaculty,id,
+                    course: $scope.selectedCourse.value,
+                    year: $scope.year,
+                    moed: $scope.selectedMoed.value,
+                    qnum:  $scope.qnumber
             });	
-			var config = {
+		var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
 			
-			$http.post('http://localhost:8080/question/checkexist', data, config)
+            $http.post('http://localhost:8080/question/checkexist', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
             })
-			.error(function (data, status, header, config) {
+            .error(function (data, status, header, config) {
              //   $scope.ResponseDetails = "Data: " + data +
 			//	<hr />status: " + status +
              //       "<hr />headers: " + header +
@@ -56,7 +54,34 @@ app.controller('newQuestion', function($scope) {
             });
 								
 	};
-	
+        
+	$scope.submit = function() {
+        var data=$.param({
+                    faculty: selectedFaculty,id,
+                    course: $scope.selectedCourse.value,
+                    year: $scope.year,
+                    moed: $scope.selectedMoed.value,
+                    qnum:  $scope.qnumber,
+                    title: $scope.title,
+                    content: $scope.htmlContent
+            });	
+		var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+			
+            $http.post('http://localhost:8080/question/checkexist', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+            })
+            .error(function (data, status, header, config) {
+             //   $scope.ResponseDetails = "Data: " + data +
+			//	<hr />status: " + status +
+             //       "<hr />headers: " + header +
+             //       "<hr />config: " + config;
+            });
+      };
 	
 	
    }
