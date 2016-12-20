@@ -1,32 +1,4 @@
 
-	
-	<style>
-        textarea.ta-bind {
-            width: 100%;
-        }
-		.drop-box {
-            background: #F8F8F8;
-            border: 5px dashed #DDD;
-            width: 200px;
-            height: 65px;
-            text-align: center;
-            padding-top: 25px;
-            margin: 10px;
-        }
-        .dragover {
-            border: 5px dashed blue;
-        }
-		.button {
-            -moz-appearance: button;
-            /* Firefox */
-            -webkit-appearance: button;
-            /* Safari and Chrome */
-            padding: 10px;
-            margin: 10px;
-            width: 70px;
-        }
-    </style>
-	
 
 <h1>New Question </h1>
 
@@ -38,7 +10,7 @@
     <br><br>
 	Faculty:
 	<select ng-model="selectedFaculty" 
-        ng-options="item.Id as item.Name for item in faculties" ng-change="facultySelected(id)>
+        ng-options="item.Id as item.Name for item in faculties" ng-change="facultySelected(selectedFaculty)>
     <option value="">Select Faculty</option>
 	</select>
 	
@@ -59,13 +31,14 @@
 	</select>
 	
 	Question Number:
-	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber($event)">
+	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 	
 	<br/><br/>
 	
 	Title:
 	<input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1"/><br/>
         Content:
+        
 	  <div class="container lighter">
             <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="clearfix border-around container" ta-html-editor-class="border-around"></div>
         </div>

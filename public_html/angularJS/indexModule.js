@@ -1,4 +1,4 @@
-var app = angular.module('indexApp', ['ngRoute']);
+var app = angular.module('indexApp', ['ngRoute' , 'textAngular' ,'ngFileUpload' ]);
 
 app.config(function ($routeProvider) {
     $routeProvider.when("/questions", {

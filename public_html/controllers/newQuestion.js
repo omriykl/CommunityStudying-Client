@@ -1,4 +1,4 @@
-app.controller('newQuestion', function($scope) {
+app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
     $scope.firstname = "John";
     $scope.htmlContent = 'Place your question';
 
@@ -18,9 +18,9 @@ app.controller('newQuestion', function($scope) {
         $scope.faculties = result;
     });
 
-    $scope.facultySelected = function(id) {
+    $scope.facultySelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
-        id = event.target.id;
+        var id = item.id;
         $http({
             method: 'GET',
             url: 'http://localhost:8080/course/getByFaculty/?facultyId='.concat(id),
@@ -89,13 +89,10 @@ app.controller('newQuestion', function($scope) {
                 });
         };
 
-});
+}]);
 
 
-
-var app2 = angular.module('fileUpload', ['ngFileUpload']);
-
-app2.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
+app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
     $scope.$watch('files', function() {
         $scope.upload($scope.files);
     });
@@ -136,8 +133,7 @@ app2.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Uplo
         }
     };
 }]);
-
-
+                               
 
 //example to use params. add to when :paramName. like that .when("/questions/:param1"
 app.controller('AppCtrl', function($routeParams) {

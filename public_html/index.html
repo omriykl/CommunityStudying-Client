@@ -3,12 +3,14 @@
 
 <html ng-app="indexApp">
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <head>
+ <link rel="icon" type="image/png" href="img/favicon.png" >
+     
 <meta name="google-signin-client_id" content="1087559644393-55ot5mt3safubjl2knm302rj2uasr0gl.apps.googleusercontent.com">
 <title>Study Buddy</title>
-<link type="text/css" rel="stylesheet" href="css/main.css" />
-<link type="text/css" rel="stylesheet" href="css/tagscomplete.css" />
+<link type="text/css" rel="stylesheet" href="css/main.css" >
+<link type="text/css" rel="stylesheet" href="css/tagscomplete.css" >
 
 <script src="js/jquery.js"></script>
 <script src="js/tagscomplete.js"></script>
@@ -17,7 +19,7 @@
 
 <script type="text/javascript" src="js/prettify/prettify.js"></script>
 
-<link href="css/prettify.css" type="text/css" rel="stylesheet" />
+<link href="css/prettify.css" type="text/css" rel="stylesheet" >
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
@@ -31,30 +33,58 @@
 
     <script src='js/text/textAngular-rangy.min.js'></script>
     <script src='controllers/newQuestion.js'></script>
-    
-    <script src='js/text/textAngular.min.js'></script>
+    <link rel='stylesheet' href='css/textAngular.css'>
+<script src='js/text/textAngular-rangy.min.js'></script>
+<script src='js/text/textAngular-sanitize.min.js'></script>
+   <script src='js/text/textAngular.min.js'></script>
+   <script src='js/text/textAngularSetup.js'></script>
 
 	<script src="js/fileupload/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->	
 	<script src="js/fileupload/ng-file-upload.min.js"></script>
 	
-<link rel="icon" type="image/png" href="img/favicon.png" />
-<link rel="author" href="https://www.linkedin.com/in/austinanderson1" />
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
-    <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css" />
-<link href="css/prettify.css" type="text/css" rel="stylesheet" />
+
+<link rel="author" href="https://www.linkedin.com/in/austinanderson1" >
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300" >
+    <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css" >
+    <link href="css/prettify.css" type="text/css" rel="stylesheet" >
 
 
-
+	<style>
+        textarea.ta-bind {
+            width: 100%;
+        }
+		.drop-box {
+            background: #F8F8F8;
+            border: 5px dashed #DDD;
+            width: 200px;
+            height: 65px;
+            text-align: center;
+            padding-top: 25px;
+            margin: 10px;
+        }
+        .dragover {
+            border: 5px dashed blue;
+        }
+		.button {
+            -moz-appearance: button;
+            /* Firefox */
+            -webkit-appearance: button;
+            /* Safari and Chrome */
+            padding: 10px;
+            margin: 10px;
+            width: 70px;
+        }
+    </style>
 
 </head>
 <body onload="prettyPrint()">
 <div id="navigation"><div class="navcenter">
 
-<form action="/qwench/questions" method="get" style="float:left;width:420px;text-align:left;"><input type="textbox" name="search" style="color: #999" value=""></form>
+<form action="/qwench/questions" method="get" style="float:left;width:420px;text-align:left;"><input type="textbox" name="search" style="color: #999" value=""/> </form>
 
-<div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9;"><ol><li><a href="/qwench">Home</a></li><li><a href="/qwench/questions">Questions</a></li><li><a href="/qwench/tags">Tags</a></li><li><a href="/qwench/users">Users</a></li><li><a href="/qwench/questions?type=unanswered">Unanswered</a></li><li><a href="/qwench/questions/new">Ask or Contribute</a></li></ol></div>
+<div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9;"><ol><li><a href="/qwench">Home</a></li><li><a href="#questions">Questions</a></li><li><a href="/qwench/tags">Tags</a></li><li><a href="/qwench/users">Users</a></li><li><a href="/qwench/questions?type=unanswered">Unanswered</a></li><li><a href="#questions/new">Ask or Contribute</a></li></ol></div>
 
 </div>
 <div style="clear:both"></div>
@@ -66,7 +96,7 @@
         <!--<div ng-include="includeUrl"></div>-->
     </div>
 <div id="rightpanel">
-<div style="text-align:right;"><a href="/qwench/" style="border-bottom:0px;"><img src="img/logo.png" style="width:230px;"></a></div>
+<div style="text-align:right;"><a href="/qwench/" style="border-bottom:0px;"><img src="img/logo.png" style="width:230px;"/></a></div>
 <div style="clear:both"></div>
 
 		<div class="userlogin" ng-controller="LoginCtr" id="logInBox">
