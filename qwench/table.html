@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="namesCtrl"> 
+<input type="button" value="add" ng-click="addRow()"/>
+<table>
+	<th>Name</th>
+    <th>LastName</th>
+	<th>PhoneNum</th>
+  <tr ng-repeat="x in records">
+    <td>{{ x.Name }}</td>
+    <td>{{ x.LastName }}</td>
+    <td>{{ x.PhoneNum }}</td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('namesCtrl', function($scope) {
+    $scope.records = [
+{ 'Name':'or',
+'LastName': 'hirshman',
+'PhoneNum': '3555'},
+{ 'Name':'peti',
+'LastName': 'tooti',
+'PhoneNum': 'classified'},
+];
+	$scope.addRow = function(){
+	$scope.Name='skiper';
+$scope.LastName='katan';
+$scope.PhoneNum='000';
+$scope.records.push({ 'Name':$scope.Name, 'LastName': $scope.LastName, 'PhoneNum':$scope.PhoneNum });
+
+};
+});
+</script>
+
+</body>
+</html>
