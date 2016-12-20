@@ -1,24 +1,64 @@
  
-<h1>Questions <i> active</i></h1>
+<h1>Questions <i> </i></h1>
 
+
+<h3>Filter:</h3>
+
+<form ng-submit="submit()">
+
+Faculty:
+	<select ng-model="selectedFaculty" 
+        ng-options="item.Id as item.Name for item in faculties" ng-change="facultySelected(selectedFaculty)>
+    <option value="">Select Faculty</option>
+	</select>
+	
+	Course:
+	<select ng-model="selectedCourse" 
+        ng-options="item.Id as item.Name for item in courses">
+    <option value="">Select Course</option>
+	</select>
+        <br/><br/>
+	Year:
+	<input type="number" ng-model="year" min="1970" max="2020">
+	Moed:
+	<select ng-model="selectedMoed">
+    <option value="">Select Moed
+    <option value="A">A
+    <option value="B">B
+    <option value="C">C
+	</select>
+	
+	Question Number:
+	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
+	
+	<br/><br/>
+        Tags <small>Separate by ( , )</small>:
+        <input type="text" ng-model="tags">
+        <br/><br/>
+        Free text:
+        <input type="text" ng-model="freeText">
+<br/>
+         <input type="submit" id="submit" value="Filter" />
+ </form>       
+ <hr>
+<br/>
 <div ng-repeat="x in questions">
 <div style="clear:both"></div>
 <div style="clear:both;height:10px;"></div>
 <div class="questionsview_userbox">
 <div class="userbox"> 
-<a href="/qwench/users/view/880/guy">guy | 1</a> 
+<a href="/qwench/users/view/880/guy">{{x.userName}} | {{x.comments}}</a> 
 </div></div>
 <div class="questionsview_details">
-<span style="color:#999" title="7:32AM Dec 05th">5
-days ago</span>
+<span style="color:#999" title="{{x.createdAt}}">{{x.timeAgo}}</span>
 </div>
 <div class="questionsview_details q">
-1 ans | 0 votes
+{{x.comments}} ans | {{x.likes}} votes
 </div>
 <div class="questionsview_answer" id="a445">
 <div class="questionsgrid_title">
-<a href="/qwench/questions/view/445/546456546546546546546">{{x.title}}</a>
-<br/><span class="questionsgrid_description"><a href="/qwench/questions/view/445/546456546546546546546">{{x.content}}</a></span>
+<a href="/qwench/questions/view/{{x.id}}">{{x.title}}</a>
+<br/><span class="questionsgrid_description"><a href="/qwench/questions/view/{{x.id}}">{{x.content}}</a></span>
 <div style="clear:both"></div>
 </div>  
 
