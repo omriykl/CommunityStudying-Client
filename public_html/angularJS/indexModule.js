@@ -1,3 +1,4 @@
+var SERVER_APP_BASE_URL = "http://localhost:8080/";
 var app = angular.module('indexApp', ['ngRoute' , 'textAngular' ,'ngFileUpload' ]);
 
 app.config(function ($routeProvider) {
@@ -28,7 +29,7 @@ app.controller('LoginCtr', function ($scope, $http) {
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-        $http.get('http://localhost:8080/user/getOrCreateUser?idTokenString=' + id_token).success(function (user) {
+        $http.get(SERVER_APP_BASE_URL+'user/getOrCreateUser?idTokenString=' + id_token).success(function (user) {
             console.log(user);
             $scope.userName = user.firstName;
             $scope.isConnected = true;
@@ -37,6 +38,7 @@ app.controller('LoginCtr', function ($scope, $http) {
     }
     $scope.logout = function () {
         $scope.isConnected = false;
+        $scope.$apply();
     }
 });
 
