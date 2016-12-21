@@ -101,7 +101,7 @@
 
 		<div class="userlogin" ng-controller="LoginCtr" id="logInBox" style="width:292px">
 		<div ng-show="isConnected">
-			<div style="float:left"><img src={{userPic}} style="border:1px solid #ccc"></div>
+			<div style="float:left"><img ng-src="{{userPic}}" style="border:1px solid #ccc"></div>
 			<div style="float:left;padding-left:7px;">
 				<h3 style="padding-left:0px">{{userName}}</h3>
 				<a href="/qwench/users/edit" >Edit Profile</a><br/>
