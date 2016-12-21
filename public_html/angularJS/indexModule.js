@@ -1,5 +1,6 @@
 var SERVER_APP_BASE_URL = "http://localhost:8080/";
 var app = angular.module('indexApp', ['ngRoute' , 'textAngular' ,'ngFileUpload' ]);
+var USER_TOKEN = "";
 
 app.config(function ($routeProvider) {
     $routeProvider.when("/questions", {
@@ -14,15 +15,17 @@ app.config(function ($routeProvider) {
     });
 });
 
-app.controller('LoginCtr', function ($scope, $http) {
+app.controller('LoginCtr', function ($scope, $http,$rootScope) {
     $scope.isConnected = false;
     $scope.login = function (googleUser) {
         var profile = googleUser.getBasicProfile();
         var id_token = googleUser.getAuthResponse().id_token;
         $http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + id_token).success(function (user) {
             $scope.userName = user.firstName+ " " +user.lastName;
-			$scope.userPic=user.pictureUrl;
+            $scope.userPic=user.pictureUrl;
             $scope.isConnected = true;
+            USER_TOKEN = id_token;
+            $rootScope.$broadcast('user-loaded');
 
         });
     }

@@ -7,12 +7,20 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
 
     $scope.selectedCourse = null;
     $scope.courses = [];
-
-    $http({
-        method: 'GET',
-        url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=[STR]',
-    }).success(function (result) {
-        $scope.faculties = result.allData;
+    
+    $scope.loadFaculties = function () {
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+        }).success(function (result) {
+            $scope.faculties = result.allData;
+        })
+    };
+    
+    $scope.loadFaculties(); // first call to get faculties 
+    
+    $scope.$on('user-loaded', function (event, args) {
+        $scope.loadFaculties(); // second call to get faculties, but this time after user is signed in! 
     });
 
     $scope.facultySelected = function (item) {
@@ -127,10 +135,3 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
         }
     };
 }]);
-
-
-//example to use params. add to when :paramName. like that .when("/questions/:param1"
-app.controller('AppCtrl', function ($routeParams) {
-    var self = this;
-    self.message = $routeParams.message;
-});
