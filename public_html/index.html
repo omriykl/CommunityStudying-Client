@@ -102,7 +102,7 @@
 		<div class="userlogin" ng-controller="LoginCtr" id="logInBox">
 		<div ng-show="isConnected">
 			<div style="float:left"><img src={{userPic}} style="border:1px solid #ccc"></div>
-			<div style="float:left;padding-left:10px;">
+			<div style="float:left;padding-left:0px;">
 				<h3 style="padding-left:0px">{{userName}}</h3>
 				<a href="/qwench/users/edit" >Edit Profile</a><br/>
 				<a href="#" onclick="signOut();">Sign out</a><br><br>
@@ -112,8 +112,7 @@
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');	 
+    auth2.signOut().then(function () {	 
 		angular.element(document.getElementById('logInBox')).scope().logout();	  
     });
 	
