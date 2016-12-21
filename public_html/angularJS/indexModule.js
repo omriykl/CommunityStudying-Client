@@ -29,9 +29,10 @@ app.controller('LoginCtr', function ($scope, $http) {
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-        $http.get(SERVER_APP_BASE_URL+'user/getOrCreateUser?idTokenString=' + id_token).success(function (user) {
+        $http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + id_token).success(function (user) {
             console.log(user);
-            $scope.userName = user.firstName;
+            $scope.userName = user.firstName+ " " +user.lastName;
+			$scope.userPic=user.pictureUrl;
             $scope.isConnected = true;
 
         });
