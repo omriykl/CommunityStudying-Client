@@ -3,19 +3,16 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
     $scope.htmlContent = 'Place your question';
 
     $scope.selectedFaculty = null;
-    $scope.faculties = [];
+    $scope.faculties = [{"Id":1,"Name":"omd"}];
 
     $scope.selectedCourse = null;
     $scope.courses = [];
 
     $http({
         method: 'GET',
-        url: 'http://localhost:8080/faculty/getall',
-        data: {
-            applicationId: 3
-        }
+        url: 'http://localhost:8080/faculty/getUserAllData?idTokenString=[STR]',
     }).success(function(result) {
-        $scope.faculties = result;
+        $scope.faculties = result.allData;
     });
 
     $scope.facultySelected = function(item) {
@@ -23,12 +20,9 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
         var id = item.id;
         $http({
             method: 'GET',
-            url: 'http://localhost:8080/course/getByFaculty/?facultyId='.concat(id),
-            data: {
-                applicationId: 3
-            }
+            url: 'http://localhost:8080/course/getUserAllData/?facultyId='.concat(id),
         }).success(function(result) {
-            $scope.courses = result;
+            $scope.courses = result.allData;
         });
     }
 

@@ -10,13 +10,13 @@
     <br><br>
 	Faculty:
 	<select ng-model="selectedFaculty" 
-        ng-options="item.Id as item.Name for item in faculties" ng-change="facultySelected(selectedFaculty)>
-    <option value="">Select Faculty</option>
+        ng-options="item.name for item in faculties track by item.id" ng-change="facultySelected(selectedFaculty)">
+            <option value="">Select Faculty</option>
 	</select>
 	
 	Course:
 	<select ng-model="selectedCourse" 
-        ng-options="item.Id as item.Name for item in courses">
+        ng-options="item.name for item in courses track by item.id">
     <option value="">Select Course</option>
 	</select>
         <br/><br/>
