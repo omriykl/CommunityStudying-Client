@@ -38,8 +38,11 @@
 	<input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1"/><br/>
         <br/>
         Content:
-        <text-angular ng-model="htmlContent" name="content"><p>Hello World!</p></text-angular>
-       
+        
+	  <div class="container lighter">
+            <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="clearfix border-around container" ta-html-editor-class="border-around"></div>
+        </div>
+        
         
    <!-- 
    OTHER STYLES OF TAGS
