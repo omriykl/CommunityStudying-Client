@@ -1,6 +1,6 @@
 app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
     $scope.firstname = "John";
-    $scope.htmlContent = 'Place your question';
+    $scope.htmlContent = '<h3>Place your question</h3>';
 
     $scope.selectedFaculty = null;
     $scope.faculties = [];

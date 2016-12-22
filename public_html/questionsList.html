@@ -2,8 +2,10 @@
 <h1>Questions <i> </i></h1>
 
 
-<h3>Filter:</h3>
-<div class="form-control">
+<input type='button' id='hideshow' value='Hide/Show Search'>
+
+<div class="form-control" id="searchPanel">
+    <h3>Filter:</h3>
 <form ng-submit="submit()">
 
 Faculty:
@@ -31,7 +33,7 @@ Faculty:
 	Question Number:
 	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 	
-	<br/><br/>
+	<br/>
         Tags :
         
          <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>    
@@ -60,8 +62,8 @@ Faculty:
 </div>
 <div class="questionsview_answer" id="a445">
 <div class="questionsgrid_title">
-<a href="/qwench/questions/view/{{x.id}}">{{x.title}}</a>
-<br/><span class="questionsgrid_description"><a href="/qwench/questions/view/{{x.id}}">{{x.content}}</a></span>
+<a href="#questions/view/{{x.id}}">{{x.title}}</a>
+<br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}">{{x.content}}</a></span>
 <div style="clear:both"></div>
 </div>  
 
@@ -71,3 +73,4 @@ Faculty:
 <div style="clear:both;"></div>
 </div>
 </div>
+

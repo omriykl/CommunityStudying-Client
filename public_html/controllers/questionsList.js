@@ -1,5 +1,13 @@
 
+
+var toggleSearch= function(){
+     jQuery('#hideshow').on('click', function(event) {        
+             jQuery('#searchPanel').toggle('show');
+});
+}
 app.controller('QuestionsCtr',  ['$scope', '$http', function($scope, $http) {
+        toggleSearch();
+             
 	$scope.questions =[];
 	
 	$http.get(SERVER_APP_BASE_URL+'question/all').success(function(data){

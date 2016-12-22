@@ -2,26 +2,24 @@
 
 <h1>New Question </h1>
 
-<div class="form-control">
+
   <form ng-submit="submit()">
-     Name:
-    {{user.firstName}} {{user.lastName}}
-    <br><br>
-	Faculty:
+      <div class="form-control">
+          <b> Faculty:</b>
 	<select ng-model="selectedFaculty" 
         ng-options="item.name for item in faculties track by item.id" ng-change="facultySelected(selectedFaculty)">
             <option value="">Select Faculty</option>
 	</select>
 	
-	Course:
+	<b>Course:</b>
 	<select ng-model="selectedCourse" 
         ng-options="item.name for item in courses track by item.id" ng-change="courseSelected(selectedCourse)">
     <option value="">Select Course</option>
 	</select>
         <br/><br/>
-	Year:
+	<b>Year:</b>
 	<input type="number" ng-model="year" min="1970" max="2020">
-	Moed:
+	<b>Moed:</b>
 	<select ng-model="selectedMoed">
     <option value="">Select Moed
     <option value="A">A
@@ -29,22 +27,16 @@
     <option value="C">C
 	</select>
 	
-	Question Number:
+	<b>Question Number:</b>
 	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 	
 	<br/><br/>
 	
-	Title:
+	<b>Title:</b>
 	<input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1"/><br/>
-        <br/>
-        Content:
-        
-	  <div class="container lighter">
-            <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="clearfix border-around container" ta-html-editor-class="border-around"></div>
-        </div>
         
         
-   <!-- 
+           <!-- 
    OTHER STYLES OF TAGS
    <tagger ng-model="tags" options="options" placeholder="Select some tags"></tagger>
     <input type="text"/>
@@ -57,42 +49,50 @@
     <pre>{{ font | json }}</pre>
     <button ng-click='foc()'>Focus</button>
 -->
+<b>Tags:</b>
     <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>
     
   <!--  <pre>{{ tags | json }}</pre>-->
 
     <!--  <button ng-click="empty.addOption()">Add option</button>-->
 
+        <br/>
+        <b>Content:</b>
+        
+	  <div class="container lighter">
+            <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="clearfix border-around container" ta-html-editor-class="border-around"></div>
+        </div>
         
         
-		
+	
 <div ng-app="fileUpload" ng-controller="MyCtrl">
  <!--   watching model:
     <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
     on file change multiple:
     <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
  -->
-    Drop File:
+    <b>Drop File:</b>
     <div ngf-drop ngf-select ng-model="files" class="drop-box" 
         ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
         accept="image/*,application/pdf" 
         ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-    Files:
+    <b>Files Uploaded</b>
     <ul>
         <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
     </ul>
-    Upload Log:
+    <b>Files Upload Status:</b>
     <pre>{{log}}</pre>
 </div>
 	
 		
     <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Submit" />
   <!--  <button ng-click="reset()">RESET</button>-->
+     </div>
   </form>
     
     <hr>
-    </div>
+ 
 
 
 

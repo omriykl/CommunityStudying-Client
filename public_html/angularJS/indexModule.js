@@ -13,6 +13,11 @@ app.config(function ($routeProvider) {
         controller: "newQuestion",
         controllerAs: "app"
     });
+    $routeProvider.when("/questions/view", {
+        templateUrl: "views/questions/View.html",
+        controller: "viewQuestion",
+        controllerAs: "app"
+    });
 });
 
 app.controller('LoginCtr', function ($scope, $http,$rootScope) {
