@@ -61,6 +61,27 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
             });
 
     };
+          var optionalTags=[];
+
+     $scope.courseSelected = function (item) {
+        //$scope.item.size.code = $scope.selectedItem.code
+        var id = item.id;
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
+        }).success(function (result) {
+            optionalTags = result;
+        });
+    }
+    
+        optionalTags=["C3","bfs","dfs"];
+        $scope.tags = {
+        value: [],
+        options: optionalTags,
+        addOption: function() {
+          $scope.tags.options.push(Math.random())
+        }
+      }
 
     $scope.submit = function () {
         var data = $.param({
@@ -92,7 +113,45 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
     };
 
 }]);
+<!--
+app.controller("TestCtrl", function($scope){
+    
+      $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
+      $scope.tags = ["Markdown", "Ruby"]
 
+      $scope.font = null
+      $scope.fonts = [
+        {id: 1, name: "Lucida"},
+        {id: 2, name: "DejaVu"},
+        {id: 3, name: "Bitstream"},
+        {id: 4, name: "Liberation"},
+      //  {id: 5, name: "Verdana"}
+      ]
+
+      $scope.font2 = $scope.fonts[1]
+
+      $scope.showName = function(font){ return font.name; }
+      $scope.createName = function(name) { return {name: name} }
+
+        var optionalTags=[];
+        
+      $scope.tags = {
+        value: [],
+        options: [],
+        addOption: function() {
+          $scope.tags.options.push(Math.random())
+        }
+      }
+
+      $scope.selected = function(item){
+        console.log("SELECTED ", item)
+      }
+
+      $scope.foc = function(){
+        document.getElementById("s1").focus()
+      }
+    })
+-->
 
 app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
     $scope.$watch('files', function () {

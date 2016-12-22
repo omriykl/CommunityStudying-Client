@@ -3,18 +3,18 @@
 
 
 <h3>Filter:</h3>
-
+<div class="form-control">
 <form ng-submit="submit()">
 
 Faculty:
 	<select ng-model="selectedFaculty" 
-        ng-options="item.Id as item.Name for item in faculties" ng-change="facultySelected(selectedFaculty)>
+        ng-options="item.Id as item.Name for item in faculties" ng-change="facultySelected(selectedFaculty)">
     <option value="">Select Faculty</option>
 	</select>
 	
 	Course:
 	<select ng-model="selectedCourse" 
-        ng-options="item.Id as item.Name for item in courses">
+        ng-options="item.Id as item.Name for item in courses" ng-change="courseSelected(selectedCourse)">
     <option value="">Select Course</option>
 	</select>
         <br/><br/>
@@ -32,14 +32,17 @@ Faculty:
 	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 	
 	<br/><br/>
-        Tags <small>Separate by ( , )</small>:
-        <input type="text" ng-model="tags">
-        <br/><br/>
+        Tags :
+        
+         <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>    
+        <pre>{{ tags | json }}</pre>
+            <br/><br/>
         Free text:
         <input type="text" ng-model="freeText">
 <br/>
          <input type="submit" id="submit" value="Filter" />
- </form>       
+ </form>   
+</div>    
  <hr>
 <br/>
 <div ng-repeat="x in questions">

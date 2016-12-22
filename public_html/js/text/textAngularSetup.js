@@ -42,7 +42,7 @@
     
     <meta name="pjax-timeout" content="1000">
     
-    <meta name="request-id" content="3E0043B9:C3EB:649EE8D:5858FE4A" data-pjax-transient>
+    <meta name="request-id" content="3E0043B9:C3EB:661D7ED:58591DB0" data-pjax-transient>
 
     <meta name="msapplication-TileImage" content="/windows-tile.png">
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -52,7 +52,7 @@
 <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
     <meta name="google-analytics" content="UA-3769691-2">
 
-<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="3E0043B9:C3EB:649EE8D:5858FE4A" name="octolytics-dimension-request_id" />
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="3E0043B9:C3EB:661D7ED:58591DB0" name="octolytics-dimension-request_id" />
 <meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" name="analytics-location" />
 
 
@@ -65,7 +65,7 @@
     <meta name="user-login" content="">
 
         <meta name="expected-hostname" content="github.com">
-      <meta name="js-proxy-site-detection-payload" content="NzViYzhhMjViYzQ5OGRjMWY0NTVjNWYzMjRlMjA1MDkyMTIwMWExNmZjNjc1ZTY2YmRlM2M5ZjdhNGI2ZDUwNHx7InJlbW90ZV9hZGRyZXNzIjoiNjIuMC42Ny4xODUiLCJyZXF1ZXN0X2lkIjoiM0UwMDQzQjk6QzNFQjo2NDlFRThEOjU4NThGRTRBIiwidGltZXN0YW1wIjoxNDgyMjI3Mjc0LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+      <meta name="js-proxy-site-detection-payload" content="Yzc2MjAyZWI2NmY3MzNjMzg2ZjdhZDc0OWNlNWNhZDdhZTA4YzEyYTk4NGVkMDg2YTM3OWZiZjFhOTBlN2RiNXx7InJlbW90ZV9hZGRyZXNzIjoiNjIuMC42Ny4xODUiLCJyZXF1ZXN0X2lkIjoiM0UwMDQzQjk6QzNFQjo2NjFEN0VEOjU4NTkxREIwIiwidGltZXN0YW1wIjoxNDgyMjM1MzE2LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
 
 
       <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
@@ -85,7 +85,7 @@
   <link href="https://github.com/fraywing/textAngular/commits/master.atom" rel="alternate" title="Recent Commits to textAngular:master" type="application/atom+xml">
 
 
-      <link rel="canonical" href="https://github.com/fraywing/textAngular/blob/master/dist/textAngularSetup.js" data-pjax-transient>
+      <link rel="canonical" href="https://github.com/fraywing/textAngular/blob/master/src/textAngularSetup.js" data-pjax-transient>
   </head>
 
 
@@ -123,7 +123,7 @@
 
       <div class="site-header-actions">
             <a class="btn btn-primary site-header-actions-btn" href="/join?source=header-repo" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
-          <a class="btn site-header-actions-btn mr-1" href="/login?return_to=%2Ffraywing%2FtextAngular%2Fblob%2Fmaster%2Fdist%2FtextAngularSetup.js" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+          <a class="btn site-header-actions-btn mr-1" href="/login?return_to=%2Ffraywing%2FtextAngular%2Fblob%2Fmaster%2Fsrc%2FtextAngularSetup.js" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
       </div>
 
         <nav class="site-header-nav site-header-nav-secondary mr-md-3">
@@ -284,9 +284,9 @@
 
     
 
-<a href="/fraywing/textAngular/blob/ff8e48087f780d30f54e77b06f09e0b85f9517e9/dist/textAngularSetup.js" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
+<a href="/fraywing/textAngular/blob/ff8e48087f780d30f54e77b06f09e0b85f9517e9/src/textAngularSetup.js" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
 
-<!-- blob contrib key: blob_contributors:v21:957828c8a929bf6cccab0c041506734f -->
+<!-- blob contrib key: blob_contributors:v21:b26edb650ad64942c371b9f458c2ae03 -->
 
 <div class="file-navigation js-zeroclipboard-container">
   
@@ -328,7 +328,7 @@
 
 
             <a class="select-menu-item js-navigation-item js-navigation-open "
-               href="/fraywing/textAngular/blob/gh-pages/dist/textAngularSetup.js"
+               href="/fraywing/textAngular/blob/gh-pages/src/textAngularSetup.js"
                data-name="gh-pages"
                data-skip-pjax="true"
                rel="nofollow">
@@ -338,7 +338,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-               href="/fraywing/textAngular/blob/%24interpolateTest/dist/textAngularSetup.js"
+               href="/fraywing/textAngular/blob/%24interpolateTest/src/textAngularSetup.js"
                data-name="$interpolateTest"
                data-skip-pjax="true"
                rel="nofollow">
@@ -348,7 +348,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open selected"
-               href="/fraywing/textAngular/blob/master/dist/textAngularSetup.js"
+               href="/fraywing/textAngular/blob/master/src/textAngularSetup.js"
                data-name="master"
                data-skip-pjax="true"
                rel="nofollow">
@@ -358,7 +358,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-               href="/fraywing/textAngular/blob/revert-1023-feature/fix-commonjs/dist/textAngularSetup.js"
+               href="/fraywing/textAngular/blob/revert-1023-feature/fix-commonjs/src/textAngularSetup.js"
                data-name="revert-1023-feature/fix-commonjs"
                data-skip-pjax="true"
                rel="nofollow">
@@ -377,7 +377,7 @@
 
 
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.16/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.16/src/textAngularSetup.js"
               data-name="v1.5.16"
               data-skip-pjax="true"
               rel="nofollow">
@@ -387,7 +387,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.15/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.15/src/textAngularSetup.js"
               data-name="v1.5.15"
               data-skip-pjax="true"
               rel="nofollow">
@@ -397,7 +397,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.14/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.14/src/textAngularSetup.js"
               data-name="v1.5.14"
               data-skip-pjax="true"
               rel="nofollow">
@@ -407,7 +407,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.13/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.13/src/textAngularSetup.js"
               data-name="v1.5.13"
               data-skip-pjax="true"
               rel="nofollow">
@@ -417,7 +417,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.12/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.12/src/textAngularSetup.js"
               data-name="v1.5.12"
               data-skip-pjax="true"
               rel="nofollow">
@@ -427,7 +427,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.11/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.11/src/textAngularSetup.js"
               data-name="v1.5.11"
               data-skip-pjax="true"
               rel="nofollow">
@@ -437,7 +437,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.10/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.10/src/textAngularSetup.js"
               data-name="v1.5.10"
               data-skip-pjax="true"
               rel="nofollow">
@@ -447,7 +447,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.9/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.9/src/textAngularSetup.js"
               data-name="v1.5.9"
               data-skip-pjax="true"
               rel="nofollow">
@@ -457,7 +457,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.8/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.8/src/textAngularSetup.js"
               data-name="v1.5.8"
               data-skip-pjax="true"
               rel="nofollow">
@@ -467,7 +467,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.7/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.7/src/textAngularSetup.js"
               data-name="v1.5.7"
               data-skip-pjax="true"
               rel="nofollow">
@@ -477,7 +477,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.6/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.6/src/textAngularSetup.js"
               data-name="v1.5.6"
               data-skip-pjax="true"
               rel="nofollow">
@@ -487,7 +487,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.6-0/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.6-0/src/textAngularSetup.js"
               data-name="v1.5.6-0"
               data-skip-pjax="true"
               rel="nofollow">
@@ -497,7 +497,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.5/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.5/src/textAngularSetup.js"
               data-name="v1.5.5"
               data-skip-pjax="true"
               rel="nofollow">
@@ -507,7 +507,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.4/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.4/src/textAngularSetup.js"
               data-name="v1.5.4"
               data-skip-pjax="true"
               rel="nofollow">
@@ -517,7 +517,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.3/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.3/src/textAngularSetup.js"
               data-name="v1.5.3"
               data-skip-pjax="true"
               rel="nofollow">
@@ -527,7 +527,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.2/src/textAngularSetup.js"
               data-name="v1.5.2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -537,7 +537,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.1/src/textAngularSetup.js"
               data-name="v1.5.1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -547,7 +547,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.5.0/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.5.0/src/textAngularSetup.js"
               data-name="v1.5.0"
               data-skip-pjax="true"
               rel="nofollow">
@@ -557,7 +557,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.4.6/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.4.6/src/textAngularSetup.js"
               data-name="v1.4.6"
               data-skip-pjax="true"
               rel="nofollow">
@@ -567,7 +567,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.4.5/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.4.5/src/textAngularSetup.js"
               data-name="v1.4.5"
               data-skip-pjax="true"
               rel="nofollow">
@@ -577,7 +577,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.4.4/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.4.4/src/textAngularSetup.js"
               data-name="v1.4.4"
               data-skip-pjax="true"
               rel="nofollow">
@@ -587,7 +587,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.4.3/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.4.3/src/textAngularSetup.js"
               data-name="v1.4.3"
               data-skip-pjax="true"
               rel="nofollow">
@@ -597,7 +597,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.4.2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.4.2/src/textAngularSetup.js"
               data-name="v1.4.2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -607,7 +607,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.4.1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.4.1/src/textAngularSetup.js"
               data-name="v1.4.1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -617,7 +617,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.4.0/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.4.0/src/textAngularSetup.js"
               data-name="v1.4.0"
               data-skip-pjax="true"
               rel="nofollow">
@@ -627,7 +627,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.11/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.11/src/textAngularSetup.js"
               data-name="v1.3.11"
               data-skip-pjax="true"
               rel="nofollow">
@@ -637,7 +637,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.10/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.10/src/textAngularSetup.js"
               data-name="v1.3.10"
               data-skip-pjax="true"
               rel="nofollow">
@@ -647,7 +647,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.9/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.9/src/textAngularSetup.js"
               data-name="v1.3.9"
               data-skip-pjax="true"
               rel="nofollow">
@@ -657,7 +657,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.8/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.8/src/textAngularSetup.js"
               data-name="v1.3.8"
               data-skip-pjax="true"
               rel="nofollow">
@@ -667,7 +667,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.7/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.7/src/textAngularSetup.js"
               data-name="v1.3.7"
               data-skip-pjax="true"
               rel="nofollow">
@@ -677,7 +677,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.6/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.6/src/textAngularSetup.js"
               data-name="v1.3.6"
               data-skip-pjax="true"
               rel="nofollow">
@@ -687,7 +687,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.5/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.5/src/textAngularSetup.js"
               data-name="v1.3.5"
               data-skip-pjax="true"
               rel="nofollow">
@@ -697,7 +697,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.4/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.4/src/textAngularSetup.js"
               data-name="v1.3.4"
               data-skip-pjax="true"
               rel="nofollow">
@@ -707,7 +707,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.3/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.3/src/textAngularSetup.js"
               data-name="v1.3.3"
               data-skip-pjax="true"
               rel="nofollow">
@@ -717,7 +717,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.2/src/textAngularSetup.js"
               data-name="v1.3.2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -727,7 +727,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.1/src/textAngularSetup.js"
               data-name="v1.3.1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -737,7 +737,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0/src/textAngularSetup.js"
               data-name="v1.3.0"
               data-skip-pjax="true"
               rel="nofollow">
@@ -747,7 +747,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre15/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre15/src/textAngularSetup.js"
               data-name="v1.3.0-pre15"
               data-skip-pjax="true"
               rel="nofollow">
@@ -757,7 +757,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre14/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre14/src/textAngularSetup.js"
               data-name="v1.3.0-pre14"
               data-skip-pjax="true"
               rel="nofollow">
@@ -767,7 +767,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre13/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre13/src/textAngularSetup.js"
               data-name="v1.3.0-pre13"
               data-skip-pjax="true"
               rel="nofollow">
@@ -777,7 +777,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre12/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre12/src/textAngularSetup.js"
               data-name="v1.3.0-pre12"
               data-skip-pjax="true"
               rel="nofollow">
@@ -787,7 +787,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre11/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre11/src/textAngularSetup.js"
               data-name="v1.3.0-pre11"
               data-skip-pjax="true"
               rel="nofollow">
@@ -797,7 +797,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre10/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre10/src/textAngularSetup.js"
               data-name="v1.3.0-pre10"
               data-skip-pjax="true"
               rel="nofollow">
@@ -807,7 +807,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre9/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre9/src/textAngularSetup.js"
               data-name="v1.3.0-pre9"
               data-skip-pjax="true"
               rel="nofollow">
@@ -817,7 +817,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre8/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre8/src/textAngularSetup.js"
               data-name="v1.3.0-pre8"
               data-skip-pjax="true"
               rel="nofollow">
@@ -827,7 +827,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre7/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre7/src/textAngularSetup.js"
               data-name="v1.3.0-pre7"
               data-skip-pjax="true"
               rel="nofollow">
@@ -837,7 +837,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre6/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre6/src/textAngularSetup.js"
               data-name="v1.3.0-pre6"
               data-skip-pjax="true"
               rel="nofollow">
@@ -847,7 +847,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre5/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre5/src/textAngularSetup.js"
               data-name="v1.3.0-pre5"
               data-skip-pjax="true"
               rel="nofollow">
@@ -857,7 +857,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre4/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre4/src/textAngularSetup.js"
               data-name="v1.3.0-pre4"
               data-skip-pjax="true"
               rel="nofollow">
@@ -867,7 +867,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre3/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre3/src/textAngularSetup.js"
               data-name="v1.3.0-pre3"
               data-skip-pjax="true"
               rel="nofollow">
@@ -877,7 +877,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre2/src/textAngularSetup.js"
               data-name="v1.3.0-pre2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -887,7 +887,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-pre1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-pre1/src/textAngularSetup.js"
               data-name="v1.3.0-pre1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -897,7 +897,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-23/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-23/src/textAngularSetup.js"
               data-name="v1.3.0-23"
               data-skip-pjax="true"
               rel="nofollow">
@@ -907,7 +907,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-22/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-22/src/textAngularSetup.js"
               data-name="v1.3.0-22"
               data-skip-pjax="true"
               rel="nofollow">
@@ -917,7 +917,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-21/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-21/src/textAngularSetup.js"
               data-name="v1.3.0-21"
               data-skip-pjax="true"
               rel="nofollow">
@@ -927,7 +927,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-20/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-20/src/textAngularSetup.js"
               data-name="v1.3.0-20"
               data-skip-pjax="true"
               rel="nofollow">
@@ -937,7 +937,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-19/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-19/src/textAngularSetup.js"
               data-name="v1.3.0-19"
               data-skip-pjax="true"
               rel="nofollow">
@@ -947,7 +947,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-18/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-18/src/textAngularSetup.js"
               data-name="v1.3.0-18"
               data-skip-pjax="true"
               rel="nofollow">
@@ -957,7 +957,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-17/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-17/src/textAngularSetup.js"
               data-name="v1.3.0-17"
               data-skip-pjax="true"
               rel="nofollow">
@@ -967,7 +967,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.3.0-16/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.3.0-16/src/textAngularSetup.js"
               data-name="v1.3.0-16"
               data-skip-pjax="true"
               rel="nofollow">
@@ -977,7 +977,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.2/src/textAngularSetup.js"
               data-name="v1.2.2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -987,7 +987,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.1/src/textAngularSetup.js"
               data-name="v1.2.1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -997,7 +997,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.1-pre6/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.1-pre6/src/textAngularSetup.js"
               data-name="v1.2.1-pre6"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1007,7 +1007,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.1-pre5/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.1-pre5/src/textAngularSetup.js"
               data-name="v1.2.1-pre5"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1017,7 +1017,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.1-pre4/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.1-pre4/src/textAngularSetup.js"
               data-name="v1.2.1-pre4"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1027,7 +1027,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.1-pre3/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.1-pre3/src/textAngularSetup.js"
               data-name="v1.2.1-pre3"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1037,7 +1037,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.1-pre2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.1-pre2/src/textAngularSetup.js"
               data-name="v1.2.1-pre2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1047,7 +1047,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.1-pre1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.1-pre1/src/textAngularSetup.js"
               data-name="v1.2.1-pre1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1057,7 +1057,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.0/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.0/src/textAngularSetup.js"
               data-name="v1.2.0"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1067,7 +1067,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.0-pre2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.0-pre2/src/textAngularSetup.js"
               data-name="v1.2.0-pre2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1077,7 +1077,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.2.0-pre1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.2.0-pre1/src/textAngularSetup.js"
               data-name="v1.2.0-pre1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1087,7 +1087,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.1.2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.1.2/src/textAngularSetup.js"
               data-name="v1.1.2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1097,7 +1097,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.1.2-pre3/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.1.2-pre3/src/textAngularSetup.js"
               data-name="v1.1.2-pre3"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1107,7 +1107,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.1.2-pre2/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.1.2-pre2/src/textAngularSetup.js"
               data-name="v1.1.2-pre2"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1117,7 +1117,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.1.2-alpha/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.1.2-alpha/src/textAngularSetup.js"
               data-name="v1.1.2-alpha"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1127,7 +1127,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.1.1/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.1.1/src/textAngularSetup.js"
               data-name="v1.1.1"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1137,7 +1137,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/v1.1.0/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/v1.1.0/src/textAngularSetup.js"
               data-name="v1.1.0"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1147,7 +1147,7 @@
               </span>
             </a>
             <a class="select-menu-item js-navigation-item js-navigation-open "
-              href="/fraywing/textAngular/tree/1.1.0/dist/textAngularSetup.js"
+              href="/fraywing/textAngular/tree/1.1.0/src/textAngularSetup.js"
               data-name="1.1.0"
               data-skip-pjax="true"
               rel="nofollow">
@@ -1175,32 +1175,43 @@
     <button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm BtnGroup-item tooltipped tooltipped-s" data-copied-hint="Copied!" type="button">Copy path</button>
   </div>
   <div class="breadcrumb js-zeroclipboard-target">
-    <span class="repo-root js-repo-root"><span class="js-path-segment"><a href="/fraywing/textAngular"><span>textAngular</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a href="/fraywing/textAngular/tree/master/dist"><span>dist</span></a></span><span class="separator">/</span><strong class="final-path">textAngularSetup.js</strong>
+    <span class="repo-root js-repo-root"><span class="js-path-segment"><a href="/fraywing/textAngular"><span>textAngular</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a href="/fraywing/textAngular/tree/master/src"><span>src</span></a></span><span class="separator">/</span><strong class="final-path">textAngularSetup.js</strong>
   </div>
 </div>
 
 
   <div class="commit-tease">
       <span class="float-right">
-        <a class="commit-tease-sha" href="/fraywing/textAngular/commit/6faef55473692ac0023fb9af6e0492412298809d" data-pjax>
-          6faef55
+        <a class="commit-tease-sha" href="/fraywing/textAngular/commit/9daf4efb7596072194d000326f0a0c94e15a2c9b" data-pjax>
+          9daf4ef
         </a>
-        <relative-time datetime="2016-12-04T20:20:11Z">Dec 4, 2016</relative-time>
+        <relative-time datetime="2016-12-04T19:55:41Z">Dec 4, 2016</relative-time>
       </span>
       <div>
         <img alt="@JoelParke" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/12278498?v=3&amp;s=40" width="20" />
         <a href="/JoelParke" class="user-mention" rel="contributor">JoelParke</a>
-          <a href="/fraywing/textAngular/commit/6faef55473692ac0023fb9af6e0492412298809d" class="message" data-pjax="true" title="chore(release): Build Dist files">chore(release): Build Dist files</a>
+          <a href="/fraywing/textAngular/commit/9daf4efb7596072194d000326f0a0c94e15a2c9b" class="message" data-pjax="true" title="Converted all files to only use spaces on indents instead of tabs">Converted all files to only use spaces on indents instead of tabs</a>
       </div>
 
     <div class="commit-tease-contributors">
       <button type="button" class="btn-link muted-link contributors-toggle" data-facebox="#blob_contributors_box">
-        <strong>3</strong>
+        <strong>14</strong>
          contributors
       </button>
-          <a class="avatar-link tooltipped tooltipped-s" aria-label="JoelParke" href="/fraywing/textAngular/commits/master/dist/textAngularSetup.js?author=JoelParke"><img alt="@JoelParke" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/12278498?v=3&amp;s=40" width="20" /> </a>
-    <a class="avatar-link tooltipped tooltipped-s" aria-label="nickknissen" href="/fraywing/textAngular/commits/master/dist/textAngularSetup.js?author=nickknissen"><img alt="@nickknissen" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/204970?v=3&amp;s=40" width="20" /> </a>
-    <a class="avatar-link tooltipped tooltipped-s" aria-label="pbassut" href="/fraywing/textAngular/commits/master/dist/textAngularSetup.js?author=pbassut"><img alt="@pbassut" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/1500037?v=3&amp;s=40" width="20" /> </a>
+          <a class="avatar-link tooltipped tooltipped-s" aria-label="JoelParke" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=JoelParke"><img alt="@JoelParke" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/12278498?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="enkodellc" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=enkodellc"><img alt="@enkodellc" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/2935721?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="Percussionista" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=Percussionista"><img alt="@Percussionista" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/11322819?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="steftrenson" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=steftrenson"><img alt="@steftrenson" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/712929?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="peterhe2000" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=peterhe2000"><img alt="@peterhe2000" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/7380790?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="nickknissen" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=nickknissen"><img alt="@nickknissen" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/204970?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="yurks" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=yurks"><img alt="@yurks" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/4581398?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="episodeyang" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=episodeyang"><img alt="@episodeyang" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/630490?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="Tomegreene" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=Tomegreene"><img alt="@Tomegreene" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/2136567?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="SamHellawell" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=SamHellawell"><img alt="@SamHellawell" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/3194321?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="ChristopherMoll" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=ChristopherMoll"><img alt="@ChristopherMoll" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/3216891?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="pbassut" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=pbassut"><img alt="@pbassut" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/1500037?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="littlebigbot" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=littlebigbot"><img alt="@littlebigbot" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/1292876?v=3&amp;s=40" width="20" /> </a>
+    <a class="avatar-link tooltipped tooltipped-s" aria-label="iainbeeston" href="/fraywing/textAngular/commits/master/src/textAngularSetup.js?author=iainbeeston"><img alt="@iainbeeston" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/111963?v=3&amp;s=40" width="20" /> </a>
 
 
     </div>
@@ -1213,12 +1224,56 @@
             <a href="/JoelParke">JoelParke</a>
           </li>
           <li class="facebox-user-list-item">
+            <img alt="@enkodellc" height="24" src="https://avatars1.githubusercontent.com/u/2935721?v=3&amp;s=48" width="24" />
+            <a href="/enkodellc">enkodellc</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@Percussionista" height="24" src="https://avatars1.githubusercontent.com/u/11322819?v=3&amp;s=48" width="24" />
+            <a href="/Percussionista">Percussionista</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@steftrenson" height="24" src="https://avatars3.githubusercontent.com/u/712929?v=3&amp;s=48" width="24" />
+            <a href="/steftrenson">steftrenson</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@peterhe2000" height="24" src="https://avatars1.githubusercontent.com/u/7380790?v=3&amp;s=48" width="24" />
+            <a href="/peterhe2000">peterhe2000</a>
+          </li>
+          <li class="facebox-user-list-item">
             <img alt="@nickknissen" height="24" src="https://avatars3.githubusercontent.com/u/204970?v=3&amp;s=48" width="24" />
             <a href="/nickknissen">nickknissen</a>
           </li>
           <li class="facebox-user-list-item">
+            <img alt="@yurks" height="24" src="https://avatars3.githubusercontent.com/u/4581398?v=3&amp;s=48" width="24" />
+            <a href="/yurks">yurks</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@episodeyang" height="24" src="https://avatars1.githubusercontent.com/u/630490?v=3&amp;s=48" width="24" />
+            <a href="/episodeyang">episodeyang</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@Tomegreene" height="24" src="https://avatars2.githubusercontent.com/u/2136567?v=3&amp;s=48" width="24" />
+            <a href="/Tomegreene">Tomegreene</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@SamHellawell" height="24" src="https://avatars2.githubusercontent.com/u/3194321?v=3&amp;s=48" width="24" />
+            <a href="/SamHellawell">SamHellawell</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@ChristopherMoll" height="24" src="https://avatars0.githubusercontent.com/u/3216891?v=3&amp;s=48" width="24" />
+            <a href="/ChristopherMoll">ChristopherMoll</a>
+          </li>
+          <li class="facebox-user-list-item">
             <img alt="@pbassut" height="24" src="https://avatars3.githubusercontent.com/u/1500037?v=3&amp;s=48" width="24" />
             <a href="/pbassut">pbassut</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@littlebigbot" height="24" src="https://avatars0.githubusercontent.com/u/1292876?v=3&amp;s=48" width="24" />
+            <a href="/littlebigbot">littlebigbot</a>
+          </li>
+          <li class="facebox-user-list-item">
+            <img alt="@iainbeeston" height="24" src="https://avatars0.githubusercontent.com/u/111963?v=3&amp;s=48" width="24" />
+            <a href="/iainbeeston">iainbeeston</a>
           </li>
       </ul>
     </div>
@@ -1230,9 +1285,9 @@
   <div class="file-actions">
 
     <div class="BtnGroup">
-      <a href="/fraywing/textAngular/raw/master/dist/textAngularSetup.js" class="btn btn-sm BtnGroup-item" id="raw-url">Raw</a>
-        <a href="/fraywing/textAngular/blame/master/dist/textAngularSetup.js" class="btn btn-sm js-update-url-with-hash BtnGroup-item">Blame</a>
-      <a href="/fraywing/textAngular/commits/master/dist/textAngularSetup.js" class="btn btn-sm BtnGroup-item" rel="nofollow">History</a>
+      <a href="/fraywing/textAngular/raw/master/src/textAngularSetup.js" class="btn btn-sm BtnGroup-item" id="raw-url">Raw</a>
+        <a href="/fraywing/textAngular/blame/master/src/textAngularSetup.js" class="btn btn-sm js-update-url-with-hash BtnGroup-item">Blame</a>
+      <a href="/fraywing/textAngular/commits/master/src/textAngularSetup.js" class="btn btn-sm BtnGroup-item" rel="nofollow">History</a>
     </div>
 
         <a class="btn-octicon tooltipped tooltipped-nw"
@@ -5381,7 +5436,7 @@
       <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
 </a>
     <ul class="site-footer-links">
-      <li>&copy; 2016 <span title="0.09356s from github-fe143-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+      <li>&copy; 2016 <span title="0.10875s from github-fe133-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
         <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
         <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
         <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>

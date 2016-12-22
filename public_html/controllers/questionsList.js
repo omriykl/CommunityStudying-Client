@@ -63,15 +63,35 @@ app.controller('QuestionsCtr',  ['$scope', '$http', function($scope, $http) {
 
         };
         
+          $scope.courseSelected = function (item) {
+        //$scope.item.size.code = $scope.selectedItem.code
+        var id = item.id;
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
+        }).success(function (result) {
+            optionalTags = result;
+        });
+    }
+    
+        optionalTags=["C3","bfs","dfs"];
+        $scope.tags = {
+        value: [],
+        options: optionalTags,
+        addOption: function() {
+          $scope.tags.options.push(Math.random())
+        }
+      }
+        
         
         $scope.submit = function() {
             var data = $.param({
-                faculty: $scope.selectedFaculty.id,
-                course: $scope.selectedCourse.value,
+                faculty: $scope.selectedFaculty !==null ? $scope.selectedFaculty.id : null,
+                course: $scope.selectedCourse !==null ? $scope.selectedCourse.value : null,
                 year: $scope.year,
-                moed: $scope.selectedMoed.value,
+                moed: $scope.selectedMoed !==null ? $scope.selectedMoed.value : null,
                 qnum: $scope.qnumber,
-                tags: $scope.tags,
+                tags: $scope.tags.value,
                 freeText: $scope.freeText
             });
             var config = {

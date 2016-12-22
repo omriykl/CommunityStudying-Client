@@ -2,11 +2,10 @@
 
 <h1>New Question </h1>
 
-
+<div class="form-control">
   <form ng-submit="submit()">
      Name:
-    <input type="text" ng-model="user.firstName" disabled> 
-    <input type="text" ng-model="user.lastName" disabled>
+    {{user.firstName}} {{user.lastName}}
     <br><br>
 	Faculty:
 	<select ng-model="selectedFaculty" 
@@ -16,7 +15,7 @@
 	
 	Course:
 	<select ng-model="selectedCourse" 
-        ng-options="item.name for item in courses track by item.id">
+        ng-options="item.name for item in courses track by item.id" ng-change="courseSelected(selectedCourse)">
     <option value="">Select Course</option>
 	</select>
         <br/><br/>
@@ -42,6 +41,29 @@
 	  <div class="container lighter">
             <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="clearfix border-around container" ta-html-editor-class="border-around"></div>
         </div>
+        
+        
+   <!-- 
+   OTHER STYLES OF TAGS
+   <tagger ng-model="tags" options="options" placeholder="Select some tags"></tagger>
+    <input type="text"/>
+    <tagger ng-model="tags" options="options" disable-new></tagger>
+    <tagger ng-model="tags" options="options" disable-new limit=3></tagger>
+    <pre>{{ tags | json }}</pre>
+
+    single: <tagger tabindex="-1" id="s1" ng-model="font2" options="fonts" placeholder="Choose font" single display-fun="showName" create-fun="createName" on-select="selected"></tagger>
+    single: <tagger tabindex="-1" id="s1" ng-model="font" options="fonts" placeholder="Choose font" single display-fun="showName" create-fun="createName" on-select="selected"></tagger>
+    <pre>{{ font | json }}</pre>
+    <button ng-click='foc()'>Focus</button>
+-->
+    <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>
+    
+    <pre>{{ tags | json }}</pre>
+
+    <!--  <button ng-click="empty.addOption()">Add option</button>-->
+
+        
+        
 		
 <div ng-app="fileUpload" ng-controller="MyCtrl">
     watching model:
@@ -66,8 +88,12 @@
     <input type="submit" id="submit" value="Submit" />
     <button ng-click="reset()">RESET</button>
   </form>
+    
+    <hr>
   <p>form = {{user}}</p>
   <p>master = {{master}}</p>
+
+    </div>
 
 
 
