@@ -73,16 +73,14 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
             optionalTags = result;
         });
     }
-    <!--
+ 
         optionalTags=["C3","bfs","dfs"];
         $scope.tags = {
         value: [],
-        options: optionalTags,
-        addOption: function() {
-          $scope.tags.options.push(Math.random())
-        }
+        options: optionalTags
       }
--->
+
+
     $scope.submit = function () {
         var data = $.param({
             userId: USER_TOKEN,

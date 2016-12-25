@@ -110,7 +110,7 @@
         <!--<div ng-include="includeUrl"></div>-->
     </div>
 <div id="rightpanel">
-<div style="text-align:right;"><a href="#user/edit?id={{USER_TOKEN}}" style="border-bottom:0px;"><img src="img/logo.png" style="width:265px;"/></a></div>
+<div style="text-align:right;"><a href="#user/edit/{{USER_TOKEN}}" style="border-bottom:0px;"><img src="img/logo.png" style="width:265px;"/></a></div>
 <div style="clear:both"></div>
 
 		<div class="userlogin" ng-controller="LoginCtr" id="logInBox" style="width:292px">
@@ -118,7 +118,7 @@
 			<div style="float:left"><img ng-src="{{userPic}}" style="border:1px solid #ccc"></div>
 			<div style="float:left;padding-left:7px;">
 				<h3 style="padding-left:0px">{{userName}}</h3>
-				<a href="#user/edit?id={{USER_TOKEN}}" >Edit Profile</a><br/>
+				<a href="#user/edit/{{USER_TOKEN}}" >Edit Profile</a><br/>
 				<a href="#" onclick="signOut();">Sign out</a><br><br>
 			</div>
 		</div>

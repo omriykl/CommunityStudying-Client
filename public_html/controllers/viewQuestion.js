@@ -1,14 +1,34 @@
-app.controller('viewQuestion', ['$scope', '$http', function ($scope, $http,$routeParams) {
+app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
    
         var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'question/viewQuestion?id=' + currentId).success(function(data){
 		$scope.question = data;
 	});
-  
+        $scope.isTheSameUser=true;
+        $scope.isConnected = true;
+        
+        $scope.question={
+            "id": "1",
+            "user" :"guyyt",
+            "title": "mt qyes",
+            "createdOn" : "1.1.2013",
+            "content": "hey hey hey hey hey hey",
+            "tags" : [{"id":"1", "name":"tag1"}],
+            "answers": [{
+                    "id": "10",
+                    "username":  "guy",
+                    "createdOn": "1.1.2013",
+                    "isTheSameUser": false,
+                    "accepted": false,
+                    "content": "bla bla bla",
+                    "votes": 5
+            }]
+        };
+        
         $scope.answerVoteUp = function (ansId) {   
         $http.get(SERVER_APP_BASE_URL+'question/answerVoteUp?id=' + ansId).success(function(){
 		location.reload();
-	});}
+	});};
         
          $scope.answerVoteDown = function (ansId) {   
         $http.get(SERVER_APP_BASE_URL+'question/answerVoteDown?id=' + ansId).success(function(){
@@ -18,7 +38,7 @@ app.controller('viewQuestion', ['$scope', '$http', function ($scope, $http,$rout
          $scope.acceptAnswer = function (ansId) {   
         $http.get(SERVER_APP_BASE_URL+'question/acceptAnswer?id=' + ansId).success(function(){
 		location.reload();
-	});}
+	});};
         
 
         $scope.submit = function () {
@@ -30,7 +50,7 @@ app.controller('viewQuestion', ['$scope', '$http', function ($scope, $http,$rout
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
-            }
+            };
             $http.post(SERVER_APP_BASE_URL +'/question/addAnsware?id='+ currentId, data, config)
                 .success(function (data, status, headers, config) {
                     $scope.PostDataResponse = data;

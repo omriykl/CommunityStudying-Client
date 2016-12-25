@@ -1,4 +1,4 @@
-app.controller('editUser', ['$scope', '$http', function ($scope, $http,$routeParams) {
+app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
    
         var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'user/get?id=' + currentId).success(function(data){
@@ -8,16 +8,19 @@ app.controller('editUser', ['$scope', '$http', function ($scope, $http,$routePar
                     "firstName": "guy",
                     "lastName": "gggg",
                 "email": "guyuy",
-                "password": "gjgjg",             
+                "password": "gjgjg"            
                 };
                 
-       $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"];
-      $scope.tags = ["Markdown", "Ruby"];
-   
+  $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
+      $scope.courses = []
+
+        var optionalTags=[];
+        
       $scope.tags = {
         value: [],
         options: []
-      };
+
+      }
       
         $scope.submit = function () {
             var data = $.param({
@@ -31,7 +34,7 @@ app.controller('editUser', ['$scope', '$http', function ($scope, $http,$routePar
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
-            }
+            };
             $http.post(SERVER_APP_BASE_URL +'/user/update?id='+ currentId, data, config)
                 .success(function (data, status, headers, config) {
                     $scope.PostDataResponse = data;
