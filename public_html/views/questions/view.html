@@ -1,37 +1,74 @@
-<script>
-function cform() { 
-	var description = '';
- 
-	description = $("#wmd-input").val();
- 
-	if (description.length < 15) {
-		$("#wmd-input").addClass('textalert');
-		$.fancyalert('Your <?php if ($kb):?>comment<?php else:?>answer<?php endif;?> must be atleast 15 characters in length');
-		$("#wmd-input").focus();
-		return false;
-	} else {
-		$("#wmd-input").removeClass('textalert');
-	}
+<link type="text/css" rel="stylesheet" href="../../css/main.css" >
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.css" >
+    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" >
 
-	return true;
-}
-</script>
+<link type="text/css" rel="stylesheet" href="../../css/tagscomplete.css" >
 
-<h1>{{x.title}}</h1>
+    
+    
+<script src="../../js/jquery.js"></script>
+<script src="../../js/tagscomplete.js"></script>
+<script src="../../js/fancyalert.js"></script>
+
+
+<script type="text/javascript" src="../../js/prettify/prettify.js"></script>
+
+<link href="../../css/prettify.css" type="text/css" rel="stylesheet" >
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script src="../../angularJS/indexModule.js"></script>
+<script src='../../controllers/questionsList.js'></script>
+<!--Tags -->
+
+  <!--<script type="text/javascript" src="../bower_components/angular/angular.js"></script>  -->
+  <script type="text/javascript" src="../../js/tags/angular-tagger.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../css/tags/angular-tagger.css"/>
+
+
+
+<!--new Question imports -->
+
+    <script src='../../js/text/textAngular-rangy.min.js'></script>
+    <script src='../../controllers/newQuestion.js'></script>
+    <link rel='stylesheet' href='../../css/textAngular.css'>
+<script src='../../js/text/textAngular-rangy.min.js'></script>
+<script src='../../js/text/textAngular-sanitize.min.js'></script>
+   <script src='../../js/text/textAngular.min.js'></script>
+   <script src='../../js/text/textAngularSetup.js'></script>
+
+	<script src="../../js/fileupload/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->	
+	<script src="../../js/fileupload/ng-file-upload.min.js"></script>
+	
+
+<link rel="author" href="https://www.linkedin.com/in/austinanderson1" >
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300" >
+    <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css" >
+    <link href="../../css/prettify.css" type="text/css" rel="stylesheet" >
+
+
+
+
+<h1>{{question.title}}</h1>
 
 <div style="clear:both"></div>
 
 <div class="questionsview_userbox">
-<?php echo getUser($userid);?>
+{{question.user}}
 </div>
 
-<div class="questionsview_details"><span style="color:#999">{{x.createdOn}}</span></div>
+<div class="questionsview_details"><span style="color:#999">{{question.createdOn}}</span></div>
 
-<div ng-show="isTheSameUser" class="questionsview_options"><a href="#questions/edit/{{x.id}}">edit</a></div>
+<div ng-show="isTheSameUser" class="questionsview_options"><a href="#questions/edit/{{question.id}}">edit</a></div>
 
  
 
-<div class="questionsview_question" id="q{{x.id}}">
+<div class="questionsview_question" id="q{{question.id}}">
    <!-- 
 <div class="questionsview_rating">
 <div class="questionsview_box">
@@ -47,7 +84,7 @@ function cform() {
 <div class="questionsview_questiondescription">
 
 
-<div class="markdown">{{x.content}}</div>
+<div class="markdown">{{question.content}}</div>
 
 <!--
 <?php if (!empty($link)):?>
@@ -56,7 +93,7 @@ function cform() {
 -->
 
 <ul class="holder noborder">
-<li ng-repeat="tag in x.tags" class="bit-box nopadding"><a href="#/questions?tag={{tag.id}}">{{tag.name}}</a></li>
+<li ng-repeat="tag in question.tags" class="bit-box nopadding"><a href="#/questions?tag={{tag.id}}">{{tag.name}}</a></li>
 </ul>
 
 <!--
@@ -112,72 +149,74 @@ function cform() {
 
 
 
-<div  ng-repeat="answer in x.answers" >
-<div class="questionsview_userbox">
-{{answer.username}}
+<div  ng-repeat="answer in question.answers" >
+    <div class="questionsview_userbox">
+    {{answer.username}}
+    </div>
+
+    <div class="questionsview_details"><span style="color:#999">{{answer.createdOn}}</span>
+    </div>
+
+    <div ng-show="answer.isTheSameUser" class="questionsview_options"><a href="#/answers/edit/{{answer.id}}">edit</a></div>
+
+
+    <div ng-show="answer.accepted" class="questionsview_accepted">
+       <img src='../../img/accepted.png' style="width: 20px">
+
+        Accepted Answer
+    </div>
+
+    <div ng-hide="answer.accepted" ng-show="answer.isTheSameUser" class="questionsview_accept">
+    <span onclick="acceptAnswer('{{answer.id}}');">Accept this answer</span>
+    </div>
+
+
+    <div class="questionsview_answer" id="a{{answer.id}}">
+    <div class="questionsview_rating">
+    <div class="questionsview_box">
+        <div class="questionsview_up" onclick="answerVoteUp({{answer.id}});">˄</div><div class="questionsview_vote">{{answer.votes}}</div><div class="questionsview_down" onclick="answerVoteDown({{answer.id}});">˅</div>
+    </div>
+
+
+
+    </div>
+    <div class="questionsview_answerdescription">
+    <div class="markdown">{{answer.content}}</div>
+
+    <!--
+    <div class="comments">
+    <div id="comments_a<?php echo $answer['id'];?>">
+
+    <?php foreach($answer['comments'] as $comment):?>
+    <div class="comment">
+    <div class="comment_text"><?php echo $comment['comment'];?> - <a href="<?php echo basePath();?>/users/<?php echo $comment['userid'];?>/<?php echo $comment['username'];?>"><?php echo $comment['username'];?></a></div>
+
+    <div class="commentdel" id="commentdel_<?php echo $comment['id'];?>"><?php if ($comment['userid'] == $_SESSION['userid']) { echo "x"; }?></div>
+
+    <div class="commentfave <?php if ($comment['voted'] > 0) { echo "voteselected"; }?>" id="commentfave_<?php echo $comment['id'];?>">♥</div><div class="commentfavevotes"><?php if ($comment['votes'] != 0) { echo $comment['votes']; }?></div>
+    <div style="clear:both;"></div>
+    </div>
+    <?php endforeach;?>
+
+
+
+    </div>
+    <div id="comment_a<?php echo $answer['id'];?>" class="commentsadd">
+
+    <span style="float:left"><a href="javascript:void(0)" onclick="javascript:comment('a<?php echo $answer['id'];?>')">Add comment</a></span>
+    <span style="float:right" style="display:none" class="viewallcomments"><a href="javascript:void(0)" onclick="javascript:viewallcomments('a<?php echo $answer['id'];?>')"></a></span>
+
+    </div>
+    </div>
+    -->
+
+    <div style="height:20px;"></div>
+    </div>
+
+
+    <div style="clear:both;"></div>
+    </div>
 </div>
-
-<div class="questionsview_details"><span style="color:#999">{{answer.createdOn}}</span>
-</div>
-
-<div ng-show="answer.isTheSameUser" class="questionsview_options"><a href="#/answers/edit/{{answer.id}}">edit</a></div>
-
-
-<div ng-show="answer.accepted" class="questionsview_accepted">
-Accepted Answer
-</div>
-
-<div ng-show="!answer.accepted" ng-show="answer.isTheSameUser" class="questionsview_accept">
-<a href="#/answers/accept?id={{answer.id}}">Accept this answer</a>
-</div>
-
-
-<div class="questionsview_answer" id="a{{answer.id}}">
-<div class="questionsview_rating">
-<div class="questionsview_box">
-    <div class="questionsview_up<?php if($answer['pvote']) { echo " voteselected"; }?>">˄</div><div class="questionsview_vote">{{answer.votes}}</div><div class="questionsview_down<?php if($answer['nvote']) { echo " voteselected"; }?>">˅</div>
-</div>
-
-
-
-</div>
-<div class="questionsview_answerdescription">
-<div class="markdown">{{answer.content}}</div>
-
-<!--
-<div class="comments">
-<div id="comments_a<?php echo $answer['id'];?>">
-
-<?php foreach($answer['comments'] as $comment):?>
-<div class="comment">
-<div class="comment_text"><?php echo $comment['comment'];?> - <a href="<?php echo basePath();?>/users/<?php echo $comment['userid'];?>/<?php echo $comment['username'];?>"><?php echo $comment['username'];?></a></div>
-
-<div class="commentdel" id="commentdel_<?php echo $comment['id'];?>"><?php if ($comment['userid'] == $_SESSION['userid']) { echo "x"; }?></div>
-
-<div class="commentfave <?php if ($comment['voted'] > 0) { echo "voteselected"; }?>" id="commentfave_<?php echo $comment['id'];?>">♥</div><div class="commentfavevotes"><?php if ($comment['votes'] != 0) { echo $comment['votes']; }?></div>
-<div style="clear:both;"></div>
-</div>
-<?php endforeach;?>
-
-
-
-</div>
-<div id="comment_a<?php echo $answer['id'];?>" class="commentsadd">
-
-<span style="float:left"><a href="javascript:void(0)" onclick="javascript:comment('a<?php echo $answer['id'];?>')">Add comment</a></span>
-<span style="float:right" style="display:none" class="viewallcomments"><a href="javascript:void(0)" onclick="javascript:viewallcomments('a<?php echo $answer['id'];?>')"></a></span>
-
-</div>
-</div>
--->
-
-<div style="height:20px;"></div>
-</div>
-
-
-<div style="clear:both;"></div>
-</div>
-
 <!--
 <div class="bottompagination">
 <div style="clear:both"></div>
@@ -190,16 +229,14 @@ Accepted Answer
 
 <?php else:?><h3><?php if ($kb):?>No comments on this article as yet.<?php else:?>No answers as yet. Be the first to write an answer.<?php endif;?></h3><?php endif;?>
 -->
+
+
 <div class="questionsview_form" ng-show="isConnected">
-  <form ng-submit="submitAnswar({{x.id}})">
+  <form ng-submit="submitAnswar({{question.id}})">
 
 <h2 style="padding-top:0px;padding-bottom:16px;">Answer Question</h2>
 
-<div id="wmd-editor" class="wmd-panel">
-<div id="wmd-button-bar"></div>
-<textarea ng-model="commentContent" id="wmd-input" name="description" ></textarea>
-</div>
-<div id="wmd-preview" class="markdown"></div>
+   <text-angular ng-model="htmlContent" name="content"><p>Hello World!</p></text-angular>
 
 <br/><br/>
 <input type="submit" value="Answer Question" class="button">

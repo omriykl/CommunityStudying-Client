@@ -2,39 +2,48 @@ app.controller('viewQuestion', ['$scope', '$http', function ($scope, $http,$rout
    
         var currentId = $routeParams.id;
 	$http.get(SERVER_APP_BASE_URL+'question/viewQuestion?id=' + currentId).success(function(data){
-		$scope.x = result;
+		$scope.question = result;
 	});
   
+        $scope.answerVoteUp = function (ansId) {   
+        $http.get(SERVER_APP_BASE_URL+'question/answerVoteUp?id=' + ansId).success(function(){
+		location.reload();
+	});}
+        
+         $scope.answerVoteDown = function (ansId) {   
+        $http.get(SERVER_APP_BASE_URL+'question/answerVoteDown?id=' + ansId).success(function(){
+		location.reload();
+	});}
+        
+         $scope.acceptAnswer = function (ansId) {   
+        $http.get(SERVER_APP_BASE_URL+'question/acceptAnswer?id=' + ansId).success(function(){
+		location.reload();
+	});}
+        
 
-
-    $scope.submit = function () {
-        var data = $.param({
-            faculty: selectedFaculty,
-            id,
-            course: $scope.selectedCourse.value,
-            year: $scope.year,
-            moed: $scope.selectedMoed.value,
-            qnum: $scope.qnumber,
-            title: $scope.title,
-            content: $scope.htmlContent
-        });
-        var config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-            }
-        }
-
-        $http.post(SERVER_APP_BASE_URL +'/question/checkexist', data, config)
-            .success(function (data, status, headers, config) {
-                $scope.PostDataResponse = data;
-            })
-            .error(function (data, status, header, config) {
-                //   $scope.ResponseDetails = "Data: " + data +
-                //	<hr />status: " + status +
-                //       "<hr />headers: " + header +
-                //       "<hr />config: " + config;
+        $scope.submit = function () {
+            var data = $.param({
+                content: $scope.htmlContent,
+                userId: USER_TOKEN
             });
-    };
+            var config = {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+            $http.post(SERVER_APP_BASE_URL +'/question/addAnsware?id='+ currentId, data, config)
+                .success(function (data, status, headers, config) {
+                    $scope.PostDataResponse = data;
+                    location.reload();
+
+                })
+                .error(function (data, status, header, config) {
+                    //   $scope.ResponseDetails = "Data: " + data +
+                    //	<hr />status: " + status +
+                    //       "<hr />headers: " + header +
+                    //       "<hr />config: " + config;
+                });
+        };
 
 }]);
 

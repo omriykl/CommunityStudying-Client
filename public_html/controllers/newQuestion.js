@@ -1,5 +1,5 @@
 app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
-    $scope.firstname = "John";
+        
     $scope.htmlContent = '<h3>Place your question</h3>';
 
     $scope.selectedFaculty = null;
@@ -85,14 +85,15 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
 
     $scope.submit = function () {
         var data = $.param({
+            userId: USER_TOKEN,
             faculty: selectedFaculty,
-            id,
             course: $scope.selectedCourse.value,
             year: $scope.year,
             moed: $scope.selectedMoed.value,
             qnum: $scope.qnumber,
             title: $scope.title,
-            content: $scope.htmlContent
+            content: $scope.htmlContent,
+            files: $scope.files
         });
         var config = {
             headers: {
@@ -100,7 +101,7 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
             }
         }
 
-        $http.post('http://localhost:8080/question/checkexist', data, config)
+        $http.post(SERVER_APP_BASE_URL+ 'question/add', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
             })
