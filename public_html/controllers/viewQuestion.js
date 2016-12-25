@@ -1,8 +1,8 @@
 app.controller('viewQuestion', ['$scope', '$http', function ($scope, $http,$routeParams) {
    
-        var currentId = $routeParams.id;
+        var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'question/viewQuestion?id=' + currentId).success(function(data){
-		$scope.question = result;
+		$scope.question = data;
 	});
   
         $scope.answerVoteUp = function (ansId) {   

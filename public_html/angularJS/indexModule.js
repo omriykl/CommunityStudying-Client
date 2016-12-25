@@ -13,9 +13,14 @@ app.config(function ($routeProvider) {
         controller: "newQuestion",
         controllerAs: "app"
     });
-    $routeProvider.when("/questions/view", {
+    $routeProvider.when("/questions/view:param", {
         templateUrl: "views/questions/View.html",
         controller: "viewQuestion",
+        controllerAs: "app"
+    });
+    $routeProvider.when("/user/edit:param", {
+        templateUrl: "views/users/edit.html",
+        controller: "editUser",
         controllerAs: "app"
     });
 });

@@ -30,7 +30,7 @@
 <div style="clear:both">&nbsp;</div>
 <div class="footer">
 <!-- Copyright Notice Do Not Remove -->
-Powered by Qwench<br/>Copyright <?php echo date("Y");?> <a href="http://www.inscripts.com" target="_blank">Inscripts</a>
+<!--Powered by Qwench<br/>Copyright <?php echo date("Y");?> <a href="http://www.inscripts.com" target="_blank">Inscripts</a> -->
 <!-- Copyright Notice Do Not Remove -->
 </div>
 </body>
