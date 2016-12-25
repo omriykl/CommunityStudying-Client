@@ -23,6 +23,16 @@ app.config(function ($routeProvider) {
         controller: "editUser",
         controllerAs: "app"
     });
+    $routeProvider.when("/questions/edit/:param", {
+        templateUrl: "views/questions/edit.html",
+        controller: "editQuestion",
+        controllerAs: "app"
+    });
+    $routeProvider.when("/anwares/edit/:param", {
+        templateUrl: "views/anwares/edit.html",
+        controller: "editAnware",
+        controllerAs: "app"
+    });
 });
 
 app.controller('LoginCtr', function ($scope, $http,$rootScope) {

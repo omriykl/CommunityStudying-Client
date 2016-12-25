@@ -18,8 +18,8 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
                     "id": "10",
                     "username":  "guy",
                     "createdOn": "1.1.2013",
-                    "isTheSameUser": false,
-                    "accepted": false,
+                    "isTheSameUser": true,
+                    "accepted": true,
                     "content": "bla bla bla",
                     "votes": 5
             }]

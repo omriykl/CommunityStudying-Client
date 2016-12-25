@@ -119,7 +119,11 @@
     <div class="questionsview_answer" id="a{{answer.id}}">
     <div class="questionsview_rating">
     <div class="questionsview_box">
-        <div class="questionsview_up" onclick="answerVoteUp({{answer.id}});">˄</div><div class="questionsview_vote">{{answer.votes}}</div><div class="questionsview_down" onclick="answerVoteDown({{answer.id}});">˅</div>
+        
+        <div class="questionsview_up" onclick="answerVoteUp({{answer.id}});">˄</div><div class="questionsview_vote">
+            <div ng-show="answer.accepted" style="padding-top: 10px;">
+       <img src='img/liked-ans.png' style="width: 35px">
+    </div>{{answer.votes}}</div><div class="questionsview_down" onclick="answerVoteDown({{answer.id}});">˅</div>
     </div>
 
 
