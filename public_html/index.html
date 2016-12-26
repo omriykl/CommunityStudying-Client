@@ -110,19 +110,19 @@
         <!--<div ng-include="includeUrl"></div>-->
     </div>
 <div id="rightpanel">
-<div style="text-align:right;"><a href="#user/edit/{{USER_TOKEN}}" style="border-bottom:0px;"><img src="img/logo.png" style="width:265px;"/></a></div>
+<div style="text-align:right;"><a href="#user/edit/{{USER_TOKEN}}" style="border-bottom:0px;"><img src="img/logo.png" style="width:200px;"/></a></div>
 <div style="clear:both"></div>
 
-		<div class="userlogin" ng-controller="LoginCtr" id="logInBox" style="width:292px">
-		<div ng-show="isConnected">
+		<div class="userlogin" ng-controller="LoginCtr" id="logInBox">
+<!--		<div ng-show="isConnected">-->
 			<div style="float:left"><img ng-src="{{userPic}}" style="border:1px solid #ccc"></div>
 			<div style="float:left;padding-left:7px;">
 				<h3 style="padding-left:0px">{{userName}}</h3>
 				<a href="#user/edit/{{USER_TOKEN}}" >Edit Profile</a><br/>
 				<a href="#" onclick="signOut();">Sign out</a><br><br>
 			</div>
-		</div>
-		   <div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="270" data-height="40" data-longtitle="true">
+<!--		</div>-->
+		   <div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-height="40" data-longtitle="true">
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();

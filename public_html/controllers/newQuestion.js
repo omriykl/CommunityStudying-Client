@@ -35,21 +35,23 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
     }
 
     $scope.onAddQuestionNumber = function () {
-        var data = $.param({
-            faculty: selectedFaculty,
-            id,
-            course: $scope.selectedCourse.value,
+        var data = {
+            facultyId: $scope.selectedFaculty.id,
+            courseId: $scope.selectedCourse.id,
             year: $scope.year,
-            moed: $scope.selectedMoed.value,
-            qnum: $scope.qnumber
-        });
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed,
+            questionNumber: $scope.qnumber
+        };
         var config = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                'Content-Type': 'application/json'
             }
         }
+        
+        console.log(data);
 
-        $http.post(SERVER_APP_BASE_URL + 'question/checkexist', data, config)
+        $http.post(SERVER_APP_BASE_URL + 'post/checkByQuestion', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
             })
@@ -82,24 +84,24 @@ app.controller('newQuestion', ['$scope', '$http', function ($scope, $http) {
 
 
     $scope.submit = function () {
-        var data = $.param({
-            userId: USER_TOKEN,
-            faculty: selectedFaculty,
-            course: $scope.selectedCourse.value,
+        var data = {
+            facultyId: $scope.selectedFaculty.id,
+            courseId: $scope.selectedCourse.id,
             year: $scope.year,
-            moed: $scope.selectedMoed.value,
-            qnum: $scope.qnumber,
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed,
+            questionNumber: $scope.qnumber,
             title: $scope.title,
             content: $scope.htmlContent,
-            files: $scope.files
-        });
+            //files: $scope.files
+        };
         var config = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                'Content-Type': 'application/json'
             }
-        }
+        };
 
-        $http.post(SERVER_APP_BASE_URL+ 'question/add', data, config)
+        $http.post(SERVER_APP_BASE_URL+ 'post/?userTokenId='+USER_TOKEN, data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
             })

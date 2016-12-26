@@ -10,7 +10,7 @@ app.controller('QuestionsCtr',  ['$scope', '$http', function($scope, $http) {
              
 	$scope.questions =[];
 	
-	$http.get(SERVER_APP_BASE_URL+'question/all').success(function(data){
+	$http.get(SERVER_APP_BASE_URL+'post/search').success(function(data){
 		$scope.questions = data;
 	});
         
