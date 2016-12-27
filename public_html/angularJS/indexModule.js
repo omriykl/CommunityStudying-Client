@@ -1,5 +1,5 @@
 var SERVER_APP_BASE_URL = "http://localhost:8080/";
-var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect' ]);
+var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect', 'ui.bootstrap' ]);
 var USER_TOKEN = "";
 
 app.config(function ($routeProvider) {

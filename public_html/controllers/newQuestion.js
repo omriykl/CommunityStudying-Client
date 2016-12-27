@@ -1,5 +1,13 @@
-app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
+app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $http,$modal) {
 
+    $scope.openDialog = function () { //open hover dialog
+        console.log('opening pop up');
+        var modalInstance = $modal.open({
+        templateUrl: 'views/questions/newTestDialog.html',
+        //controller: 'PopupCont',
+        });
+    };
+    
     $scope.selectedFaculty = null;
     $scope.faculties = [];
 

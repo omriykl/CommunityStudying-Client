@@ -1,0 +1,9 @@
+/*----------------------------------------------
+css settings for HTML div exactCenter 
+------------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+h2{
+margin-top:20px;
+margin-bottom:20px;
+text-align: center;
+}
