@@ -28,9 +28,9 @@ app.config(function ($routeProvider) {
         controller: "editQuestion",
         controllerAs: "app"
     });
-    $routeProvider.when("/anwares/edit/:param", {
-        templateUrl: "views/anwares/edit.html",
-        controller: "editAnware",
+    $routeProvider.when("/answeres/edit/:param", {
+        templateUrl: "views/answeres/edit.html",
+        controller: "editAnswere",
         controllerAs: "app"
     });
 });

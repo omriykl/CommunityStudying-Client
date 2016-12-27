@@ -1,4 +1,4 @@
-app.controller('editAnsware', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
+app.controller('editAnswere', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
         
      var currentId = $routeParams.param;
 

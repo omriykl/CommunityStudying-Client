@@ -1,11 +1,13 @@
-app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
+app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
 
-    
      var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'post/?id=' + currentId).success(function(data){
             if(data!=null){
 		$scope.question = data;
 	}
+        else{
+           window.location = "/question/view/" + currentId;
+        }
     });
     $scope.faculties = [];
 
@@ -17,7 +19,7 @@ app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
             url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
         }).success(function(result) {
             $scope.faculties = result.allData;
-        })
+        });
     };
     
     $scope.loadFaculties(); // first call to get faculties 
@@ -37,7 +39,7 @@ app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
         }).success(function(result) {
             $scope.courses = result.allData;
         });
-    }
+    };
 
     
     $scope.onAddQuestionNumber = function() {
@@ -53,7 +55,7 @@ app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
+        };
 
         $http.post(SERVER_APP_BASE_URL + 'post/checkByQuestion', data, config)
             .success(function(data, status, headers, config) {
@@ -77,7 +79,7 @@ app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
         }).success(function(result) {
             $scope.optionsTags = result;
         });
-    }
+    };
     $scope.optionsTags = [{
             id: 1,
             name: "Java"
@@ -102,7 +104,7 @@ app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
     
     $scope.showName = function(item) {
         return item.name;
-    }
+    };
     
     $scope.selectedFaculty = $scope.question.facultyId;
     $scope.facultySelected($scope.selectedFaculty);
@@ -150,62 +152,6 @@ app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
     };
 
 }]);
-<!--
-app.controller("TestCtrl", function($scope) {
-
-        $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
-        $scope.tags = ["Markdown", "Ruby"]
-
-        $scope.font = null
-        $scope.fonts = [{
-                id: 1,
-                name: "Lucida"
-            },
-            {
-                id: 2,
-                name: "DejaVu"
-            },
-            {
-                id: 3,
-                name: "Bitstream"
-            },
-            {
-                id: 4,
-                name: "Liberation"
-            },
-            //  {id: 5, name: "Verdana"}
-        ]
-
-        $scope.font2 = $scope.fonts[1]
-
-        $scope.showName = function(font) {
-            return font.name;
-        }
-        $scope.createName = function(name) {
-            return {
-                name: name
-            }
-        }
-
-        var optionalTags = [];
-
-        $scope.tags = {
-            value: [],
-            options: [],
-            addOption: function() {
-                $scope.tags.options.push(Math.random())
-            }
-        }
-
-        $scope.selected = function(item) {
-            console.log("SELECTED ", item)
-        }
-
-        $scope.foc = function() {
-            document.getElementById("s1").focus()
-        }
-    })
-    -->
 
 app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
     $scope.$watch('files', function() {
