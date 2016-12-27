@@ -48,7 +48,8 @@ function cform() {
 <input type="password" class="textbox" name="password" id="password" ng-model="user.password"/>
 
 <h3>Courses List:</h3>
-<tagger ng-model="courses" options="options" placeholder="Select your courses"></tagger>
+  <multiple-autocomplete ng-model="selectedCourses" object-property="name" suggestions-arr="courses">
+    </multiple-autocomplete>
     
 <br/><br/>
 <input type="submit" value="Update Profile" style="width: 120px;height:50px;" class="button">

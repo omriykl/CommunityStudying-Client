@@ -1,64 +1,65 @@
-app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
-     
-     var currentId = $routeParams.param;
-	$http.get(SERVER_APP_BASE_URL+'question/viewQuestion?id=' + currentId).success(function(data){
-		$scope.question = data;
-	});
-        
-     $scope.htmlContent = '<h3>Place your question</h3>';
+app.controller('editQuestion', ['$scope', '$http', function($scope, $http) {
 
-    $scope.selectedFaculty = null;
+    
+     var currentId = $routeParams.param;
+	$http.get(SERVER_APP_BASE_URL+'post/?id=' + currentId).success(function(data){
+            if(data!=null){
+		$scope.question = data;
+	}
+    });
     $scope.faculties = [];
 
-    $scope.selectedCourse = null;
     $scope.courses = [];
-    
-    $scope.loadFaculties = function () {
+
+    $scope.loadFaculties = function() {
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
-        }).success(function (result) {
+        }).success(function(result) {
             $scope.faculties = result.allData;
         })
     };
     
     $scope.loadFaculties(); // first call to get faculties 
-    
-    $scope.$on('user-loaded', function (event, args) {
+
+    $scope.$on('user-loaded', function(event, args) {
         $scope.loadFaculties(); // second call to get faculties, but this time after user is signed in! 
     });
+    
 
-    $scope.facultySelected = function (item) {
+
+    $scope.facultySelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
         var id = item.id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
-        }).success(function (result) {
+        }).success(function(result) {
             $scope.courses = result.allData;
         });
     }
 
-    $scope.onAddQuestionNumber = function () {
-        var data = $.param({
-            faculty: selectedFaculty,
-            id,
-            course: $scope.selectedCourse.value,
+    
+    $scope.onAddQuestionNumber = function() {
+        var data = {
+            facultyId: $scope.selectedFaculty.id,
+            courseId: $scope.selectedCourse.id,
             year: $scope.year,
-            moed: $scope.selectedMoed.value,
-            qnum: $scope.qnumber
-        });
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed,
+            questionNumber: $scope.qnumber
+        };
         var config = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                'Content-Type': 'application/json'
             }
         }
 
-        $http.post(SERVER_APP_BASE_URL + 'question/checkexist', data, config)
-            .success(function (data, status, headers, config) {
+        $http.post(SERVER_APP_BASE_URL + 'post/checkByQuestion', data, config)
+            .success(function(data, status, headers, config) {
                 $scope.PostDataResponse = data;
             })
-            .error(function (data, status, header, config) {
+            .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
                 //	<hr />status: " + status +
                 //       "<hr />headers: " + header +
@@ -66,49 +67,81 @@ app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scop
             });
 
     };
-          var optionalTags=[];
 
-     $scope.courseSelected = function (item) {
+    $scope.courseSelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
         var id = item.id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
-        }).success(function (result) {
-            optionalTags = result;
+        }).success(function(result) {
+            $scope.optionsTags = result;
         });
     }
- 
-        optionalTags=["C3","bfs","dfs"];
-        $scope.tags = {
-        value: [],
-        options: optionalTags
-      }
+    $scope.optionsTags = [{
+            id: 1,
+            name: "Java"
+        },
+        {
+            id: 2,
+            name: "C"
+        },
+        {
+            id: 3,
+            name: "C++"
+        },
+        {
+            id: 4,
+            name: "AngularJs"
+        },
+        {
+            id: 5,
+            name: "JavaScript"
+        }
+    ];
+    
+    $scope.showName = function(item) {
+        return item.name;
+    }
+    
+    $scope.selectedFaculty = $scope.question.facultyId;
+    $scope.facultySelected($scope.selectedFaculty);
+    $scope.selectedCourse = $scope.question.courseId;;
+    $scope.courseSelected($scope.selectedCourse);
+    $scope.qnumber=$scope.question.questionNumber;
+    $scope.selectedTags = $scope.question.tags;
+    $scope.year = $scope.question.year;
+    $scope.selectedSemester = $scope.question.semester;
+    $scope.selectedMoed = $scope.question.moed;
+    $scope.htmlContent = $scope.question.content;
+    $scope.title = $scope.question.title;
 
-
-    $scope.submit = function () {
-        var data = $.param({
-            userId: USER_TOKEN,
-            faculty: selectedFaculty,
-            course: $scope.selectedCourse.value,
+        
+    $scope.submit = function() {
+        var data = {
+            facultyId: $scope.selectedFaculty.id,
+            courseId: $scope.selectedCourse.id,
             year: $scope.year,
-            moed: $scope.selectedMoed.value,
-            qnum: $scope.qnumber,
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed,
+            questionNumber: $scope.qnumber,
             title: $scope.title,
             content: $scope.htmlContent,
-            files: $scope.files
-        });
+            tags: $scope.selectedTags
+                //files: $scope.files
+        };
         var config = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                'Content-Type': 'application/json'
             }
-        }
+        };
 
-        $http.post(SERVER_APP_BASE_URL+ 'question/add', data, config)
-            .success(function (data, status, headers, config) {
+        $http.post(SERVER_APP_BASE_URL + 'post/edit?id='+currentId, data, config)
+            .success(function(data, status, headers, config) {
                 $scope.PostDataResponse = data;
+                window.location = "/question/view/" + data.id;
             })
-            .error(function (data, status, header, config) {
+            .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
                 //	<hr />status: " + status +
                 //       "<hr />headers: " + header +
@@ -118,57 +151,74 @@ app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scop
 
 }]);
 <!--
-app.controller("TestCtrl", function($scope){
-    
-      $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
-      $scope.tags = ["Markdown", "Ruby"]
+app.controller("TestCtrl", function($scope) {
 
-      $scope.font = null
-      $scope.fonts = [
-        {id: 1, name: "Lucida"},
-        {id: 2, name: "DejaVu"},
-        {id: 3, name: "Bitstream"},
-        {id: 4, name: "Liberation"},
-      //  {id: 5, name: "Verdana"}
-      ]
+        $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
+        $scope.tags = ["Markdown", "Ruby"]
 
-      $scope.font2 = $scope.fonts[1]
+        $scope.font = null
+        $scope.fonts = [{
+                id: 1,
+                name: "Lucida"
+            },
+            {
+                id: 2,
+                name: "DejaVu"
+            },
+            {
+                id: 3,
+                name: "Bitstream"
+            },
+            {
+                id: 4,
+                name: "Liberation"
+            },
+            //  {id: 5, name: "Verdana"}
+        ]
 
-      $scope.showName = function(font){ return font.name; }
-      $scope.createName = function(name) { return {name: name} }
+        $scope.font2 = $scope.fonts[1]
 
-        var optionalTags=[];
-        
-      $scope.tags = {
-        value: [],
-        options: [],
-        addOption: function() {
-          $scope.tags.options.push(Math.random())
+        $scope.showName = function(font) {
+            return font.name;
         }
-      }
+        $scope.createName = function(name) {
+            return {
+                name: name
+            }
+        }
 
-      $scope.selected = function(item){
-        console.log("SELECTED ", item)
-      }
+        var optionalTags = [];
 
-      $scope.foc = function(){
-        document.getElementById("s1").focus()
-      }
+        $scope.tags = {
+            value: [],
+            options: [],
+            addOption: function() {
+                $scope.tags.options.push(Math.random())
+            }
+        }
+
+        $scope.selected = function(item) {
+            console.log("SELECTED ", item)
+        }
+
+        $scope.foc = function() {
+            document.getElementById("s1").focus()
+        }
     })
--->
+    -->
 
-app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
-    $scope.$watch('files', function () {
+app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
+    $scope.$watch('files', function() {
         $scope.upload($scope.files);
     });
-    $scope.$watch('file', function () {
+    $scope.$watch('file', function() {
         if ($scope.file != null) {
             $scope.files = [$scope.file];
         }
     });
     $scope.log = '';
 
-    $scope.upload = function (files) {
+    $scope.upload = function(files) {
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
@@ -179,14 +229,14 @@ app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Uplo
                             username: $scope.username,
                             file: file
                         }
-                    }).then(function (resp) {
-                        $timeout(function () {
+                    }).then(function(resp) {
+                        $timeout(function() {
                             $scope.log = 'file: ' +
                                 resp.config.data.file.name +
                                 ', Response: ' + JSON.stringify(resp.data) +
                                 '\n' + $scope.log;
                         });
-                    }, null, function (evt) {
+                    }, null, function(evt) {
                         var progressPercentage = parseInt(100.0 *
                             evt.loaded / evt.total);
                         $scope.log = 'progress: ' + progressPercentage +

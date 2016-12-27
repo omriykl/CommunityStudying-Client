@@ -1,58 +1,134 @@
-<script>
+<h1>Edit Question</h1>
 
-function cform() {
-	var title = '';
-	var description = '';
-	title = $("#title").val();
-	description = $("#wmd-input").val();
+
+
+<form ng-submit="submit()">
+    <b> Faculty:</b>
+
+    <tagger tabindex="-1" id="s1" ng-model="faculty" options="faculties" placeholder="Select Faculty" single display-fun="showName" create-fun="createName" on-select="facultySelected"></tagger>
+    <!--
+         <select ng-model="selectedFaculty" 
+        ng-options="item.name for item in faculties track by item.id" ng-change="facultySelected(selectedFaculty)">
+            <option value="">Select Faculty</option>
+	</select>
+	-->
+    <b>Course:</b>
+    <tagger tabindex="-1" id="s1" ng-model="course" options="courses" placeholder="Select Course" single display-fun="showName" create-fun="createName" on-select="courseSelected"></tagger>
+    <!--
+	<select ng-model="selectedCourse" 
+        ng-options="item.name for item in courses track by item.id" ng-change="courseSelected(selectedCourse)">
+    <option value="">Select Course</option>
+	</select>
+-->
+    <br/>
+    <br/>
+    <b>Year:</b>
+    <input type="number" ng-model="year" min="1970" max="2020">
+
+    <b>Semester:</b>
+    <select ng-model="selectedSemester" style="width: 50px">
+        <option value="">--
+            <option value="A">A
+                <option value="B">B
+                    <option value="C">C
+    </select>
+
+    <b>Moed:</b>
+    <select ng-model="selectedMoed" style="width: 50px">
+        <option value="">--
+            <option value="A">A
+                <option value="B">B
+                    <option value="C">C
+    </select>
+    <b>Question Number:</b>
+    <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
+
+    <br/>
+    <br/>
+
+    <b>Title:</b>
+    <input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1" />
+    <br/>
+    <br/>
+    <!--        
+   OTHER STYLES OF TAGS
+   <tagger ng-model="tags1" options="options" placeholder="Select some tags"></tagger>
+    <input type="text"/>
+    <tagger ng-model="tags1" options="options" disable-new></tagger>
+    <tagger ng-model="tags1" options="options" disable-new limit=3></tagger>
+    <pre>{{ tags1 | json }}</pre>
+
+    single: <tagger tabindex="-1" id="s1" ng-model="font2" options="fonts" placeholder="Choose font" single display-fun="showName" create-fun="createName" on-select="selected"></tagger>
+    single: <tagger tabindex="-1" id="s1" ng-model="font" options="fonts" placeholder="Choose font" single display-fun="showName" create-fun="createName" on-select="selected"></tagger>
+    <pre>{{ font | json }}</pre>
+    <button ng-click='foc()'>Focus</button>
+-->
+    <b>Tags:</b>
+    <!-- <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>-->
+    <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
+    </multiple-autocomplete>
+
+    <!--  <pre>{{ tags | json }}</pre>-->
+
+    <!--  <button ng-click="empty.addOption()">Add option</button>-->
+
+    <br/>
+    <b>Content:</b>
+    <text-angular ng-model="htmlContent" name="content">
+        <p>Write Here...</p>
+    </text-angular>
+
+
+
+    <div ng-app="fileUpload" ng-controller="MyCtrl">
+        <!--   watching model:
+    <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
+    on file change multiple:
+    <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
+ -->
+        <b>Drop File:</b>
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        <b>Files Uploaded</b>
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+        </ul>
+        <b>Files Upload Status:</b>
+        <pre>{{log}}</pre>
+    </div>
+
+
+    <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Submit" />
+    <!--  <button ng-click="reset()">RESET</button>-->
+</form>
+
+<hr>
+
+
+
+
+<!--
+<form action="<?php echo generateLink("questions","post");?>" method="post" onsubmit="javascript:return cform();">
+
+<h1>What would you like to ask or contribute?</h1>
+<input type="textbox" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1"/><br/>
  
+      
 
-	if (title.length < 15) {
-		$("#title").addClass('textalert');
-		$.fancyalert('Your title must be atleast 15 characters in length');
-		$("#title").focus();
-		return false;
-	} else {
-		$("#title").removeClass('textalert');
-	}
-
-	if (description.length < 15) {
-		$("#wmd-input").addClass('textalert');
-		$.fancyalert('Your description must be atleast 15 characters in length');
-		$("#wmd-input").focus();
-		return false;
-	} else {
-		$("#wmd-input").removeClass('textalert');
-	}
-
-	return true;
-}
-</script>
-
-<form action="<?php echo generateLink("questions","update");?>" method="post" onsubmit="javascript:return cform();">
-
-<h1>Edit Your Question</h1>
-<input type="textbox" class="textbox" name="title" id="title" value="<?php echo $title;?>"/><br/>
-
-<div id="wmd-editor" class="wmd-panel" style="padding-top:20px">
+<div id="wmd-editor" class="wmd-panel" style="padding-top:10px">
 <div id="wmd-button-bar"></div>
-<textarea id="wmd-input" name="description" ><?php echo $description;?></textarea>
+<textarea id="wmd-input" name="description" tabindex="2" ></textarea>
 </div>
 <div id="wmd-preview" class="markdown"></div>
  
 
 <h3 style="padding-top:20px">Share a Link</h3>
-<input type="textbox" class="textbox" name="link" id="link" value="<?php echo $link;?>"/><br/>
+<input type="textbox" class="textbox" name="link" id="link" tabindex="3"/><br/>
 
 <h3>Tags</h3>
-<select class="textbox" name="tags" id="tags"/>
-<?php foreach ($tags as $tag):?>
-<option value="<?php echo $tag;?>" class="selected"><?php echo $tag;?></option>
-<?php endforeach;?>
-</select>
+<select class="textbox" placeholder="Tag your question" name="tags" id="tags" tabindex="4"/></select>
 <br/>
-<input type="checkbox" id="answercheck" name="answercheck" value="1" tabindex="4" <?php if ($kb) { echo "checked"; }?>> Make this a knowledge-base article
+<input type="checkbox" id="answercheck" name="answercheck" value="1" onclick="fanswer();" tabindex="4"> Make this a knowledge-base article
 <br/><br/>
-<input type="hidden" name="id" value="<?php echo $questionid;?>">
-<input type="submit" value="Update" class="button">
-</form>
+<input type="submit" value="Ask Question" class="button" id="askquestion" tabindex="5">
+</form> -->

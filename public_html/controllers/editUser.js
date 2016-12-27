@@ -11,16 +11,14 @@ app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $
                 "password": "gjgjg"            
                 };
                 
-  $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
-      $scope.courses = []
+       $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'course/getAllCourses',
+        }).success(function(result) {
+            $scope.courses = result;
+        });
+                
 
-        var optionalTags=[];
-        
-      $scope.tags = {
-        value: [],
-        options: []
-
-      }
       
         $scope.submit = function () {
             var data = $.param({
@@ -28,7 +26,7 @@ app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $
                 lastName: $scope.user.lastName,
                 email: $scope.user.email,
                 password: $scope.user.password,
-                courses : $scope.tags.value
+                courses : $scope.selectedCourses
             });
             var config = {
                 headers: {

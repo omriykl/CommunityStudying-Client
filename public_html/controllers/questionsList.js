@@ -1,33 +1,64 @@
+var toggleSearch = function() {
+    jQuery('#hideshow').on('click', function(event) {
+        jQuery('#searchPanel').toggle('show');
+    });
+};
+app.controller('QuestionsCtr', ['$scope', '$http', function($scope, $http) {
+    toggleSearch();
+
+    $scope.questions = [];
+
+      $scope.searchQuestions = function() {
+        var data = {
+            facultyId: $scope.selectedFaculty != null ? $scope.selectedFaculty.id : null,
+            courseId: $scope.selectedCourse != null ? $scope.selectedCourse.id : null,
+            year: $scope.year,
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed,
+            questionNumber: $scope.qnumber,
+            text: $scope.freeText,
+            tags: $scope.tags
+                //files: $scope.files
+        };
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        $http.post(SERVER_APP_BASE_URL + 'post/search', data, config)
+            .success(function(data, status, headers, config) {
+                $scope.questions = data;
+            })
+            .error(function(data, status, header, config) {
+                //   $scope.ResponseDetails = "Data: " + data +
+                //	<hr />status: " + status +
+                //       "<hr />headers: " + header +
+                //       "<hr />config: " + config;
+            });
+    };
+    
+    $scope.searchQuestions();
 
 
-var toggleSearch= function(){
-     jQuery('#hideshow').on('click', function(event) {        
-             jQuery('#searchPanel').toggle('show');
-});
-}
-app.controller('QuestionsCtr',  ['$scope', '$http', function($scope, $http) {
-        toggleSearch();
-             
-	$scope.questions =[];
-	
-	$http.get(SERVER_APP_BASE_URL+'post/search').success(function(data){
-		$scope.questions = data;
-	});
-        
-            $scope.selectedFaculty = null;
+    $scope.selectedFaculty = null;
     $scope.faculties = [];
 
     $scope.selectedCourse = null;
     $scope.courses = [];
 
-    $http({
-        method: 'GET',
-        url: 'http://localhost:8080/faculty/getall',
-        data: {
-            applicationId: 3
-        }
-    }).success(function(result) {
-        $scope.faculties = result;
+    $scope.loadFaculties = function() {
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+        }).success(function(result) {
+            $scope.faculties = result.allData;
+        })
+    };
+    $scope.loadFaculties(); // first call to get faculties 
+
+    $scope.$on('user-loaded', function(event, args) {
+        $scope.loadFaculties(); // second call to get faculties, but this time after user is signed in! 
     });
 
     $scope.facultySelected = function(item) {
@@ -35,90 +66,59 @@ app.controller('QuestionsCtr',  ['$scope', '$http', function($scope, $http) {
         var id = item.id;
         $http({
             method: 'GET',
-            url: 'http://localhost:8080/course/getByFaculty/?facultyId='.concat(id),
-            data: {
-                applicationId: 3
-            }
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
         }).success(function(result) {
-            $scope.courses = result;
+            $scope.courses = result.allData;
         });
+    };
+
+    $scope.onAddQuestionNumber = function() {
+        var data = {
+            facultyId: $scope.selectedFaculty.id,
+            courseId: $scope.selectedCourse.id,
+            year: $scope.year,
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed,
+            questionNumber: $scope.qnumber
+        };
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        $http.post(SERVER_APP_BASE_URL + 'post/checkByQuestion', data, config)
+            .success(function(data, status, headers, config) {
+                $scope.PostDataResponse = data;
+            })
+            .error(function(data, status, header, config) {
+                //   $scope.ResponseDetails = "Data: " + data +
+                //	<hr />status: " + status +
+                //       "<hr />headers: " + header +
+                //       "<hr />config: " + config;
+            });
+
+    };
+    $scope.showName = function(item) {
+        return item.name;
     }
 
-        $scope.onAddQuestionNumber = function() {
-            var data = $.param({
-                faculty: $scope.selectedFaculty.id,
-                course: $scope.selectedCourse.value,
-                year: $scope.year,
-                moed: $scope.selectedMoed.value,
-                qnum: $scope.qnumber
-            });
-            var config = {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            }
 
-            $http.post('http://localhost:8080/question/checkexist', data, config)
-                .success(function(data, status, headers, config) {
-                    $scope.PostDataResponse = data;
-                })
-                .error(function(data, status, header, config) {
-                    //   $scope.ResponseDetails = "Data: " + data +
-                    //	<hr />status: " + status +
-                    //       "<hr />headers: " + header +
-                    //       "<hr />config: " + config;
-                });
-
-        };
-        
-          $scope.courseSelected = function (item) {
+    $scope.courseSelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
         var id = item.id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
-        }).success(function (result) {
-            optionalTags = result;
+        }).success(function(result) {
+            $scope.options = result;
         });
-    }
-    
-        optionalTags=["C3","bfs","dfs"];
-        $scope.tags = {
-        value: [],
-        options: optionalTags,
-        addOption: function() {
-          $scope.tags.options.push(Math.random())
-        }
-      }
-        
-        
-        $scope.submit = function() {
-            var data = $.param({
-                faculty: $scope.selectedFaculty !==null ? $scope.selectedFaculty.id : null,
-                course: $scope.selectedCourse !==null ? $scope.selectedCourse.value : null,
-                year: $scope.year,
-                moed: $scope.selectedMoed !==null ? $scope.selectedMoed.value : null,
-                qnum: $scope.qnumber,
-                tags: $scope.tags.value,
-                freeText: $scope.freeText
-            });
-            var config = {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            }
+    };
 
-            $http.post('http://localhost:8080/question/filter', data, config)
-                .success(function(data, status, headers, config) {
-                    $scope.questions = data;
-                })
-                .error(function(data, status, header, config) {
-                    //   $scope.ResponseDetails = "Data: " + data +
-                    //	<hr />status: " + status +
-                    //       "<hr />headers: " + header +
-                    //       "<hr />config: " + config;
-                });
-        };
-        
-        
+
+    $scope.submit = function() {
+        $scope.searchQuestions();
+    };
+
+
 }]);

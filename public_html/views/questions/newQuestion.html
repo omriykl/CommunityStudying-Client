@@ -1,49 +1,56 @@
-
-
 <h1>New Question</h1>
 
 
-  <form ng-submit="submit()">
-          <b> Faculty:</b>
-	<select ng-model="selectedFaculty" 
+
+<form ng-submit="submit()">
+    <b> Faculty:</b>
+
+    <tagger tabindex="-1" id="s1" ng-model="faculty" options="faculties" placeholder="Select Faculty" single display-fun="showName" create-fun="createName" on-select="facultySelected"></tagger>
+    <!--
+         <select ng-model="selectedFaculty" 
         ng-options="item.name for item in faculties track by item.id" ng-change="facultySelected(selectedFaculty)">
             <option value="">Select Faculty</option>
 	</select>
-	
-	<b>Course:</b>
+	-->
+    <b>Course:</b>
+    <tagger tabindex="-1" id="s1" ng-model="course" options="courses" placeholder="Select Course" single display-fun="showName" create-fun="createName" on-select="courseSelected"></tagger>
+    <!--
 	<select ng-model="selectedCourse" 
         ng-options="item.name for item in courses track by item.id" ng-change="courseSelected(selectedCourse)">
     <option value="">Select Course</option>
 	</select>
-        <br/><br/>
-	<b>Year:</b>
-	<input type="number" ng-model="year" min="1970" max="2020">
-        
-        <b>Semester:</b>
-	<select ng-model="selectedSemester">
-    <option value="">Select Semester
-    <option value="A">A
-    <option value="B">B
-    <option value="C">C
-	</select>
-        
-	<b>Moed:</b>
-	<select ng-model="selectedMoed">
-    <option value="">Select Moed
-    <option value="A">A
-    <option value="B">B
-    <option value="C">C
-	</select>
-	
-	<b>Question Number:</b>
-	<input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
-	
-	<br/><br/>
-	
-	<b>Title:</b>
-	<input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1"/><br/>
-        
-  <!--        
+-->
+    <br/>
+    <br/>
+    <b>Year:</b>
+    <input type="number" ng-model="year" min="1970" max="2020">
+
+    <b>Semester:</b>
+    <select ng-model="selectedSemester" style="width: 50px">
+        <option value="">--
+            <option value="A">A
+                <option value="B">B
+                    <option value="C">C
+    </select>
+
+    <b>Moed:</b>
+    <select ng-model="selectedMoed" style="width: 50px">
+        <option value="">--
+            <option value="A">A
+                <option value="B">B
+                    <option value="C">C
+    </select>
+    <b>Question Number:</b>
+    <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
+
+    <br/>
+    <br/>
+
+    <b>Title:</b>
+    <input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1" />
+    <br/>
+    <br/>
+    <!--        
    OTHER STYLES OF TAGS
    <tagger ng-model="tags1" options="options" placeholder="Select some tags"></tagger>
     <input type="text"/>
@@ -56,46 +63,47 @@
     <pre>{{ font | json }}</pre>
     <button ng-click='foc()'>Focus</button>
 -->
-<b>Tags:</b>
-    <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>
-    
-  <!--  <pre>{{ tags | json }}</pre>-->
+    <b>Tags:</b>
+    <!-- <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>-->
+    <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
+    </multiple-autocomplete>
+
+    <!--  <pre>{{ tags | json }}</pre>-->
 
     <!--  <button ng-click="empty.addOption()">Add option</button>-->
 
-        <br/>
-        <b>Content:</b>
-        <text-angular ng-model="htmlContent" name="content"><p>Hello World!</p></text-angular>
-        
-        
-	
-<div ng-app="fileUpload" ng-controller="MyCtrl">
- <!--   watching model:
+    <br/>
+    <b>Content:</b>
+    <text-angular ng-model="htmlContent" name="content">
+        <p>Write Here...</p>
+    </text-angular>
+
+
+
+    <div ng-app="fileUpload" ng-controller="MyCtrl">
+        <!--   watching model:
     <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
     on file change multiple:
     <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
  -->
-    <b>Drop File:</b>
-    <div ngf-drop ngf-select ng-model="files" class="drop-box" 
-        ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
-        accept="image/*,application/pdf" 
-        ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
-    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-    <b>Files Uploaded</b>
-    <ul>
-        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-    </ul>
-    <b>Files Upload Status:</b>
-    <pre>{{log}}</pre>
-</div>
-	
-		
+        <b>Drop File:</b>
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        <b>Files Uploaded</b>
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+        </ul>
+        <b>Files Upload Status:</b>
+        <pre>{{log}}</pre>
+    </div>
+
+
     <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Submit" />
-  <!--  <button ng-click="reset()">RESET</button>-->
-  </form>
-    
-    <hr>
- 
+    <!--  <button ng-click="reset()">RESET</button>-->
+</form>
+
+<hr>
+
 
 
 
