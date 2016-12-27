@@ -1,14 +1,10 @@
-<form action="<?php echo generateLink("answers","update");?>" method="post">
 
 <h1>Edit Your Answer</h1>
+<form ng-submit="submit()">
 
-<div id="wmd-editor" class="wmd-panel">
-<div id="wmd-button-bar"></div>
-<textarea id="wmd-input" name="description" ><?php echo $description;?></textarea>
-</div>
-<div id="wmd-preview" class="wmd-panel"></div>
- 
+    <text-angular ng-model="htmlContent" name="content">
+        <p>Write Here...</p>
+    </text-angular>
 <br/><br/>
-<input type="hidden" name="id" value="<?php echo $answerid;?>">
-<input type="submit" value="Update Answer" class="button">
+<input type="submit" value="Update Answer" style="width: 100px;height: 30px;">
 </form>

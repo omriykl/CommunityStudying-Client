@@ -28,8 +28,8 @@ app.config(function ($routeProvider) {
         controller: "editQuestion",
         controllerAs: "app"
     });
-    $routeProvider.when("/answeres/edit/:param", {
-        templateUrl: "views/answeres/edit.html",
+    $routeProvider.when("/answers/edit/:param", {
+        templateUrl: "views/answers/edit.html",
         controller: "editAnswere",
         controllerAs: "app"
     });

@@ -4,11 +4,14 @@ app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scop
 	$http.get(SERVER_APP_BASE_URL+'post/?id=' + currentId).success(function(data){
             if(data!=null){
 		$scope.question = data;
+                $scope.loadQuestion();
 	}
         else{
            window.location = "/question/view/" + currentId;
         }
-    });
+    }).error(function(){
+            //window.location = "/question/view/" + currentId;
+        });
     $scope.faculties = [];
 
     $scope.courses = [];
@@ -106,17 +109,22 @@ app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scop
         return item.name;
     };
     
-    $scope.selectedFaculty = $scope.question.facultyId;
-    $scope.facultySelected($scope.selectedFaculty);
-    $scope.selectedCourse = $scope.question.courseId;;
-    $scope.courseSelected($scope.selectedCourse);
-    $scope.qnumber=$scope.question.questionNumber;
-    $scope.selectedTags = $scope.question.tags;
-    $scope.year = $scope.question.year;
-    $scope.selectedSemester = $scope.question.semester;
-    $scope.selectedMoed = $scope.question.moed;
-    $scope.htmlContent = $scope.question.content;
-    $scope.title = $scope.question.title;
+    $scope.loadQuestion=function(){
+            $scope.selectedFaculty = $scope.question.facultyId;
+            $scope.facultySelected($scope.selectedFaculty);
+            $scope.selectedCourse = $scope.question.courseId;;
+            $scope.courseSelected($scope.selectedCourse);
+            $scope.qnumber=$scope.question.questionNumber;
+            $scope.selectedTags = $scope.question.tags;
+            $scope.year = $scope.question.year;
+            $scope.selectedSemester = $scope.question.semester;
+            $scope.selectedMoed = $scope.question.moed;
+            $scope.htmlContent = $scope.question.content;
+            $scope.title = $scope.question.title;
+    };
+     angular.element(document).ready(function () {
+            $scope.loadQuestion();
+    });
 
         
     $scope.submit = function() {
