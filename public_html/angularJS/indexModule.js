@@ -1,9 +1,14 @@
 var SERVER_APP_BASE_URL = "http://localhost:8080/";
-var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect', 'ui.bootstrap' ]);
+var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect' ]);
 var USER_TOKEN = "";
 
 app.config(function ($routeProvider) {
-    $routeProvider.when("/questions", {
+    $routeProvider.when("/questions", {  
+        templateUrl: "questionsList.html",
+        controller: "QuestionsCtr",
+        controllerAs: "app"
+    });
+    $routeProvider.when("/questions/search/:param", {
         templateUrl: "questionsList.html",
         controller: "QuestionsCtr",
         controllerAs: "app"
@@ -48,11 +53,14 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
             $rootScope.$broadcast('user-loaded');
 
         });
-    }
+    };
+    $scope.freesearch=function(){
+         window.location = "#questions/search/" + $scope.searchInput;
+    };
     $scope.logout = function () {
         $scope.isConnected = false;
         $scope.$apply();
-    }
+    };
 });
 
 

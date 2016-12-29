@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="css/main.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/dialogModel.css">
 
     <link type="text/css" rel="stylesheet" href="css/tagscomplete.css">
 
@@ -72,10 +73,6 @@
     <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css">
     <link href="css/prettify.css" type="text/css" rel="stylesheet">
 
-     <!--hover dialog-->
-     	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-	<script src="js/dialog/ui-bootstrap-tpls-0.14.3.min.js"></script>
-	<script src="js/dialog/App.js"></script>
     <style>
         textarea.ta-bind {
             width: 100%;
@@ -109,10 +106,12 @@
 
 <body onload="prettyPrint()">
     <div id="navigation">
-        <div class="navcenter">
+        <div class="navcenter" ng-controller="LoginCtr">
 
-            <form action="#questions" method="get" style="float:left;width:420px;text-align:left;">
-                <input type="textbox" name="search" style="color: #999" value="" /> </form>
+            <form ng-submit="freesearch()" style="float:left;width:420px;text-align:left;" >
+                <input ng-model="searchInput" type="textbox"  style="color: #999" value="" />
+
+                 </form>
 
             <div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9;">
                 <ol>

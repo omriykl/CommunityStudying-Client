@@ -1,12 +1,13 @@
 <h1>New Question</h1>
 
 
-<button ng-click="openDialog()" class="btn btn-warning">Simple Popup</button>
+<button id="myBtn">Open Modal</button>
 
-<form ng-submit="submit()">
+<form ng-submit="submit()" class="form-group">
     <b> Faculty:</b>
-
-    <tagger tabindex="-1" id="s1" ng-model="faculty" options="faculties" placeholder="Select Faculty" single display-fun="showName" create-fun="createName" on-select="facultySelected"></tagger>
+    
+    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="Select Faculty" single 
+            display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
     <!--
          <select ng-model="selectedFaculty" 
         ng-options="item.name for item in faculties track by item.id" ng-change="facultySelected(selectedFaculty)">
@@ -14,7 +15,8 @@
 	</select>
 	-->
     <b>Course:</b>
-    <tagger tabindex="-1" id="s1" ng-model="course" options="courses" placeholder="Select Course" single display-fun="showName" create-fun="createName" on-select="courseSelected"></tagger>
+    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="Select Course" 
+            single display-fun="showName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
     <!--
 	<select ng-model="selectedCourse" 
         ng-options="item.name for item in courses track by item.id" ng-change="courseSelected(selectedCourse)">
@@ -24,10 +26,10 @@
     <br/>
     <br/>
     <b>Year:</b>
-    <input type="number" ng-model="year" min="1970" max="2020">
+    <input type="number" ng-model="year" min="1970" max="2020" required>
 
     <b>Semester:</b>
-    <select ng-model="selectedSemester" style="width: 50px">
+    <select ng-model="selectedSemester" style="width: 50px" required>
         <option value="">--
             <option value="A">A
                 <option value="B">B
@@ -35,7 +37,7 @@
     </select>
 
     <b>Moed:</b>
-    <select ng-model="selectedMoed" style="width: 50px">
+    <select ng-model="selectedMoed" style="width: 50px" required on-select="moedSelected">
         <option value="">--
             <option value="A">A
                 <option value="B">B
@@ -64,11 +66,12 @@
     <pre>{{ font | json }}</pre>
     <button ng-click='foc()'>Focus</button>
 -->
+<div id="tagsDiv" style="display: none">
     <b>Tags:</b>
     <!-- <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>-->
     <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
     </multiple-autocomplete>
-
+</div>
     <!--  <pre>{{ tags | json }}</pre>-->
 
     <!--  <button ng-click="empty.addOption()">Add option</button>-->
@@ -88,7 +91,9 @@
     <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
  -->
         <b>Drop File:</b>
-        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
+             style="width: 400px;height: 200px; padding: 0">
+            <img  src="img/drag-drop-file.gif" width="400px"> </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
         <b>Files Uploaded</b>
         <ul>
@@ -106,7 +111,36 @@
 <hr>
 
 
+<div id="newTestModal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Hey Mate !</h2>
+    <h3>We don't any files of you test</h3>
+    <h3>We will very much appreciate if you could upload this test, to help put community grow </h3>
+    
+        <div ng-app="fileUpload" ng-controller="MyCtrl">
+        <b>Drop File:</b>
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
+             style="width: 400px;height: 200px; padding: 0">
+            <img  src="img/drag-drop-file.gif" width="400px"> </div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser
+            
+        </div>
+        <b>Files Uploaded</b>
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+        </ul>
+        <b>Files Upload Status:</b>
+        <pre>{{log}}</pre>
+    </div>
+    
+  </div>
+  
+  
+
+</div>
 
 <!--
 <form action="<?php echo generateLink("questions","post");?>" method="post" onsubmit="javascript:return cform();">

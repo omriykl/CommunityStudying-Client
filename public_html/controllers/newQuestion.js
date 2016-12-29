@@ -1,18 +1,43 @@
-app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $http,$modal) {
 
-    $scope.openDialog = function () { //open hover dialog
-        console.log('opening pop up');
-        var modalInstance = $modal.open({
-        templateUrl: 'views/questions/newTestDialog.html',
-        //controller: 'PopupCont',
-        });
-    };
-    
-    $scope.selectedFaculty = null;
-    $scope.faculties = [];
 
-    $scope.selectedCourse = null;
-    $scope.courses = [];
+
+
+
+
+
+app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
+
+            // Get the modal
+        var newTestModal = document.getElementById('newTestModal');
+
+var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            newTestModal.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            newTestModal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          //  if (event.target == modal) {
+          //      modal.style.display = "none";
+          //  }
+        }
+ 
+    $scope.faculties =  [{id: 1,
+            name: "Java"
+        }]
+
+    $scope.courses =  [{id: 1,
+            name: "Java"
+        }];
 
     $scope.loadFaculties = function() {
         $http({
@@ -37,12 +62,28 @@ app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $htt
         }).success(function(result) {
             $scope.courses = result.allData;
         });
-    }
+    };
+    
+     $scope.moedSelected = function(item) {
+        var params="facultyId="+$scope.faculty.id+
+                    "&courseId="+$scope.course.id+
+                    "&year="+$scope.year+
+                    "&semester="+ $scope.selectedSemester+
+                    "&moed="+$scope.selectedMoed;
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'test/checkIfTextExist?'.concat(params),
+        }).success(function(result) {
+            if(result==false){
+                newTestModal.style.display = "block";
+            }
+        });
+    };
 
     $scope.onAddQuestionNumber = function() {
         var data = {
-            facultyId: $scope.selectedFaculty.id,
-            courseId: $scope.selectedCourse.id,
+            facultyId: $scope.faculty.id,
+            courseId: $scope.course.id,
             year: $scope.year,
             semester: $scope.selectedSemester,
             moed: $scope.selectedMoed,
@@ -52,7 +93,7 @@ app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $htt
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
+        };
 
         console.log(data);
 
@@ -77,6 +118,7 @@ app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $htt
             url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
         }).success(function(result) {
             $scope.optionsTags = result;
+             document.getElementById('tagsDiv').style.display="inline";
         });
     }
     $scope.optionsTags = [{
@@ -109,8 +151,8 @@ app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $htt
 
     $scope.submit = function() {
         var data = {
-            facultyId: $scope.selectedFaculty.id,
-            courseId: $scope.selectedCourse.id,
+            facultyId: $scope.faculty.id,
+            courseId: $scope.course.id,
             year: $scope.year,
             semester: $scope.selectedSemester,
             moed: $scope.selectedMoed,
@@ -129,7 +171,7 @@ app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $htt
         $http.post(SERVER_APP_BASE_URL + 'post', data, config)
             .success(function(data, status, headers, config) {
                 $scope.PostDataResponse = data;
-                window.location = "/question/view/" + data.id;
+                window.location = "#question/view/" + data.id;
             })
             .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
@@ -140,6 +182,8 @@ app.controller('newQuestion', ['$scope', '$http','$modal', function($scope, $htt
     };
 
 }]);
+
+
 <!--
 app.controller("TestCtrl", function($scope) {
 

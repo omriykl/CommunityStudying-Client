@@ -3,15 +3,16 @@ var toggleSearch = function() {
         jQuery('#searchPanel').toggle('show');
     });
 };
-app.controller('QuestionsCtr', ['$scope', '$http', function($scope, $http) {
+app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scope, $http, $routeParams) {
     toggleSearch();
 
     $scope.questions = [];
-
+    
+    
       $scope.searchQuestions = function() {
         var data = {
-            facultyId: $scope.selectedFaculty != null ? $scope.selectedFaculty.id : null,
-            courseId: $scope.selectedCourse != null ? $scope.selectedCourse.id : null,
+            facultyId: $scope.faculty != null ? $scope.faculty.id : null,
+            courseId: $scope.course != null ? $scope.course.id : null,
             year: $scope.year,
             semester: $scope.selectedSemester,
             moed: $scope.selectedMoed,
@@ -36,6 +37,10 @@ app.controller('QuestionsCtr', ['$scope', '$http', function($scope, $http) {
                 //       "<hr />headers: " + header +
                 //       "<hr />config: " + config;
             });
+    };
+    
+    if($routeParams.param!=null){
+        $scope.freeText= $routeParams.param;
     };
     
     $scope.searchQuestions();
@@ -74,8 +79,8 @@ app.controller('QuestionsCtr', ['$scope', '$http', function($scope, $http) {
 
     $scope.onAddQuestionNumber = function() {
         var data = {
-            facultyId: $scope.selectedFaculty.id,
-            courseId: $scope.selectedCourse.id,
+            facultyId: $scope.faculty.id,
+            courseId: $scope.course.id,
             year: $scope.year,
             semester: $scope.selectedSemester,
             moed: $scope.selectedMoed,
@@ -112,6 +117,8 @@ app.controller('QuestionsCtr', ['$scope', '$http', function($scope, $http) {
             url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
         }).success(function(result) {
             $scope.options = result;
+            document.getElementById('tagsDiv').style.display="inline";
+
         });
     };
 

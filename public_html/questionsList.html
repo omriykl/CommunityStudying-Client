@@ -7,12 +7,14 @@
     <h3>Filter:</h3>
     <form ng-submit="submit()">
 
-        Faculty:
-        <tagger tabindex="-1" id="s1" ng-model="faculty" options="faculties" placeholder="Select Faculty" single display-fun="showName" create-fun="createName" on-select="facultySelected"></tagger>
+    <b> Faculty:</b>
+    
+    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="Select Faculty" single 
+            display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
 
-
-        Course:
-        <tagger tabindex="-1" id="s1" ng-model="course" options="courses" placeholder="Select Course" single display-fun="showName" create-fun="createName" on-select="courseSelected"></tagger>
+    <b>Course:</b>
+    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="Select Course" 
+            single display-fun="showName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
 
         <br/>
         <br/>
@@ -37,11 +39,15 @@
         <b>Question Number:</b>
         <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 
-        <br/> Tags :
+        
+        <br/>
+        <div id="tagsDiv" style="display: none">
+        Tags :
 
         <tagger ng-model="tags" options="options" placeholder="Select tags"></tagger>
 
-
+        </div>
+        <br/>
         Free text:
         <input type="text" ng-model="freeText">
         <br/>
