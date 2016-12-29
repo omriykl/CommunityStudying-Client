@@ -72,7 +72,7 @@ var btn = document.getElementById("myBtn");
                     "&moed="+$scope.selectedMoed;
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'test/checkIfTextExist?'.concat(params),
+            url: SERVER_APP_BASE_URL + 'post/checkByMoed?'.concat(params),
         }).success(function(result) {
             if(result==false){
                 newTestModal.style.display = "block";
@@ -168,7 +168,7 @@ var btn = document.getElementById("myBtn");
             }
         };
 
-        $http.post(SERVER_APP_BASE_URL + 'post', data, config)
+        $http.post(SERVER_APP_BASE_URL + 'post/create', data, config)
             .success(function(data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 window.location = "#question/view/" + data.id;

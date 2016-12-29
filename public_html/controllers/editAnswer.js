@@ -2,7 +2,7 @@ app.controller('editAnswere', ['$scope','$http','$routeParams', function ($scope
         
      var currentId = $routeParams.param;
 
-    $http.get(SERVER_APP_BASE_URL+'question/viewAnswer?id=' + currentId).success(function(data){
+    $http.get(SERVER_APP_BASE_URL+'comment/getById?id=' + currentId).success(function(data){
 		$scope.answer = data;
                 $scope.htmlContent = data.content;
 	});
@@ -15,9 +15,9 @@ app.controller('editAnswere', ['$scope','$http','$routeParams', function ($scope
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
+        };
 
-        $http.post(SERVER_APP_BASE_URL+ 'answers/edit?id='+currentId, data, config)
+        $http.post(SERVER_APP_BASE_URL+ 'comment/update'+currentId, data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 window.location = "/question/view/" + $scope.answer.questionId;

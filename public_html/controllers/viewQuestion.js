@@ -26,17 +26,17 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         };
         
         $scope.answerVoteUp = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'question/answerVoteUp?id=' + ansId).success(function(){
+        $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId).success(function(){
 		location.reload();
 	});};
         
          $scope.answerVoteDown = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'question/answerVoteDown?id=' + ansId).success(function(){
+        $http.get(SERVER_APP_BASE_URL+'comment/unlike?id=' + ansId).success(function(){
 		location.reload();
-	});}
+	});};
         
          $scope.acceptAnswer = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'question/acceptAnswer?id=' + ansId).success(function(){
+        $http.get(SERVER_APP_BASE_URL+'comment/accept?id=' + ansId).success(function(){
 		location.reload();
 	});};
         
@@ -44,14 +44,14 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         $scope.submit = function () {
             var data = $.param({
                 content: $scope.htmlContent,
-                userId: USER_TOKEN
+                postId: $scope.question.id
             });
             var config = {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             };
-            $http.post(SERVER_APP_BASE_URL +'/question/addAnsware?id='+ currentId, data, config)
+            $http.post(SERVER_APP_BASE_URL +'comment/create?userTokenId='+USER_TOKEN, data, config)
                 .success(function (data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     location.reload();

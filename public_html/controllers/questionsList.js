@@ -40,10 +40,30 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     };
     
     if($routeParams.param!=null){
-        $scope.freeText= $routeParams.param;
-    };
-    
-    $scope.searchQuestions();
+        if($routeParams.param.includes("userId=")){
+            var id=$routeParams.param.split('userId=')[1];
+           $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'post/getByUser?id='+id,
+        }).success(function(result) {
+            $scope.questions = result;
+        });
+            
+        }
+        else{
+           $scope.freeText= $routeParams.param;        
+           $scope.searchQuestions();
+        }
+
+    }
+    else{
+    $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'post/all',
+        }).success(function(result) {
+            $scope.questions = result;
+        });
+    }
 
 
     $scope.selectedFaculty = null;

@@ -1,13 +1,13 @@
 app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
 
      var currentId = $routeParams.param;
-	$http.get(SERVER_APP_BASE_URL+'post/?id=' + currentId).success(function(data){
+	$http.get(SERVER_APP_BASE_URL+'post/getById?id=' + currentId).success(function(data){
             if(data!=null){
 		$scope.question = data;
                 $scope.loadQuestion();
 	}
         else{
-           window.location = "/question/view/" + currentId;
+           window.location = "#questions/view/" + currentId;
         }
     }).error(function(){
             //window.location = "/question/view/" + currentId;
@@ -146,10 +146,10 @@ app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scop
             }
         };
 
-        $http.post(SERVER_APP_BASE_URL + 'post/edit?id='+currentId, data, config)
+        $http.post(SERVER_APP_BASE_URL + 'post/update', data, config)
             .success(function(data, status, headers, config) {
                 $scope.PostDataResponse = data;
-                window.location = "/question/view/" + data.id;
+                window.location = "#question/view/" + data.id;
             })
             .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
