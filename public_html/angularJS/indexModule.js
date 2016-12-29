@@ -54,6 +54,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
 
         });
     };
+    $scope.isConnected=true;
     $scope.freesearch=function(){
          window.location = "#questions/search/" + $scope.searchInput;
     };

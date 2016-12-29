@@ -247,7 +247,7 @@ div#preview {
 }
 
 .questionsview_answerdescription {
-	float:left;
+	//float:left;
 	width: 600px;
 }
 
@@ -280,13 +280,13 @@ div#preview {
 }
 
 .navcenter {
-	width: 960px;
+	width: 60%;
 	margin: 0 auto;
 	text-align:center;
 }
 
 .navcenter input {
-	height: 20px;
+	height: 40px;
 	width: 400px;
 	margin: 5px;
 	font-size: 14px;

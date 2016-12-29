@@ -6,7 +6,19 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
 	});
         $scope.isTheSameUser=true;
         $scope.isConnected = true;
-        
+            $scope.loadQuestion=function(){
+            $scope.selectedFaculty = $scope.question.facultyId;
+            $scope.facultySelected($scope.selectedFaculty);
+            $scope.selectedCourse = $scope.question.courseId;;
+            $scope.courseSelected($scope.selectedCourse);
+            $scope.qnumber=$scope.question.questionNumber;
+            $scope.selectedTags = $scope.question.tags;
+            $scope.year = $scope.question.year;
+            $scope.selectedSemester = $scope.question.semester;
+            $scope.selectedMoed = $scope.question.moed;
+            $scope.htmlContent = $scope.question.content;
+            $scope.title = $scope.question.title;
+    };
         $scope.question={
             "id": "1",
             "user" :"guyyt",
@@ -14,6 +26,11 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
             "createdOn" : "1.1.2013",
             "content": "hey hey hey hey hey hey",
             "tags" : [{"id":"1", "name":"tag1"}],
+            questionNumber: 2,
+            semester: "B",
+            moed : "A",
+            year: "2015",
+            
             "answers": [{
                     "id": "10",
                     "username":  "guy",
@@ -41,7 +58,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
 	});};
         
 
-        $scope.submit = function () {
+        $scope.submitAnswar = function () {
             var data = $.param({
                 content: $scope.htmlContent,
                 postId: $scope.question.id

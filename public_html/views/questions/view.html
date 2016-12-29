@@ -28,8 +28,35 @@
 
 <div class="questionsview_questiondescription">
 
+        <b> Faculty:</b>
 
-    <div class="markdown">{{question.content}}</div>
+    <input type="text" ng-model="question.faculty"  disabled="disabled">
+
+    <b>Course:</b>
+    <input type="text" ng-model="question.course" disabled="disabled">
+
+    <br/>
+    <br/>
+    <b>Year:</b>
+    <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{question.year}}">
+
+    <b>Semester:</b>
+    <select ng-model="selectedSemester" style="width: 50px" disabled="disabled">
+        <option value="">{{question.semester}}
+    </select>
+
+    <b>Moed:</b>
+    <select ng-model="selectedMoed" style="width: 50px" disabled="disabled">
+        <option value="">{{question.moed}}
+
+    </select>
+    <b>Question Number:</b>
+    <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()" disabled="disabled" value="{{question.questionNumber}}">
+
+    <br/>
+    <br/>
+    
+    <div class="markdown" style="border: bold">{{question.content}}</div>
 
 <!--
 <?php if (!empty($link)):?>
@@ -92,7 +119,7 @@
 
 -->
 
-
+<br/><hr>
 
 <div  ng-repeat="answer in question.answers" >
     <div class="questionsview_userbox">
@@ -102,7 +129,7 @@
     <div class="questionsview_details"><span style="color:#999">{{answer.createdOn}}</span>
     </div>
 
-    <div ng-show="answer.isTheSameUser" class="questionsview_options"><a href="#/answers/edit/{{answer.id}}">edit</a></div>
+    <div ng-show="answer.isTheSameUser" class="questionsview_options"><a href="#answers/edit/{{answer.id}}">edit</a></div>
 
 
     <div ng-show="answer.accepted" class="questionsview_accepted">
@@ -112,7 +139,7 @@
     </div>
 
     <div ng-hide="answer.accepted" ng-show="answer.isTheSameUser" class="questionsview_accept">
-    <span onclick="acceptAnswer('{{answer.id}}');">Accept this answer</span>
+    <span ng-click="acceptAnswer(answer.id)">Accept this answer</span>
     </div>
 
 
@@ -120,10 +147,10 @@
     <div class="questionsview_rating">
     <div class="questionsview_box">
         
-        <div class="questionsview_up" onclick="answerVoteUp({{answer.id}});"><img src="img/like.jpg"></div><div class="questionsview_vote">
+        <div class="questionsview_up" ng-click="answerVoteUp(answer.id)"><img src="img/like.jpg"></div><div class="questionsview_vote">
             <div ng-show="answer.accepted" style="padding-top: 10px;">
        <img src='img/liked-ans.png' style="width: 35px">
-    </div>{{answer.votes}}</div><div class="questionsview_down" onclick="answerVoteDown({{answer.id}});"><img src="img/unlike.jpg"></div>
+    </div>{{answer.votes}}</div><div class="questionsview_down" ng-click="answerVoteDown(answer.id)"><img src="img/unlike.jpg"></div>
     </div>
 
 
@@ -181,8 +208,7 @@
 
 
 <div class="questionsview_form" ng-show="isConnected">
-  <form ng-submit="submitAnswar({{question.id}})">
-asdasdasdsdas
+  <form ng-submit="submitAnswar()">
 <h2 style="padding-top:0px;padding-bottom:16px;">Answer Question</h2>
 
    <text-angular ng-model="htmlContent" name="content"><p>Write here...</p></text-angular>
