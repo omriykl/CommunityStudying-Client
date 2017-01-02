@@ -47,7 +47,15 @@ function cform() {
 <h3>Password <span style="font-size:10px">(Leave blank if you do not want to update)</span></h3> 
 <input type="password" class="textbox" name="password" id="password" ng-model="user.password"/>
 
+
 <h3>Courses List:</h3>
+
+<b> Faculty:</b>
+    
+    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="Select Faculty" single 
+            display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
+            <br/>
+         <b> Courses</b>   
   <multiple-autocomplete ng-model="selectedCourses" object-property="name" suggestions-arr="courses">
     </multiple-autocomplete>
     

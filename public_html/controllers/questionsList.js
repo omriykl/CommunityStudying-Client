@@ -3,6 +3,7 @@ var toggleSearch = function() {
         jQuery('#searchPanel').toggle('show');
     });
 };
+
 app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scope, $http, $routeParams) {
     toggleSearch();
 
@@ -64,7 +65,15 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             $scope.questions = result;
         });
     }
-
+$scope.questions=[{
+        userName : "guyyt",
+        comments : "3",
+        createdAt: "1.1.2016",
+        likes : "5",
+           title : "my quest",
+           content : "hdfhsdkhfk shkdfjhsdkfj hsdkj",
+           timeAgo: "yesterday"    
+}];
 
     $scope.selectedFaculty = null;
     $scope.faculties = [];
@@ -126,7 +135,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     };
     $scope.showName = function(item) {
         return item.name;
-    }
+    };
 
 
     $scope.courseSelected = function(item) {
@@ -141,8 +150,6 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
 
         });
     };
-
-
     $scope.submit = function() {
         $scope.searchQuestions();
     };

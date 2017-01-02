@@ -38,6 +38,21 @@ app.config(function ($routeProvider) {
         controller: "editAnswere",
         controllerAs: "app"
     });
+     $routeProvider.when("/tests", {
+        templateUrl: "views/tests/testsList.html",
+        controller: "TestsCtr",
+        controllerAs: "app"
+    });
+     $routeProvider.when("/tests/view/:param", {
+        templateUrl: "views/tests/view.html",
+        controller: "ViewTest",
+        controllerAs: "app"
+    });
+     $routeProvider.when("/tests/search/:param", {
+        templateUrl: "views/tests/testsList.html",
+        controller: "TestsCtr",
+        controllerAs: "app"
+    });
 });
 
 app.controller('LoginCtr', function ($scope, $http,$rootScope) {

@@ -14,26 +14,15 @@
  
 
 <div class="questionsview_question" id="q{{question.id}}">
-   <!-- 
-<div class="questionsview_rating">
-<div class="questionsview_box">
-    <div class="questionsview_up<?php if($pvote) { echo " voteselected"; }?>">˄</div>
-       <div class="questionsview_vote"><?php echo $votes;?></div>
-       <div class="questionsview_down<?php if($nvote) { echo " voteselected"; }?>">˅</div>
-
-<div class="questionsview_fave<?php if($fave) { echo " voteselected"; }?>">★</div>
-</div>
-</div>
-    -->
 
 <div class="questionsview_questiondescription">
 
         <b> Faculty:</b>
 
-    <input type="text" ng-model="question.faculty"  disabled="disabled">
+    <input type="text" ng-model="question.faculty.name"  disabled="disabled">
 
     <b>Course:</b>
-    <input type="text" ng-model="question.course" disabled="disabled">
+    <input type="text" ng-model="question.course.name" disabled="disabled">
 
     <br/>
     <br/>
@@ -51,7 +40,7 @@
 
     </select>
     <b>Question Number:</b>
-    <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()" disabled="disabled" value="{{question.questionNumber}}">
+    <input type="number" ng-model="qnumber" min="0" max="100"  disabled="disabled" value="{{question.questionNumber}}">
 
     <br/>
     <br/>

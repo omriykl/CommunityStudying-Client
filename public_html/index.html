@@ -40,6 +40,9 @@
     <script src='controllers/editUser.js'></script>
     <script src='controllers/editAnswer.js'></script>
     <script src='controllers/editQuestion.js'></script>
+    <script src='controllers/testsList.js'></script>
+     <script src='controllers/viewTest.js'></script>
+
 
     <!--Tags -->
 
@@ -122,9 +125,13 @@
                     </li>
                     <li ng-hide="isConnected"><a href="#register"><i class="material-icons">person_add</i>  Register</a>
                     </li>
-                    <li><a href="#questions"><i class="material-icons">assignment</i> All Questions</a>
+                    <li><a href="#questions"><i class="material-icons">assignment</i>Questions</a>
                     </li>
                     <li ng-show="isConnected"><a href="#questions/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  My Questions</a>
+                    </li>
+                      <li><a href="#tests"><i class="material-icons">assignment</i>Tests</a>
+                    </li>
+                    <li ng-show="isConnected"><a href="#tests/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  My Tests</a>
                     </li>
                    <li><a href="#about"><i class="material-icons">help_outline</i>  About Us</a>
                     </li>

@@ -1,0 +1,91 @@
+<h1>Test View <i> </i></h1>
+<hr>
+   <b> Faculty:</b>
+
+    <input type="text" ng-model="test.faculty.name"  disabled="disabled">
+
+    <b>Course:</b>
+    <input type="text" ng-model="test.course.name" disabled="disabled">
+
+    <br/>
+    <br/>
+    <b>Year:</b>
+    <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{test.year}}">
+
+    <b>Semester:</b>
+    <select ng-model="selectedSemester" style="width: 50px" disabled="disabled">
+        <option value="">{{test.semester}}
+    </select>
+
+    <b>Moed:</b>
+    <select ng-model="selectedMoed" style="width: 50px" disabled="disabled">
+        <option value="">{{test.moed}}
+
+    </select>
+ <hr>
+ <div id="filesDiv">
+    <h3>Files:</h3>
+    <div ng-repeat="x in test.files" style="float: left">
+        <div ng-show="x.type == 'word'">
+            <a href="{{x.filePath}}"><img src="img/word.png" style="width: 60px"></a>
+        </div>
+        <div ng-show="x.type == 'pdf'">
+            <a href="{{x.filePath}}"><img src="img/pdf.jfif" style="width: 60px"></a>
+        </div>
+    </div>
+     <div style="clear:both"></div>
+ </div>
+ <hr>
+
+<input type='button' id='hideshow' value='Hide/Show Search'>
+
+<div id="searchPanel">
+    <h3>Filter Questions:</h3>
+    <form ng-submit="submit()">
+ 
+        <b>Question Number:</b>
+        <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
+        
+        <br/>
+        <div id="tagsDiv">
+        Tags :
+
+        <tagger ng-model="tags" options="options" placeholder="Select tags"></tagger>
+
+        </div>
+        <br/>
+        Free text:
+        <input type="text" ng-model="freeText">
+        <br/>
+        <br/>
+        <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Filter" />
+    </form>
+</div>
+<hr>
+<div ng-repeat="x in questions">
+    <div style="clear:both"></div>
+    <div style="clear:both;height:10px;"></div>
+    <div class="questionsview_userbox">
+        <div class="userbox">
+            <a href="#users/view?id={{x.userName}}">{{x.userName}} | {{x.comments}}</a>
+        </div>
+    </div>
+    <div class="questionsview_details">
+        <span style="color:#999" title="{{x.createdAt}}">{{x.timeAgo}}</span>
+    </div>
+    <div class="questionsview_details q">
+        {{x.comments}} ans | {{x.likes}} votes
+    </div>
+    <div class="questionsview_answer" id="a445">
+        <div class="questionsgrid_title">
+            <a href="#questions/view/{{x.id}}">{{x.title}}</a>
+            <br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}">{{x.content}}</a></span>
+            <div style="clear:both"></div>
+        </div>
+
+        <ul class="holder noborder">
+        </ul>
+
+        <div style="clear:both;"></div>
+    </div>
+</div>

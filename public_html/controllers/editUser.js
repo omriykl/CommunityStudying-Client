@@ -11,13 +11,19 @@ app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $
                 "password": "gjgjg"            
                 };
                 
-       $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getAllCourses',
-        }).success(function(result) {
-            $scope.courses = result;
-        });
                 
+         $scope.facultySelected = function(item) {
+        //$scope.item.size.code = $scope.selectedItem.code
+        var id = item.id;
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
+        }).success(function(result) {
+            $scope.courses = result.allData;
+        });
+    };
+
+        
 
       
         $scope.submit = function () {
