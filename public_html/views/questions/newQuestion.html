@@ -5,7 +5,7 @@
 
 <form ng-submit="submit()" class="form-group">
     <b> Faculty:</b>
-    
+
     <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="Select Faculty" single 
             display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
     <!--
@@ -70,12 +70,19 @@
     <b>Tags:</b>
     <!-- <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>-->
     <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
+        
+        
     </multiple-autocomplete>
+    <div style="float: left;margin-left: 30%">
+    <input type="text" ng-model="newTag" placeholder="New Tag..."  name="newTag" id="newTag" tabindex="1" />
+    <button type=button ng-click="addTag()" style="background-color: whitesmoke">Add</button>
+    </div>
 </div>
     <!--  <pre>{{ tags | json }}</pre>-->
 
     <!--  <button ng-click="empty.addOption()">Add option</button>-->
 
+    <br/>
     <br/>
     <b>Content:</b>
     <text-angular ng-model="htmlContent" name="content">

@@ -109,6 +109,7 @@ var btn = document.getElementById("myBtn");
             });
 
     };
+             document.getElementById('tagsDiv').style.display="inline";
 
     $scope.courseSelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
@@ -121,6 +122,20 @@ var btn = document.getElementById("myBtn");
              document.getElementById('tagsDiv').style.display="inline";
         });
     }
+    
+     $scope.addTag = function() {
+        //$scope.item.size.code = $scope.selectedItem.code
+        var name = $scope.newTag;
+        if(name!=null && name!=""){
+            $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'course/tags/add?name='.concat(name),
+            }).success(function(result) {
+                var item={id:$scope.course.id};
+                courseSelected(item);
+            });
+        }      
+    };
     $scope.optionsTags = [{
             id: 1,
             name: "Java"
