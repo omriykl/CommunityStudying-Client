@@ -103,7 +103,10 @@ $scope.tests=[{
     $scope.showName = function(item) {
         return item.name;
     };
-
+    $scope.showHebName = function(item) {
+        return item.hebrewName;
+    };
+    
     $scope.submit = function() {
         $scope.searchTests();
     };

@@ -36,7 +36,7 @@ var btn = document.getElementById("myBtn");
         }]
 
     $scope.courses =  [{id: 1,
-            name: "Java"
+            hebrewName: "Java"
         }];
 
     $scope.loadFaculties = function() {
@@ -145,6 +145,9 @@ var btn = document.getElementById("myBtn");
 
     $scope.showName = function(item) {
         return item.name;
+    }
+    $scope.showHebName = function(item) {
+        return item.hebrewName;
     }
 
 

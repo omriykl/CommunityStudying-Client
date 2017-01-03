@@ -136,6 +136,9 @@ $scope.questions=[{
     $scope.showName = function(item) {
         return item.name;
     };
+    $scope.showHebName = function(item) {
+        return item.hebrewName;
+    }
 
 
     $scope.courseSelected = function(item) {
