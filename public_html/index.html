@@ -154,45 +154,40 @@
             </div>
             <div style="clear:both"></div>
 
-            <div class="userlogin" ng-controller="LoginCtr" id="logInBox">
-                <div ng-show="isConnected">
-                <div style="float:left"><img ng-src="{{userPic}}" style="border:1px solid #ccc">
-                </div>
-                <div style="float:left;padding-left:7px;">
-                    <h3 style="padding-left:0px">{{userName}}</h3>
-                    <a href="#user/edit/{{USER_TOKEN}}">Edit Profile</a>
-                    <br/>
-                    <a href="#" onclick="signOut();">Sign out</a>
-                    <br>
-                    <br>
-                </div>
-                </div>
-                <div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-height="40" data-longtitle="true">
-                    <script>
-                        function signOut() {
-                            var auth2 = gapi.auth2.getAuthInstance();
-                            auth2.signOut().then(function() {
-                                angular.element(document.getElementById('logInBox')).scope().logout();
-                            });
+		<div class="userlogin" ng-controller="LoginCtr" id="logInBox" style="width:230px">
+		<div ng-show="isConnected">
+			<div style="float:left"><img src={{userPic}} style="border:1px solid #ccc"></div>
+			<div style="float:left;padding-left:7px;">
+				<h3 style="padding-left:0px">{{userName}}</h3>
+				<a href="/qwench/users/edit" >Edit Profile</a><br/>
+				<a href="#" onclick="signOut();">Sign out</a><br><br>
+			</div>
+		</div>
+		   <div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="200" data-height="40" data-longtitle="true">
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {	 
+		angular.element(document.getElementById('logInBox')).scope().logout();	  
+    });
+	
+  }
+</script>
+		   
+		   </div>
+   <div>
+  <script>
+    function onSuccess(googleUser) {
+angular.element(document.getElementById('logInBox')).scope().login(googleUser);
 
-                        }
-                    </script>
-
-                </div>
-                <div>
-                    <script>
-                        function onSuccess(googleUser) {
-                            angular.element(document.getElementById('logInBox')).scope().login(googleUser);
-
-                        }
-
-                        function onFailure() {
-                            alert("log in failed");
-                        }
-                    </script>
-                    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-                </div>
-            </div>
+    }
+    function onFailure() {
+	alert("log in failed");    
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+	</div>
+	</div>
             <div style="clear:both"></div>
         </div>
         <div style="clear:both">&nbsp;</div>
