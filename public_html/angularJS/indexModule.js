@@ -36,7 +36,7 @@ app.config(function ($routeProvider) {
         controllerAs: "app"
     });
     $routeProvider.when("/questions/view/:param", {
-        templateUrl: "views/questions/View.html",
+        templateUrl: "views/questions/view.html",
         controller: "viewQuestion",
         controllerAs: "app"
     });

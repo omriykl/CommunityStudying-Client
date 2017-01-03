@@ -1,7 +1,7 @@
 app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
-   
+      
         var currentId = $routeParams.param;
-	$http.get(SERVER_APP_BASE_URL+'question/viewQuestion?id=' + currentId).success(function(data){
+	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
 		$scope.question = data;
 	});
         $scope.isTheSameUser=true;

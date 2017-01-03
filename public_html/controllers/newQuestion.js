@@ -116,7 +116,7 @@ var btn = document.getElementById("myBtn");
         var id = item.id;
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
+            url: SERVER_APP_BASE_URL + 'tag/getAllByCourseId/?courseId='.concat(id),
         }).success(function(result) {
             $scope.optionsTags = result;
              document.getElementById('tagsDiv').style.display="inline";
@@ -186,10 +186,10 @@ var btn = document.getElementById("myBtn");
             }
         };
 
-        $http.post(SERVER_APP_BASE_URL + 'post/create', data, config)
+        $http.post(SERVER_APP_BASE_URL + 'post/?userTokenId='+USER_TOKEN, data, config)
             .success(function(data, status, headers, config) {
                 $scope.PostDataResponse = data;
-                window.location = "#question/view/" + data.id;
+                window.location = "#questions/view/" + data.id;
             })
             .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
@@ -200,64 +200,61 @@ var btn = document.getElementById("myBtn");
     };
 
 }]);
-
-
-<!--
-app.controller("TestCtrl", function($scope) {
-
-        $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
-        $scope.tags = ["Markdown", "Ruby"]
-
-        $scope.font = null
-        $scope.fonts = [{
-                id: 1,
-                name: "Lucida"
-            },
-            {
-                id: 2,
-                name: "DejaVu"
-            },
-            {
-                id: 3,
-                name: "Bitstream"
-            },
-            {
-                id: 4,
-                name: "Liberation"
-            },
-            //  {id: 5, name: "Verdana"}
-        ]
-
-        $scope.font2 = $scope.fonts[1]
-
-        $scope.showName = function(font) {
-            return font.name;
-        }
-        $scope.createName = function(name) {
-            return {
-                name: name
-            }
-        }
-
-        var optionalTags = [];
-
-        $scope.tags = {
-            value: [],
-            options: [],
-            addOption: function() {
-                $scope.tags.options.push(Math.random())
-            }
-        }
-
-        $scope.selected = function(item) {
-            console.log("SELECTED ", item)
-        }
-
-        $scope.foc = function() {
-            document.getElementById("s1").focus()
-        }
-    })
-    -->
+//
+//app.controller("TestCtrl", function($scope) {
+//
+//        $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
+//        $scope.tags = ["Markdown", "Ruby"]
+//
+//        $scope.font = null
+//        $scope.fonts = [{
+//                id: 1,
+//                name: "Lucida"
+//            },
+//            {
+//                id: 2,
+//                name: "DejaVu"
+//            },
+//            {
+//                id: 3,
+//                name: "Bitstream"
+//            },
+//            {
+//                id: 4,
+//                name: "Liberation"
+//            },
+//            //  {id: 5, name: "Verdana"}
+//        ]
+//
+//        $scope.font2 = $scope.fonts[1]
+//
+//        $scope.showName = function(font) {
+//            return font.name;
+//        }
+//        $scope.createName = function(name) {
+//            return {
+//                name: name
+//            }
+//        }
+//
+//        var optionalTags = [];
+//
+//        $scope.tags = {
+//            value: [],
+//            options: [],
+//            addOption: function() {
+//                $scope.tags.options.push(Math.random())
+//            }
+//        }
+//
+//        $scope.selected = function(item) {
+//            console.log("SELECTED ", item)
+//        }
+//
+//        $scope.foc = function() {
+//            document.getElementById("s1").focus()
+//        }
+//    });
 
 app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
     $scope.$watch('files', function() {
