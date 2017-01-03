@@ -79,7 +79,7 @@ angular.module("tagger").directive "tagger", ["$compile", "$timeout", ($compile,
           ng-click="handleItemClick($event)"
           ng-hide="config.disableNew || !query.length || hideNew || tags.indexOf(query) != -1 "
           ng-class='{"angular-tagger__matching-item--selected": selected == -1}'>
-          Add: {{ query }}...
+          Not Found: {{ query }}...
         </li>
         <li
           ng-repeat="e in matching"
