@@ -4,6 +4,9 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
 	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
 		$scope.question = data;
 	});
+        $http.get(SERVER_APP_BASE_URL+'comment/getByPost/' + currentId).success(function(data){
+		$scope.question.answers = data;
+	});
         $scope.isTheSameUser=true;
         $scope.isConnected = true;
             $scope.loadQuestion=function(){
@@ -59,16 +62,16 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         
 
         $scope.submitAnswar = function () {
-            var data = $.param({
+            var data = {
                 content: $scope.htmlContent,
                 postId: $scope.question.id
-            });
+            };
             var config = {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                    'Content-Type': 'application/json'
                 }
             };
-            $http.post(SERVER_APP_BASE_URL +'comment/create?userTokenId='+USER_TOKEN, data, config)
+            $http.post(SERVER_APP_BASE_URL +'comment/add?userTokenId='+USER_TOKEN, data, config)
                 .success(function (data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     location.reload();
