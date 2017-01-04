@@ -46,17 +46,17 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         };
         
         $scope.answerVoteUp = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId).success(function(){
+        $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId).success(function(){ //still not connected!
 		location.reload();
 	});};
         
          $scope.answerVoteDown = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'comment/unlike?id=' + ansId).success(function(){
+        $http.get(SERVER_APP_BASE_URL+'comment/unlike?id=' + ansId).success(function(){ //still not connected!
 		location.reload();
 	});};
         
          $scope.acceptAnswer = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'comment/accept?id=' + ansId).success(function(){
+        $http.get(SERVER_APP_BASE_URL+'comment/accept/' + ansId+"?userTokenId="+USER_TOKEN).success(function(){
 		location.reload();
 	});};
         
