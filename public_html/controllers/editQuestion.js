@@ -1,7 +1,7 @@
 app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
 
      var currentId = $routeParams.param;
-	$http.get(SERVER_APP_BASE_URL+'post/getById?id=' + currentId).success(function(data){
+	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
             if(data!=null){
 		$scope.question = data;
                 $scope.loadQuestion();
