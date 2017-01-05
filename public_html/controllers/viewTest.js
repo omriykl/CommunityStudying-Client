@@ -5,10 +5,10 @@ var toggleSearch = function() {
 };
 app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
    
-       
-        $scope.isTheSameUser=true;
-        $scope.isConnected = true;
-    
+        
+        $scope.$on('user-loaded', function(event, args) {
+        $scope.isConnected=true;
+    });
     
        $scope.searchQuestions = function() {
         var data = {
