@@ -492,7 +492,9 @@ pre {
 	float: right;
 	margin-right: 10px;
 	border:1px solid #006600;
-	color:#006600
+	color:#006600;
+       cursor: pointer;
+
 }
 
 .questionsview_accept {
