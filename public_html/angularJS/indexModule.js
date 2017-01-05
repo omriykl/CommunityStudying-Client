@@ -55,47 +55,25 @@ app.config(function ($routeProvider) {
     });
 });
 
-// app.controller('LoginCtr', function ($scope, $http,$rootScope) {
-    // $scope.isConnected = false;
-    // $scope.login = function (googleUser) {
-        // var profile = googleUser.getBasicProfile();
-        // var id_token = googleUser.getAuthResponse().id_token;
-        // $http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + id_token).success(function (user) {
-            // $scope.userName = user.firstName+ " " +user.lastName;
-            // $scope.userPic=user.pictureUrl;
-            // $scope.isConnected = true;
-            // USER_TOKEN = id_token;
-            // $rootScope.$broadcast('user-loaded');
-
-        // });
-    // };
-    // $scope.isConnected=true;
-    // $scope.freesearch=function(){
-         // window.location = "#questions/search/" + $scope.searchInput;
-    // };
-    // $scope.logout = function () {
-        // $scope.isConnected = false;
-        // $scope.$apply();
-    // };
-// });
-app.controller('LoginCtr', function ($scope, $http) {
+app.controller('LoginCtr', function ($scope, $http,$rootScope) {
     $scope.isConnected = false;
     $scope.login = function (googleUser) {
-        var profile = googleUser.getBasicProfile();
-        var id_token = googleUser.getAuthResponse().id_token;
-		console.log(id_token)
-        $http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + id_token).success(function (user) {
-            $scope.userName = user.firstName+ " " +user.lastName;
-			$scope.userPic=user.pictureUrl;
-            $scope.isConnected = true;
+         var profile = googleUser.getBasicProfile();
+         var id_token = googleUser.getAuthResponse().id_token;
+         $http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + id_token).success(function (user) {
+             $scope.userName = user.firstName+ " " +user.lastName;
+             $scope.userPic=user.pictureUrl;
+             $scope.isConnected = true;
+             USER_TOKEN = id_token;
+             $rootScope.$broadcast('user-loaded');
 
-        });
-    }
-    $scope.logout = function () {
-        $scope.isConnected = false;
-        $scope.$apply();
-    }
-});
+         });
+     };
+     $scope.logout = function () {
+         $scope.isConnected = false;
+         $scope.$apply();
+     };
+ });
 
 //example to use params. add to when :paramName. like that .when("/questions/:param1"
 app.controller('AppCtrl', function ($routeParams) {
