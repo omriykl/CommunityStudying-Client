@@ -1,3 +1,15 @@
+<style>
+    .container {
+         font-size: 16px;
+         line-height: 16px;
+         max-height: 55px;
+         overflow: hidden;
+    }
+    .show {
+         overflow: visible;
+         height: auto;
+    }
+</style>
 <h1>Questions <i> </i></h1>
 
 
@@ -17,7 +29,7 @@
             single display-fun="showHebName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
 
         <br/>
-        <br/>
+
         <b>Year:</b>
         <input type="number" ng-model="year" min="1970" max="2020">
 
@@ -51,7 +63,6 @@
         Free text:
         <input type="text" ng-model="freeText">
         <br/>
-        <br/>
         <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Filter" />
     </form>
 </div>
@@ -62,19 +73,22 @@
     <div style="clear:both;height:10px;"></div>
     <div class="questionsview_userbox">
         <div class="userbox">
-            <a href="#users/view?id={{x.userName}}">{{x.userName}} | {{x.comments}}</a>
+            <a href="#users/view?id={{x.user.id}}">{{x.user.firstName}} {{x.user.lastName}}</a>
         </div>
     </div>
     <div class="questionsview_details">
-        <span style="color:#999" title="{{x.createdAt}}">{{x.timeAgo}}</span>
+        <span style="color:#999">{{x.time | date:'dd-MM-yyyy HH:mm'}}</span>
     </div>
     <div class="questionsview_details q">
-        {{x.comments}} ans | {{x.likes}} votes
+        {{x.answers}} ans | {{x.votes}} votes
     </div>
     <div class="questionsview_answer" id="a445">
         <div class="questionsgrid_title">
             <a href="#questions/view/{{x.id}}">{{x.title}}</a>
-            <br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}">{{x.content}}</a></span>
+            <br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}"> 
+                    <div class="markdown container" style="border: bold" ng-bind-html="x.content"></div>
+            <span class="markdown" style="border: bold">...</span>
+                </a></span>
             <div style="clear:both"></div>
         </div>
 

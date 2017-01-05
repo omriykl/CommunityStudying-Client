@@ -263,7 +263,6 @@ div#preview {
 
 #navigation {
 	background-color: #16bae2;
-
 	margin-bottom: 30px;
 	color: #ffffff;
 	text-shadow: 0px 2px 3px #d3d4aa;
@@ -287,7 +286,7 @@ div#preview {
 
 .navcenter input {
 	height: 40px;
-	width: 400px;
+	width: 100%;
 	margin: 5px;
 	font-size: 14px;
 	padding: 2px;
@@ -493,8 +492,7 @@ pre {
 	float: right;
 	margin-right: 10px;
 	border:1px solid #006600;
-	background-color:#00cc00;
-	color:#fff;
+	color:#006600
 }
 
 .questionsview_accept {

@@ -1,7 +1,7 @@
-<h1>New Question</h1>
+<h1>New Question <button id="myBtn">Open Modal</button>
+</h1>
 
 
-<button id="myBtn">Open Modal</button>
 
 <form ng-submit="submit()" class="form-group">
     <b> Faculty:</b>
@@ -24,7 +24,7 @@
 	</select>
 -->
     <br/>
-    <br/>
+
     <b>Year:</b>
     <input type="number" ng-model="year" min="1970" max="2020" required>
 
@@ -47,12 +47,12 @@
     <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 
     <br/>
-    <br/>
+
 
     <b>Title:</b>
     <input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1" />
     <br/>
-    <br/>
+
     <!--        
    OTHER STYLES OF TAGS
    <tagger ng-model="tags1" options="options" placeholder="Select some tags"></tagger>
@@ -83,7 +83,7 @@
     <!--  <button ng-click="empty.addOption()">Add option</button>-->
 
     <br/>
-    <br/>
+
     <b>Content:</b>
     <text-angular ng-model="htmlContent" name="content">
         <p>Write Here...</p>
@@ -99,8 +99,8 @@
  -->
         <b>Drop File:</b>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
-             style="width: 400px;height: 200px; padding: 0">
-            <img  src="img/drag-drop-file.gif" width="400px"> </div>
+             style="width: 250px;height: 130px; padding: 0">
+            <img  src="img/drag-drop-file.gif" width="230px"> </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
         <b>Files Uploaded</b>
         <ul>

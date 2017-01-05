@@ -65,15 +65,62 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             $scope.questions = result;
         });
     }
-$scope.questions=[{
-        userName : "guyyt",
-        comments : "3",
-        createdAt: "1.1.2016",
-        likes : "5",
-           title : "my quest",
-           content : "hdfhsdkhfk shkdfjhsdkfj hsdkj",
-           timeAgo: "yesterday"    
-}];
+//$scope.questions=[{
+//    "id": 3,
+//    "time": 1483484269000,
+//    "lastUpdated": null,
+//    "title": "dsfsd",
+//    "content": "\n        <p>Write Here.. asdsad Write Here..\n<p>Write Here...</p>\n<p>Write Here...</p>\n<p>Write Here...</p>\n   ",
+//    "answers": 0,
+//    "votes": 0,
+//    "tags": [
+//    ],
+//    "user": {
+//        "id": 1,
+//        "email": "omriykl@gmail.com",
+//        "firstName": "Omri",
+//        "lastName": "Yossefy",
+//        "googleId": "105156277095611654045",
+//        "pictureUrl": "https://lh4.googleusercontent.com/-w4Gduoky-wI/AAAAAAAAAAI/AAAAAAAAFkY/OzQZpYJxEPk/s96-c/photo.jpg",
+//        "userRating": null,
+//        "courses": [
+//        ],
+//        "created": 1483365088000,
+//        "admin": false
+//    },
+//    "testQuestion": {
+//        "id": 1,
+//        "questionNumber": 1,
+//        "answers": 0,
+//        "votes": 0,
+//        "tags": [
+//        ],
+//        "test": {
+//            "id": 1,
+//            "year": 1970,
+//            "semester": "B",
+//            "moed": "A",
+//            "teacher": null,
+//            "numOfquestions": "\u0000",
+//            "difficulty": "\u0000",
+//            "course": {
+//                "id": 1048,
+//                "faculty": {
+//                    "id": 24,
+//                    "university": null,
+//                    "name": "אמנויות - ביה\"ס למוזיקה",
+//                    "universityId": "0842"
+//                },
+//                "nameEnglish": "Diction B",
+//                "nameHebrew": "היגוי ב",
+//                "universityId": "08422387",
+//                "tags": [
+//                ]
+//            }
+//        }
+//    }
+//}
+//];
 
     $scope.selectedFaculty = null;
     $scope.faculties = [];

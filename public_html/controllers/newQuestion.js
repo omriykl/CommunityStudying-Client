@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
 
             // Get the modal
@@ -109,7 +103,6 @@ var btn = document.getElementById("myBtn");
             });
 
     };
-             document.getElementById('tagsDiv').style.display="inline";
 
     $scope.courseSelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code

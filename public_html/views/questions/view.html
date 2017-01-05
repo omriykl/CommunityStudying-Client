@@ -1,13 +1,19 @@
 
+
+<div class="questionsview_userbox" style="float: left;">
+  <img src="{{question.user.pictureUrl}}" style="width: 75px">
+  <br/>
+  <small>{{question.user.firstName}} {{question.user.lastName}}</small> 
+</div>
+
+
 <h1>{{question.title}}</h1>
 
 <div style="clear:both"></div>
 
-<div class="questionsview_userbox">
-{{question.user}}
-</div>
 
-<div class="questionsview_details"><span style="color:#999">{{question.createdOn}}</span></div>
+
+<div class="questionsview_details"><span style="color:#999">{{question.time | date:'dd-MM-yyyy HH:mm'}}</span></div>
 
 <div ng-show="isTheSameUser" class="questionsview_options"><a href="#questions/edit/{{question.id}}">edit</a></div>
 
@@ -18,34 +24,33 @@
 <div class="questionsview_questiondescription">
 
         <b> Faculty:</b>
-
-    <input type="text" ng-model="question.faculty.name"  disabled="disabled">
+    <input type="text" ng-model="question.testQuestion.test.course.faculty.name"  disabled="disabled">
 
     <b>Course:</b>
-    <input type="text" ng-model="question.course.name" disabled="disabled">
+    <input type="text" ng-model="question.testQuestion.test.course.nameHebrew" disabled="disabled">
 
     <br/>
     <br/>
     <b>Year:</b>
-    <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{question.year}}">
+    <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{question.testQuestion.test.year}}">
 
     <b>Semester:</b>
     <select ng-model="selectedSemester" style="width: 50px" disabled="disabled">
-        <option value="">{{question.semester}}
+        <option value="">{{question.testQuestion.test.semester}}
     </select>
 
     <b>Moed:</b>
     <select ng-model="selectedMoed" style="width: 50px" disabled="disabled">
-        <option value="">{{question.moed}}
+        <option value="">{{question.testQuestion.test.moed}}
 
     </select>
     <b>Question Number:</b>
-    <input type="number" ng-model="qnumber" min="0" max="100"  disabled="disabled" value="{{question.questionNumber}}">
+    <input type="number" ng-model="qnumber" min="0" max="100"  disabled="disabled" value="{{question.testQuestion.questionNumber}}">
 
     <br/>
     <br/>
     
-    <div class="markdown" style="border: bold">{{question.content}}</div>
+    <div class="markdown" style="border: bold" ng-bind-html="question.content"></div>
 
 <!--
 <?php if (!empty($link)):?>
@@ -57,8 +62,9 @@
 <li ng-repeat="tag in question.tags" class="bit-box nopadding"><a href="#/questions?tag={{tag.id}}">{{tag.name}}</a></li>
 </ul>
 
-<!--
-<div class="comments">
+
+
+<!--<div class="comments">
     <div id="comments_q{{x.id}}">
 
 <?php foreach($comments as $comment):?>
@@ -78,8 +84,8 @@
 
 <span style="float:right" style="display:none" class="viewallcomments"><a href="javascript:void(0)" onclick="javascript:viewallcomments('q<?php echo $id;?>')"></a></span>
 </div>
-</div>
-<div style="height:30px;"></div>
+</div>-->
+<div style="height:10px;"></div>
 </div>
 
 
@@ -88,7 +94,7 @@
 </div>
 
 
-<?php if ($answerscount != 0):?>
+<!--<?php if ($answerscount != 0):?>
 
 <div class="toppagination">
 <div style="clear:both"></div>
@@ -97,37 +103,36 @@
 <?php endif;?>
 <div class="pagination" style="margin-left:5px;float:right;margin-right:5px;"><?php echo $orderOptions;?></div>
 <div style="clear:both"></div>
-</div>
-
+</div>-->
+<!--
 <div>
 <div style="float:left"><h2><?php echo $answerscount;?><?php if ($kb):?> Comments<?php else:?> Answers<?php endif;?></h2></div>
 
 <div style="clear:both"></div>
+</div>-->
+
+
+<div  ng-repeat="answer in comments" >
+    <div class="questionsview_userbox" style="float: left">
+  <img src="{{answer.user.pictureUrl}}" style="width: 50px">
+  <br/>
+  <small> {{answer.user.firstName}}</small>
 </div>
 
 
--->
-
-<br/><hr>
-
-<div  ng-repeat="answer in question.answers" >
-    <div class="questionsview_userbox">
-    {{answer.username}}
-    </div>
-
-    <div class="questionsview_details"><span style="color:#999">{{answer.createdOn}}</span>
+    <div class="questionsview_details"><span style="color:#999">{{answer.timeStamp | date:'dd-MM-yyyy HH:mm'}}</span>
     </div>
 
     <div ng-show="answer.isTheSameUser" class="questionsview_options"><a href="#answers/edit/{{answer.id}}">edit</a></div>
 
 
-    <div ng-show="answer.accepted" class="questionsview_accepted">
+    <div ng-show="answer.isAccepted" class="questionsview_accepted">
        <img src='img/accepted.png' style="width: 20px">
 
         Accepted Answer
     </div>
 
-    <div ng-hide="answer.accepted" ng-show="answer.isTheSameUser" class="questionsview_accept">
+    <div ng-hide="answer.isAccepted" ng-show="answer.isTheSameUser" class="questionsview_accept">
     <span ng-click="acceptAnswer(answer.id)">Accept this answer</span>
     </div>
 
@@ -139,14 +144,14 @@
         <div class="questionsview_up" ng-click="answerVoteUp(answer.id)"><img src="img/like.jpg"></div><div class="questionsview_vote">
             <div ng-show="answer.accepted" style="padding-top: 10px;">
        <img src='img/liked-ans.png' style="width: 35px">
-    </div>{{answer.votes}}</div><div class="questionsview_down" ng-click="answerVoteDown(answer.id)"><img src="img/unlike.jpg"></div>
+    </div>{{answer.answerRate}}</div><div class="questionsview_down" ng-click="answerVoteDown(answer.id)"><img src="img/unlike.jpg"></div>
     </div>
 
 
 
     </div>
     <div class="questionsview_answerdescription">
-    <div class="markdown">{{answer.content}}</div>
+    <div class="markdown" ng-bind-html="answer.content"></div>
 
     <!--
     <div class="comments">
@@ -198,7 +203,7 @@
 
 <div class="questionsview_form" ng-show="isConnected">
   <form ng-submit="submitAnswar()">
-<h2 style="padding-top:0px;padding-bottom:16px;">Answer Question</h2>
+<h3 style="padding-top:0px;padding-bottom:16px;">Comment This Question:</h2>
 
    <text-angular ng-model="htmlContent" name="content"><p>Write here...</p></text-angular>
 
