@@ -120,12 +120,13 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
      $scope.addTag = function() {
         //$scope.item.size.code = $scope.selectedItem.code
         var name = $scope.newTag;
+        var id = $scope.course.id;
         if(name!=null && name!=""){
             $http({
                 method: 'GET',
-                url: SERVER_APP_BASE_URL + 'course/tags/add?name='.concat(name),
+                url: SERVER_APP_BASE_URL + 'tag/addTagToCourse/?courseId='+id+"&tagName="+name,
             }).success(function(result) {
-                var item={id:$scope.course.id};
+                var item={id:id};
                 courseSelected(item);
             });
         }      

@@ -1,15 +1,15 @@
 app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
    
         var currentId = $routeParams.param;
-	$http.get(SERVER_APP_BASE_URL+'user/get?id=' + currentId).success(function(data){
+	$http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + USER_TOKEN).success(function(data){
 		$scope.user = data;             
 	});
-        $scope.user={
-                    "firstName": "guy",
-                    "lastName": "gggg",
-                "email": "guyuy",
-                "password": "gjgjg"            
-                };
+//        $scope.user={
+//                    "firstName": "guy",
+//                    "lastName": "gggg",
+//                "email": "guyuy",
+//                "password": "gjgjg"            
+//                };
                 
                 
          $scope.facultySelected = function(item) {
@@ -27,19 +27,13 @@ app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $
 
       
         $scope.submit = function () {
-            var data = $.param({
-                firstName: $scope.user.firstName,
-                lastName: $scope.user.lastName,
-                email: $scope.user.email,
-                password: $scope.user.password,
-                courses : $scope.selectedCourses
-            });
+            var data = $scope.selectedCourses;
             var config = {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                    'Content-Type': 'application/json'
                 }
             };
-            $http.post(SERVER_APP_BASE_URL +'/user/update?id='+ currentId, data, config)
+            $http.post(SERVER_APP_BASE_URL +'/user/updateCourses?userTokenId='+ USER_TOKEN, data, config)
                 .success(function (data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     location.reload();

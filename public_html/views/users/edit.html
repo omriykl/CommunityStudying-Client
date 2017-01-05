@@ -38,15 +38,15 @@ function cform() {
 <form ng-submit="submit()" onsubmit="javascript:return cform();">
 
 <h3>Name</h3>
-<input type="textbox" class="textbox" name="firstName" id="firstName"  ng-model="user.firstName" /><br/>
-<input type="textbox" class="textbox" name="lastName" id="firstName"  ng-model="user.lastName"/><br/>
+<input type="textbox" class="textbox" name="firstName" id="firstName"  ng-model="user.firstName" disabled="disabled" /><br/>
+<input type="textbox" class="textbox" name="lastName" id="firstName"  ng-model="user.lastName" disabled="disabled"/><br/>
 
 <h3>E-mail</h3>
-<input type="textbox" class="textbox" name="email" id="email" ng-model="user.email"/><br/>
+<input type="textbox" class="textbox" name="email" id="email" ng-model="user.email" disabled="disabled"/><br/>
 
-<h3>Password <span style="font-size:10px">(Leave blank if you do not want to update)</span></h3> 
-<input type="password" class="textbox" name="password" id="password" ng-model="user.password"/>
-
+<!--<h3>Password <span style="font-size:10px">(Leave blank if you do not want to update)</span></h3> 
+<input type="password" class="textbox" name="password" id="password" ng-model="user.password" />
+-->
 
 <h3>Courses List:</h3>
 
