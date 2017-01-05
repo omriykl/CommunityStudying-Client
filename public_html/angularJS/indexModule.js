@@ -1,7 +1,7 @@
 var SERVER_APP_BASE_URL = "http://localhost:8080/";
 var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect' ]);
 var USER_TOKEN = "";
-
+var USER_ID="";
 app.config(function ($routeProvider) {
     $routeProvider.when("/questions", {  
         templateUrl: "questionsList.html",
@@ -65,9 +65,13 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              $scope.userPic=user.pictureUrl;
              $scope.isConnected = true;
              USER_TOKEN = id_token;
+             USER_ID= user.id;
              $rootScope.$broadcast('user-loaded');
 
          });
+     };
+     $scope.freesearch=function(){
+          window.location = "#questions/search/" + $scope.searchInput;
      };
      $scope.logout = function () {
          $scope.isConnected = false;
