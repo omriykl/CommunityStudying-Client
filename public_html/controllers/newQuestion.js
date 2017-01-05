@@ -118,7 +118,6 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
     }
     
      $scope.addTag = function() {
-        //$scope.item.size.code = $scope.selectedItem.code
         var name = $scope.newTag;
         var id = $scope.course.id;
         if(name!=null && name!=""){
@@ -126,8 +125,7 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
                 method: 'GET',
                 url: SERVER_APP_BASE_URL + 'tag/addTagToCourse/?courseId='+id+"&tagName="+name,
             }).success(function(result) {
-                var item={id:id};
-                courseSelected(item);
+                $scope.optionsTags.push(result);
             });
         }      
     };
@@ -157,7 +155,7 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
         return item.name;
     }
     $scope.showHebName = function(item) {
-        return item.hebrewName;
+        return item.nameHebrew;
     }
 
 
