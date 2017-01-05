@@ -70,12 +70,23 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
 
          });
      };
+
      $scope.freesearch=function(){
           window.location = "#questions/search/" + $scope.searchInput;
      };
      $scope.logout = function () {
          $scope.isConnected = false;
          $scope.$apply();
+     };
+ });
+ 
+ app.controller('HomeCtr', function ($scope, $http,$rootScope) {
+     
+     $scope.$on('user-loaded', function(event, args) {
+        $scope.isConnected=true;
+    });
+     $scope.freesearch=function(){
+          window.location = "#questions/search/" + $scope.searchInput;
      };
  });
 

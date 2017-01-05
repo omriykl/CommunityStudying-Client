@@ -4,7 +4,7 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
             // Get the modal
         var newTestModal = document.getElementById('newTestModal');
 
-var btn = document.getElementById("myBtn");
+        var btn = document.getElementById("myBtn");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
@@ -23,7 +23,7 @@ var btn = document.getElementById("myBtn");
           //  if (event.target == modal) {
           //      modal.style.display = "none";
           //  }
-        }
+        };
  
     $scope.faculties =  [{id: 1,
             name: "Java"
@@ -39,12 +39,13 @@ var btn = document.getElementById("myBtn");
             url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
         }).success(function(result) {
             $scope.faculties = result.allData;
-        })
+        });
     };
     $scope.loadFaculties(); // first call to get faculties 
 
     $scope.$on('user-loaded', function(event, args) {
         $scope.loadFaculties(); // second call to get faculties, but this time after user is signed in! 
+        $scope.isConnected=true;
     });
 
     $scope.facultySelected = function(item) {

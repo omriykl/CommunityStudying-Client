@@ -6,7 +6,11 @@ var toggleSearch = function() {
 
 app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scope, $http, $routeParams) {
     toggleSearch();
-
+    
+     $scope.$on('user-loaded', function(event, args) {
+        $scope.isConnected=true;
+    });
+    
     $scope.questions = [];
     
     

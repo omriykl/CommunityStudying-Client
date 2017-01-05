@@ -8,6 +8,10 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
 		$scope.comments = data;
 	});
         
+        $scope.$on('user-loaded', function(event, args) {
+            $scope.isConnected=true;
+         });
+        
         $scope.USER_ID = USER_ID;
         
     
