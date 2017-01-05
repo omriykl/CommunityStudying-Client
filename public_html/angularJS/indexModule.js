@@ -70,10 +70,6 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
 
          });
      };
-
-     $scope.freesearch=function(){
-          window.location = "#questions/search/" + $scope.searchInput;
-     };
      $scope.logout = function () {
          $scope.isConnected = false;
          $scope.$apply();
