@@ -22,7 +22,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             semester: $scope.selectedSemester,
             moed: $scope.selectedMoed,
             questionNumber: $scope.qnumber,
-            text: $scope.freeText,
+            inContentText: $scope.freeText,
             tags: $scope.tags
                 //files: $scope.files
         };
