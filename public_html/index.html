@@ -149,31 +149,30 @@
         </div>
         <div id="rightpanel">
             <div style="text-align:right;">
-                <a href="#user/edit/{{USER_TOKEN}}" style="border-bottom:0px;"><img src="img/logo.png" style="width:200px;" />
+                <a href="#user/edit/{{USER_TOKEN}}" style="border-bottom:0px;"><img src="img/logo.png" style="width:160px;" />
                 </a>
             </div>
             <div style="clear:both"></div>
 
-		<div class="userlogin" ng-controller="LoginCtr" id="logInBox" style="width:220px">
+		<div class="userlogin" ng-controller="LoginCtr" id="logInBox">
 		<div ng-show="isConnected">
-			<div style="float:left"><img src={{userPic}} style="border:1px solid #ccc"></div>
-			<div style="float:left;padding-left:3px;">
-				<h3 style="padding-left:0px">{{userName}}</h3>
+			<div style="float:left; margin-bottom:10px;"><img ng-src={{userPic}} style="border:1px solid #ccc; width:72px;"></div>
+			<div style="float:left;padding:10px;">
+				<div style="padding-bottom:5px" class="h3s">{{userName}}</div>
 				<a href="/qwench/users/edit" >Edit Profile</a><br/>
 				<a href="#" onclick="signOut();">Sign out</a><br><br>
 			</div>
 		</div>
-		   <div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="200" data-height="40" data-longtitle="true">
-<script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {	 
-		angular.element(document.getElementById('logInBox')).scope().logout();	  
-    });
-	
-  }
-</script>
-		   
+                    <center><div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="200" data-height="40" data-longtitle="true" style="margin-top: 10px;"></center>
+                    <script>
+                      function signOut() {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signOut().then(function () {	 
+                                    angular.element(document.getElementById('logInBox')).scope().logout();	  
+                        });
+
+                      }
+                    </script>	
 		   </div>
    <div>
   <script>
