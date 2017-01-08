@@ -65,6 +65,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              $scope.userName = user.firstName+ " " +user.lastName;
              $scope.userPic=user.pictureUrl;
              $scope.isConnected = true;
+             $scope.userId=user.id;
              USER_TOKEN = id_token;
              USER_ID= user.id;
              IS_CONNECTED = true;
