@@ -1,6 +1,11 @@
 app.controller('editUser', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 
     var currentId = $routeParams.param;
+    
+    $http.get(SERVER_APP_BASE_URL + 'user/getOrCreate?idTokenString=' + USER_TOKEN).success(function(data) {
+            $scope.user = data;
+            $scope.loadUser();
+        });
 
 
     $scope.loadFaculties = function() {
