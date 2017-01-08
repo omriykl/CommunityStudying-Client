@@ -8,11 +8,11 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
-
+        
         // When the user clicks the button, open the modal 
         btn.onclick = function() {
             newTestModal.style.display = "block";
-        }
+        };
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             newTestModal.style.display = "none";
@@ -24,14 +24,14 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
           //      modal.style.display = "none";
           //  }
         };
- 
-    $scope.faculties =  [{id: 1,
-            name: "Java"
-        }]
+        
+        var questionExistModel = document.getElementById('questionExistModel');
 
-    $scope.courses =  [{id: 1,
-            hebrewName: "Java"
-        }];
+        var span2 = document.getElementById("closeQuestModel");
+        span2.onclick = function() {
+            //questionExistModel.style.display = "none";
+            $("#questionExistModel").fadeOut();
+        };
 
     $scope.loadFaculties = function() {
         $http({
@@ -90,11 +90,14 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
             }
         };
 
-        console.log(data);
-
         $http.post(SERVER_APP_BASE_URL + 'post/checkByQuestion', data, config)
             .success(function(data, status, headers, config) {
-                $scope.PostDataResponse = data;
+                if(data==true){
+                   $("#questionExistModel").fadeIn();
+                }
+                else{
+                    $("#questionExistModel").fadeOut();
+                }
             })
             .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
@@ -126,30 +129,11 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
                 url: SERVER_APP_BASE_URL + 'tag/addTagToCourse/?courseId='+id+"&tagName="+name,
             }).success(function(result) {
                 $scope.optionsTags.push(result);
+                $scope.selectedTags.push(result);
+                $scope.newTag="";
             });
         }      
     };
-    $scope.optionsTags = [{
-            id: 1,
-            name: "Java"
-        },
-        {
-            id: 2,
-            name: "C"
-        },
-        {
-            id: 3,
-            name: "C++"
-        },
-        {
-            id: 4,
-            name: "AngularJs"
-        },
-        {
-            id: 5,
-            name: "JavaScript"
-        }
-    ];
 
     $scope.showName = function(item) {
         return item.name;

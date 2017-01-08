@@ -1,7 +1,16 @@
 
+            <div class="questionsview_rating">
+    <div class="questionsview_box">
+        
+        <div class="questionsview_up" ng-click="questionVoteUp()"><img src="img/up_arrow.jpg"  style="width: 20px"></div><div class="questionsview_vote">
+            {{question.votes}}</div><div class="questionsview_down" ng-click="questionVoteDown()"><img src="img/down_arrow.jpg" style="width: 20px"></div>
+    </div>
 
-<div class="questionsview_userbox" style="float: left;">
-  <img src="{{question.user.pictureUrl}}" style="width: 75px">
+
+
+    </div>
+<div class="questionsview_userbox" style="float: left;padding-right: 50px">
+  <img src="{{question.user.pictureUrl}}" style="width: 75px;border-radius: 50%;">
   <br/>
   <small>{{question.user.firstName}} {{question.user.lastName}}</small> 
 </div>
@@ -17,10 +26,12 @@
 
 <div ng-show="USER_ID==question.user.id" class="questionsview_options"><a href="#questions/edit/{{question.id}}">edit</a></div>
 
- 
+
 
 <div class="questionsview_question" id="q{{question.id}}">
 
+
+    
 <div class="questionsview_questiondescription">
 
         <b> Faculty:</b>
@@ -49,6 +60,7 @@
 
     <br/>
     <br/>
+ 
     
     <div class="markdown" style="border: bold" ng-bind-html="question.content"></div>
 
@@ -114,7 +126,7 @@
 
 <div  ng-repeat="answer in comments" >
     <div class="questionsview_userbox" style="float: left">
-  <img src="{{answer.user.pictureUrl}}" style="width: 50px">
+  <img src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
   <br/>
   <small> {{answer.user.firstName}}</small>
 </div>
@@ -142,11 +154,11 @@
     <div class="questionsview_rating">
     <div class="questionsview_box">
         
-        <div class="questionsview_up" ng-click="answerVoteUp(answer.id)"><img src="img/like.jpg"></div><div class="questionsview_vote">
+        <div class="questionsview_up" ng-click="answerVoteUp(answer.id)"><img src="img/up_arrow.jpg"  style="width: 20px"></div><div class="questionsview_vote">
             <div ng-show="answer.isAccepted" style="padding-top: 10px;">
-       <img src='img/liked-ans.png' style="width: 35px">
+<!--       <img src='img/liked-ans.png' style="width: 35px">-->
     </div>
-            {{answer.answerRate}}</div><div class="questionsview_down" ng-click="answerVoteDown(answer.id)"><img src="img/unlike.jpg"></div>
+            {{answer.answerRate}}</div><div class="questionsview_down" ng-click="answerVoteDown(answer.id)"><img src="img/down_arrow.jpg" style="width: 20px"></div>
     </div>
 
 

@@ -121,7 +121,7 @@
             <div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9">
                 <ol>
                      
-                    <li ng-show="isConnected"><a href="index.html#questions/new" target="_blank"><i class="material-icons">border_color</i>  Ask New Question</a>
+                    <li ng-show="isConnected"><a href="index.html#questions/new"><i class="material-icons">border_color</i>  Ask New Question</a>
                     </li>
                     <li ng-hide="isConnected"><a href="index.html#register"><i class="material-icons">person_add</i>  Register</a>
                     </li>
@@ -149,7 +149,7 @@
         </div>
         <div id="rightpanel">
             <div style="text-align:right;">
-                <a href="#user/edit/{{USER_TOKEN}}" style="border-bottom:0px;"><img src="img/logo.png" style="width:160px;" />
+                <a href="#" style="border-bottom:0px;"><img src="img/logo.png" style="width:160px;" />
                 </a>
             </div>
             <div style="clear:both"></div>
@@ -159,7 +159,7 @@
 			<div style="float:left; margin-bottom:10px;"><img ng-src={{userPic}} style="border:1px solid #ccc; width:72px;"></div>
 			<div style="float:left;padding:10px;">
 				<div style="padding-bottom:5px" class="h3s">{{userName}}</div>
-				<a href="/qwench/users/edit" >Edit Profile</a><br/>
+				<a href="#user/edit/{{USER_ID}}" >Edit Profile</a><br/>
 				<a href="#" onclick="signOut();">Sign out</a><br><br>
 			</div>
 		</div>

@@ -47,7 +47,23 @@
     <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 
     <br/>
+    
+    <div id="questionExistModel" style="display:none;" >
+    <br/>
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 100%">
+      
+    <span class="close" id="closeQuestModel">&times;</span>
+    
+    <b>Hey ! <b>
+    We have some posts on this same question !
+    <a href="">Click here</a> to see them
+    
+  </div>
+  
+  <br/>
 
+</div>
 
     <b>Title:</b>
     <input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1" />
@@ -68,12 +84,13 @@
 -->
 <div id="tagsDiv" style="display: none">
     <b>Tags:</b>
+    
     <!-- <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>-->
     <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
         
         
     </multiple-autocomplete>
-    <div style="float: left;margin-left: 30%">
+    <div>
     <input type="text" ng-model="newTag" placeholder="New Tag..."  name="newTag" id="newTag" tabindex="1" />
     <button type=button ng-click="addTag()" style="background-color: whitesmoke">Add</button>
     </div>

@@ -1,16 +1,20 @@
 app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
    
         var currentId = $routeParams.param;
-	$http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + USER_TOKEN).success(function(data){
-		$scope.user = data;             
-	});
-//        $scope.user={
-//                    "firstName": "guy",
-//                    "lastName": "gggg",
-//                "email": "guyuy",
-//                "password": "gjgjg"            
-//                };
-                
+
+        
+        $scope.loadFaculties = function() {
+        $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+            }).success(function(result) {
+                $scope.faculties = result.allData;
+            });
+        };
+        
+        $scope.showName = function(item) {
+        return item.name;
+        };
                 
          $scope.facultySelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
@@ -22,10 +26,17 @@ app.controller('editUser', ['$scope','$http','$routeParams', function ($scope, $
             $scope.courses = result.allData;
         });
     };
+    $scope.loadUser =  function (){
+         $scope.loadFaculties(); // first call to get faculties 
+         $scope.selectedFaculty=user.
 
+    }
+    
+        	$http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + USER_TOKEN).success(function(data){
+		$scope.user = data; 
+                $scope.loadUser();
+	});
         
-
-      
         $scope.submit = function () {
             var data = $scope.selectedCourses;
             var config = {

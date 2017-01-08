@@ -187,9 +187,10 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     $scope.showName = function(item) {
         return item.name;
     };
-    $scope.showHebName = function(item) {
-        return item.hebrewName;
+      $scope.showHebName = function(item) {
+        return item.nameHebrew;
     }
+
 
 
     $scope.courseSelected = function(item) {
