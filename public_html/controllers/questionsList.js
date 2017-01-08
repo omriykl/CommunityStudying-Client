@@ -9,9 +9,37 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     
      $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
+        $scope.loadUserQuestion();
     });
     
     $scope.questions = [];
+    $scope.loadUserQuestion = function() {
+        if($routeParams.param!=null){
+            if($routeParams.param.includes("userId=")){
+                var id=$routeParams.param.split('userId=')[1];
+               $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'post/getByUser?id='+id,
+            }).success(function(result) {
+                $scope.questions = result;
+            });
+
+            }
+            else{
+               $scope.freeText= $routeParams.param;        
+               $scope.searchQuestions();
+            }
+
+        }
+        else{
+        $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'post/getByUserCourses?userTokenId='+USER_TOKEN,
+            }).success(function(result) {
+                $scope.questions = result;
+            });
+        }
+    };
     
     
       $scope.searchQuestions = function() {
@@ -43,32 +71,8 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
                 //       "<hr />config: " + config;
             });
     };
+    $scope.loadUserQuestion();
     
-    if($routeParams.param!=null){
-        if($routeParams.param.includes("userId=")){
-            var id=$routeParams.param.split('userId=')[1];
-           $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'post/getByUser?id='+id,
-        }).success(function(result) {
-            $scope.questions = result;
-        });
-            
-        }
-        else{
-           $scope.freeText= $routeParams.param;        
-           $scope.searchQuestions();
-        }
-
-    }
-    else{
-    $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'post/all',
-        }).success(function(result) {
-            $scope.questions = result;
-        });
-    }
 //$scope.questions=[{
 //    "id": 3,
 //    "time": 1483484269000,
