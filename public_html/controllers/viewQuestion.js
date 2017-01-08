@@ -1,5 +1,6 @@
 app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
       
+        $scope.isConnected=IS_CONNECTED;
         var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
 		$scope.question = data;

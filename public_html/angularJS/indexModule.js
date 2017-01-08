@@ -2,6 +2,7 @@ var SERVER_APP_BASE_URL = "http://localhost:8080/";
 var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect' ]);
 var USER_TOKEN = "";
 var USER_ID="";
+var IS_CONNECTED = false;
 app.config(function ($routeProvider) {
     $routeProvider.when("/questions", {  
         templateUrl: "questionsList.html",
@@ -19,7 +20,7 @@ app.config(function ($routeProvider) {
         controllerAs: "app"
     });
     $routeProvider.when("/questions/view/:param", {
-        templateUrl: "views/questions/View.html",
+        templateUrl: "views/questions/view.html",
         controller: "viewQuestion",
         controllerAs: "app"
     });
@@ -66,6 +67,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              $scope.isConnected = true;
              USER_TOKEN = id_token;
              USER_ID= user.id;
+             IS_CONNECTED = true;
              $rootScope.$broadcast('user-loaded');
 
          });
@@ -77,7 +79,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
  });
  
  app.controller('HomeCtr', function ($scope, $http,$rootScope) {
-     
+    
      $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
     });
