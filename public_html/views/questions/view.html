@@ -145,7 +145,7 @@
         </span>
     </div>
 
-    <div ng-show="!answer.isAccepted && !question.acceptedComment && USER_ID==answer.user.id" class="questionsview_accept">
+    <div ng-show="!answer.isAccepted && !question.acceptedComment && USER_ID==question.user.id" class="questionsview_accept">
     <span ng-click="acceptAnswer(answer.id)">Accept this answer</span>
     </div>
 
