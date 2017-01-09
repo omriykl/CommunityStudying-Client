@@ -164,7 +164,7 @@ div#preview {
 */
 
 .questionsview_rating {
-	float: left;
+	float: right;
 }
 
 .questionsview_box {
@@ -329,14 +329,14 @@ body {
 	margin-bottom: 30px;
 }
 
-#leftpanel {
+#bodypanel {
 	width: 658px;
-	float: left;
+	float: right;
 }
 
-#rightpanel {
+#userpanel {
 	width: 250px;
-	float:right; 
+	float:left; 
 }
 
 .userdetails {
@@ -368,7 +368,7 @@ body {
 }
 
 .questionsview_userbox {
-	float: right;
+	float: left;
 }
 
 .userbox {
@@ -399,7 +399,7 @@ body {
 	-moz-border-radius-bottomright:6px;
 	-moz-border-radius-topleft:6px;
 	color: #666;
-	float: right;
+	float: left;
 	margin-right: 10px;
 }
 
@@ -497,7 +497,7 @@ pre {
 	font-weight: bold;
 	-moz-border-radius-bottomright:6px;
 	-moz-border-radius-topleft:6px;
-	float: right;
+	float: left;
 	margin-right: 10px;
 	border:1px solid #006600;
 	color:#006600;
@@ -513,7 +513,7 @@ pre {
 	font-weight: bold;
 	-moz-border-radius-bottomright:6px;
 	-moz-border-radius-topleft:6px;
-	float: right;
+	float: left;
 	margin-right: 10px;
 	border:1px solid #6dc900;
 	background-color: #6dc900;

@@ -14,34 +14,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     
     $scope.questions = [];
     $scope.loadUserQuestion = function() {
-        if($routeParams.param!=null){
-            if($routeParams.param.includes("userId=")){
-                var id=$routeParams.param.split('userId=')[1];
-               $http({
-                method: 'GET',
-                url: SERVER_APP_BASE_URL + 'post/getByUser?id='+id,
-            }).success(function(result) {
-                $scope.questions = result;
-            });
-
-            }
-            else{
-               $scope.freeText= $routeParams.param;        
-               $scope.searchQuestions();
-            }
-
-        }
-        else{
-        $http({
-                method: 'GET',
-                url: SERVER_APP_BASE_URL + 'post/getByUserCourses?userTokenId='+USER_TOKEN,
-            }).success(function(result) {
-                $scope.questions = result;
-            });
-        }
-    };
-    
-    
+   
       $scope.searchQuestions = function() {
         var data = {
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
@@ -71,65 +44,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
                 //       "<hr />config: " + config;
             });
     };
-    $scope.loadUserQuestion();
     
-//$scope.questions=[{
-//    "id": 3,
-//    "time": 1483484269000,
-//    "lastUpdated": null,
-//    "title": "dsfsd",
-//    "content": "\n        <p>Write Here.. asdsad Write Here..\n<p>Write Here...</p>\n<p>Write Here...</p>\n<p>Write Here...</p>\n   ",
-//    "answers": 0,
-//    "votes": 0,
-//    "tags": [
-//    ],
-//    "user": {
-//        "id": 1,
-//        "email": "omriykl@gmail.com",
-//        "firstName": "Omri",
-//        "lastName": "Yossefy",
-//        "googleId": "105156277095611654045",
-//        "pictureUrl": "https://lh4.googleusercontent.com/-w4Gduoky-wI/AAAAAAAAAAI/AAAAAAAAFkY/OzQZpYJxEPk/s96-c/photo.jpg",
-//        "userRating": null,
-//        "courses": [
-//        ],
-//        "created": 1483365088000,
-//        "admin": false
-//    },
-//    "testQuestion": {
-//        "id": 1,
-//        "questionNumber": 1,
-//        "answers": 0,
-//        "votes": 0,
-//        "tags": [
-//        ],
-//        "test": {
-//            "id": 1,
-//            "year": 1970,
-//            "semester": "B",
-//            "moed": "A",
-//            "teacher": null,
-//            "numOfquestions": "\u0000",
-//            "difficulty": "\u0000",
-//            "course": {
-//                "id": 1048,
-//                "faculty": {
-//                    "id": 24,
-//                    "university": null,
-//                    "name": "אמנויות - ביה\"ס למוזיקה",
-//                    "universityId": "0842"
-//                },
-//                "nameEnglish": "Diction B",
-//                "nameHebrew": "היגוי ב",
-//                "universityId": "08422387",
-//                "tags": [
-//                ]
-//            }
-//        }
-//    }
-//}
-//];
-
     $scope.selectedFaculty = null;
     $scope.faculties = [];
 
@@ -142,8 +57,21 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
         }).success(function(result) {
             $scope.faculties = result.allData;
+
         })
     };
+    $scope.loadFacultiesWithId = function(id) {
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+        }).success(function(result) {
+            $scope.faculties = result.allData;
+            var fac= {id: id}; 
+            $scope.faculty=fac;        
+            $scope.facultySelected($scope.faculty);
+        });
+    };
+    
     $scope.loadFaculties(); // first call to get faculties 
 
     $scope.$on('user-loaded', function(event, args) {
@@ -209,6 +137,53 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
 
         });
     };
+    
+       $scope.loadFromSearch= function(params){
+                $scope.loadFacultiesWithId(parseInt(params.split('faculty=')[1].split('&')[0]));
+                var cor= {id: parseInt(params.split('course=')[1].split('&')[0])};
+                $scope.course= cor;
+                $scope.courseSelected($scope.course);
+                $scope.year=parseInt(params.split('year=')[1].split('&')[0]);
+                $scope.selectedSemester=params.split('semester=')[1].split('&')[0];
+                $scope.selectedMoed=params.split('moed=')[1].split('&')[0];
+                $scope.qnumber=parseInt(params.split('qnum=')[1]);
+                $scope.searchQuestions();
+    };
+    
+         if($routeParams.param!=null){
+            if($routeParams.param.includes("userId=")){
+                var id=$routeParams.param.split('userId=')[1];
+               $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'post/getByUser?id='+id,
+            }).success(function(result) {
+                $scope.questions = result;
+            });
+
+            }
+            else if($routeParams.param.includes("qnum=")){
+                $scope.loadFromSearch($routeParams.param);
+
+            }
+            else{
+               $scope.freeText= $routeParams.param;        
+               $scope.searchQuestions();
+            }
+
+        }
+        else{
+        $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'post/getByUserCourses?userTokenId='+USER_TOKEN,
+            }).success(function(result) {
+                $scope.questions = result;
+            });
+        }
+    };
+    
+        $scope.loadUserQuestion();
+    
+    
     $scope.submit = function() {
         $scope.searchQuestions();
     };

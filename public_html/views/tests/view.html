@@ -1,31 +1,31 @@
-<h1>Test View <i> </i></h1>
+<h1>דף מבחן <i> </i></h1>
 <hr>
-   <b> Faculty:</b>
+   <b> פקולטה </b>
 
     <input type="text" ng-model="test.faculty.name"  disabled="disabled">
 
-    <b>Course:</b>
+    <b>קורס </b>
     <input type="text" ng-model="test.course.name" disabled="disabled">
 
     <br/>
     <br/>
-    <b>Year:</b>
+    <b>שנה </b>
     <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{test.year}}">
 
-    <b>Semester:</b>
+    <b>סמסטר </b>
     <select ng-model="selectedSemester" style="width: 50px" disabled="disabled">
         <option value="">{{test.semester}}
     </select>
 
-    <b>Moed:</b>
+    <b>מועד </b>
     <select ng-model="selectedMoed" style="width: 50px" disabled="disabled">
         <option value="">{{test.moed}}
 
     </select>
  <hr>
  <div id="filesDiv">
-    <h3>Files:</h3>
-    <div ng-repeat="x in test.files" style="float: left">
+    <h3>קבצים: </h3>
+    <div ng-repeat="x in test.files" style="float: right">
         <div ng-show="x.type == 'word'">
             <a href="{{x.filePath}}"><img src="img/word.png" style="width: 60px"></a>
         </div>
@@ -37,28 +37,26 @@
  </div>
  <hr>
 
-<input type='button' id='hideshow' value='Hide/Show Search'>
+<input type='button' id='hideshow' value='הצג\ הסתר חיפוש'>
 
 <div id="searchPanel">
-    <h3>Filter Questions:</h3>
+    <h3>סינון שאלות </h3>
     <form ng-submit="submit()">
  
-        <b>Question Number:</b>
+        <b>מספר שאלה </b>
         <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
-        
-        <br/>
-        <div id="tagsDiv">
-        Tags :
 
+        <b>טקסט חופשי  </b>
+        <input type="text" ng-model="freeText">
+        
+        <div id="tagsDiv">
+            <b>תגיות  </b>
+        
         <tagger ng-model="tags" options="options" placeholder="Select tags"></tagger>
 
         </div>
-        <br/>
-        Free text:
-        <input type="text" ng-model="freeText">
-        <br/>
-        <br/>
-        <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Filter" />
+
+        <input type="submit" style="width: 100px;height: 30px;" id="submit" value="סנן" />
     </form>
 </div>
 <hr>

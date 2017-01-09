@@ -3684,7 +3684,7 @@ tbody.collapse.in {
 .btn-toolbar .btn,
 .btn-toolbar .btn-group,
 .btn-toolbar .input-group {
-  float: left;
+  float: right;
 }
 .btn-toolbar > .btn,
 .btn-toolbar > .btn-group,
@@ -3835,7 +3835,7 @@ tbody.collapse.in {
 .input-group .form-control {
   position: relative;
   z-index: 2;
-  float: left;
+  float: right;
   width: 100%;
   margin-bottom: 0;
 }

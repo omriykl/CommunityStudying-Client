@@ -51,6 +51,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         
 
         $scope.submitAnswar = function () {
+            $('#loading_image').show();
             var data = {
                 content: $scope.htmlContent,
                 postId: $scope.question.id

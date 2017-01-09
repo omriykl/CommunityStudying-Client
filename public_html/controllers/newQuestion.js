@@ -145,6 +145,7 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
 
 
     $scope.submit = function() {
+        $('#loading_image').show();
         var data = {
             facultyId: $scope.faculty.id,
             courseId: $scope.course.id,

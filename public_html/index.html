@@ -72,7 +72,7 @@
 
 
 <!--    <link rel="author" href="https://www.linkedin.com/in/austinanderson1">-->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
 <!--    <link rel="stylesheet" href="http://textangular.com/dist/textAngular.css" type="text/css">-->
@@ -109,32 +109,31 @@
 
 </head>
 
-<body onload="prettyPrint()">
+<body onload="prettyPrint()" dir="rtl">
     <div id="navigation">
         <div class="navcenter" ng-controller="HomeCtr">
 
-            <form ng-submit="freesearch()" style="float:left;width:20%;text-align:left;" >
-                <input ng-model="searchInput" type="textbox"  style="color: #999" value="" placeholder="Free text Search Here..." />
+            <form ng-submit="freesearch()" style="float:right;width:20%;text-align:left;" >
+                <input ng-model="searchInput" type="textbox"  style="color: #999" value="" placeholder="הכנס חיפוש טקסט חופשי..." />
 
                  </form>
 
-            <div style="float:right;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9">
+            <div style="float:left;border-left: 1px solid #13a1c9;border-right: 1px solid #45c9e9" >
                 <ol>
-                     
-                    <li ng-show="isConnected"><a href="index.html#questions/new"><i class="material-icons">border_color</i>  Ask New Question</a>
+                     <li><a href="index.html#about"><i class="material-icons">help_outline</i>  מי אנחנו</a>
                     </li>
-                    <li ng-hide="isConnected"><a href="index.html#register"><i class="material-icons">person_add</i>  Register</a>
+                    <li ng-show="isConnected"><a href="index.html#tests/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  מבחנים שלי</a>
                     </li>
-                    <li><a href="index.html#questions"><i class="material-icons">assignment</i>Questions</a>
+                     <li><a href="index.html#tests"><i class="material-icons">assignment</i>חיפוש מבחנים</a>
                     </li>
-                    <li ng-show="isConnected"><a href="index.html#questions/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  My Questions</a>
+                    <li ng-show="isConnected"><a href="index.html#questions/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  שאלות שלי</a>
                     </li>
-                      <li><a href="index.html#tests"><i class="material-icons">assignment</i>Tests</a>
+                    <li><a href="index.html#questions"><i class="material-icons">assignment</i>חיפוש שאלות</a>
                     </li>
-                    <li ng-show="isConnected"><a href="index.html#tests/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  My Tests</a>
+                    <li ng-hide="isConnected"><a href="index.html#register"><i class="material-icons">person_add</i>  הרשמה</a>
                     </li>
-                   <li><a href="index.html#about"><i class="material-icons">help_outline</i>  About Us</a>
-                    </li>
+                    <li ng-show="isConnected"><a href="index.html#questions/new"><i class="material-icons">border_color</i>  שאלה חדשה</a>
+                    </li>          
                 </ol>
             </div>
 
@@ -143,11 +142,11 @@
     </div>
 
     <div id="container">
-        <div id="leftpanel">
+        <div id="bodypanel">
             <div ng-view></div>
             <!--<div ng-include="includeUrl"></div>-->
         </div>
-        <div id="rightpanel">
+        <div id="userpanel">
             <div style="text-align:right;">
                 <a href="#" style="border-bottom:0px;"><img src="img/logo.png" style="width:160px;" />
                 </a>
@@ -157,10 +156,10 @@
 		<div class="userlogin" ng-controller="LoginCtr" id="logInBox">
 		<div ng-show="isConnected">
 			<div style="float:left; margin-bottom:10px;"><img ng-src={{userPic}} style="border:1px solid #ccc; width:72px;"></div>
-			<div style="float:left;padding:10px;">
+			<div style="float:right;padding:10px;">
 				<div style="padding-bottom:5px" class="h3s">{{userName}}</div>
-				<a href="#user/edit/{{userId}}" >Edit Profile</a><br/>
-				<a href="#" onclick="signOut();">Sign out</a><br><br>
+				<a href="#user/edit/{{userId}}" >ערוך משתמש</a><br/>
+				<a href="#" onclick="signOut();">התנתק</a><br><br>
 			</div>
 		</div>
                     <center><div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="230" data-height="40" data-longtitle="true" style="margin-top: 10px;"></center>

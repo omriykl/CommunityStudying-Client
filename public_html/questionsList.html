@@ -10,29 +10,29 @@
          height: auto;
     }
 </style>
-<h1>Questions <i> </i></h1>
+<h1>- שאלות - <i> </i></h1>
 
 
-<input type='button' id='hideshow' value='Hide/Show Search'>
+<input type='button' id='hideshow' value='הצג\הסתר חיפוש'>
 
 <div id="searchPanel">
     <form ng-submit="submit()">
 
-    <b> Faculty:</b>
+    <b> פקולטה</b>
     
-    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="Select Faculty" single 
+    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="בחר פקולטה" single 
             display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
 
-    <b>Course:</b>
-    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="Select Course" 
+    <b>קורס</b>
+    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="בחר קורס" 
             single display-fun="showHebName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
 
         <br/>
 
-        <b>Year:</b>
+        <b>שנה</b>
         <input type="number" ng-model="year" min="1970" max="2020">
 
-        <b>Semester:</b>
+        <b>סמסטר</b>
         <select ng-model="selectedSemester" style="width: 50px">
             <option value="">--
                 <option value="A">A
@@ -40,29 +40,30 @@
                         <option value="C">C
         </select>
 
-        <b>Moed:</b>
+        <b>מועד</b>
         <select ng-model="selectedMoed" style="width: 50px">
             <option value="">--
                 <option value="A">A
                     <option value="B">B
                         <option value="C">C
         </select>
-        <b>Question Number:</b>
+        <b>מספר שאלה</b>
         <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 
         
         <br/>
         <div id="tagsDiv" style="display: none">
-        Tags :
+        תגיות
 
         <tagger ng-model="tags" options="options" placeholder="Select tags"></tagger>
 
         </div>
         <br/>
-        Free text:
+        <b>טקסט חופשי</b>
+        
         <input type="text" ng-model="freeText">
         <br/>
-        <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Filter" />
+        <input type="submit" style="width: 100px;height: 30px;" id="submit" value="חפש" />
     </form>
 </div>
 <hr>
@@ -77,6 +78,16 @@
     </div>
     <div class="questionsview_details">
         <span style="color:#999">{{x.time | date:'dd-MM-yyyy HH:mm'}}</span>
+    </div>
+    <div class="questionsview_details" style="float:right">
+        <span style="color:#999">
+            
+            - {{x.testQuestion.test.moed}}- 
+            {{x.testQuestion.test.semester}} -
+            {{x.testQuestion.test.year}}- 
+            {{x.testQuestion.questionNumber}}
+        
+        </span>
     </div>
     <div class="questionsview_details q">
         {{x.answers}} ans | {{x.votes}} votes

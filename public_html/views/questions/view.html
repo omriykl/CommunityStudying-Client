@@ -1,15 +1,13 @@
 
-            <div class="questionsview_rating">
+    <div class="questionsview_rating">
     <div class="questionsview_box">
         
         <div class="questionsview_up" ng-click="questionVoteUp()"><img src="img/up_arrow.jpg"  style="width: 20px"></div><div class="questionsview_vote">
             {{question.votes}}</div><div class="questionsview_down" ng-click="questionVoteDown()"><img src="img/down_arrow.jpg" style="width: 20px"></div>
     </div>
-
-
-
     </div>
-<div class="questionsview_userbox" style="float: left;padding-right: 50px">
+
+<div class="questionsview_userbox" style="float: right;padding-left: 50px">
   <img src="{{question.user.pictureUrl}}" style="width: 75px;border-radius: 50%;">
   <br/>
   <small>{{question.user.firstName}} {{question.user.lastName}}</small> 
@@ -34,28 +32,28 @@
     
 <div class="questionsview_questiondescription">
 
-        <b> Faculty:</b>
+        <b> פקלוטה </b>
     <input type="text" ng-model="question.testQuestion.test.course.faculty.name"  disabled="disabled">
 
-    <b>Course:</b>
+    <b>קורס </b>
     <input type="text" ng-model="question.testQuestion.test.course.nameHebrew" disabled="disabled">
 
     <br/>
     <br/>
-    <b>Year:</b>
+    <b>שנה </b>
     <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{question.testQuestion.test.year}}">
 
-    <b>Semester:</b>
+    <b>סמסטר </b>
     <select ng-model="selectedSemester" style="width: 50px" disabled="disabled">
         <option value="">{{question.testQuestion.test.semester}}
     </select>
 
-    <b>Moed:</b>
+    <b>מועד </b>
     <select ng-model="selectedMoed" style="width: 50px" disabled="disabled">
         <option value="">{{question.testQuestion.test.moed}}
 
     </select>
-    <b>Question Number:</b>
+    <b>מספר שאלה </b>
     <input type="number" ng-model="qnumber" min="0" max="100"  disabled="disabled" value="{{question.testQuestion.questionNumber}}">
 
     <br/>
@@ -71,7 +69,7 @@
 -->
 
 <ul class="holder noborder">
-<li ng-repeat="tag in question.tags" class="bit-box nopadding"><a href="#/questions?tag={{tag.id}}">{{tag.name}}</a></li>
+<li ng-repeat="tag in question.tags" class="bit-box nopadding">{{tag.name}}</li>
 </ul>
 
 
@@ -125,7 +123,7 @@
 
 
 <div  ng-repeat="answer in comments" >
-    <div class="questionsview_userbox" style="float: left">
+    <div class="questionsview_userbox" style="float: right">
   <img src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
   <br/>
   <small> {{answer.user.firstName}}</small>
@@ -141,12 +139,12 @@
     <div ng-show="answer.isAccepted" class="questionsview_accepted">
         <span ng-click="unAcceptAnswer(answer.id)" title="Un-Accept">
        <img src='img/accepted.png' style="width: 15px">
-        Accepted Answer
+        התשובה התקבלה
         </span>
     </div>
 
     <div ng-show="!answer.isAccepted && !question.acceptedComment && USER_ID==question.user.id" class="questionsview_accept">
-    <span ng-click="acceptAnswer(answer.id)">Accept this answer</span>
+    <span ng-click="acceptAnswer(answer.id)">קבל תשובה זו</span>
     </div>
 
 
@@ -218,12 +216,14 @@
 
 <div class="questionsview_form" ng-show="isConnected">
   <form ng-submit="submitAnswar()">
-<h3 style="padding-top:0px;padding-bottom:16px;">Comment This Question:</h2>
+<h3 style="padding-top:0px;padding-bottom:16px;">הוסף תגובה :</h2>
 
-   <text-angular ng-model="htmlContent" name="content"><p>Write here...</p></text-angular>
+   <text-angular ng-model="htmlContent" name="content"></text-angular>
 
 <br/><br/>
-<input type="submit" value="Answer Question" style="width: 150px;height: 50px;" class="button">
+<img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
+
+<input type="submit" value="הוסף תגובה" style="width: 150px;height: 50px;" class="button">
 
 </form>
 </div>

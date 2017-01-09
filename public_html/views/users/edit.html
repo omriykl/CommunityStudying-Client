@@ -33,32 +33,31 @@ function cform() {
 </script>
 
 
-<h1>Edit Profile</h1>
+<h1>עריכת הקורסים שלי</h1>
 
 <form ng-submit="submit()" onsubmit="javascript:return cform();">
 
-<h3>Name</h3>
-<input type="textbox" class="textbox" name="firstName" id="firstName"  ng-model="user.firstName" disabled="disabled" /><br/>
-<input type="textbox" class="textbox" name="lastName" id="firstName"  ng-model="user.lastName" disabled="disabled"/><br/>
+<h3>שם  :</h3>
+{{user.firstName}} {{user.lastName}}
 
-<h3>E-mail</h3>
-<input type="textbox" class="textbox" name="email" id="email" ng-model="user.email" disabled="disabled"/><br/>
+<h3>אימייל :</h3>
+{{user.email}}
 
 <!--<h3>Password <span style="font-size:10px">(Leave blank if you do not want to update)</span></h3> 
 <input type="password" class="textbox" name="password" id="password" ng-model="user.password" />
 -->
 
-<h3>Courses List:</h3>
+<h3>הקורסים שלי :</h3>
 
-<b> Faculty:</b>
+<b> פקולטה</b>
     
-    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="Select Faculty" single 
+    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="בחר פקולטה" single 
             display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
             <br/>
-         <b> Courses</b>   
+         <b> קורסים</b>   
   <multiple-autocomplete ng-model="selectedCourses" object-property="nameHebrew" suggestions-arr="courses">
     </multiple-autocomplete>
     
 <br/><br/>
-<input type="submit" value="Update Profile" style="width: 120px;height:50px;" class="button">
+<input type="submit" value="שמור רשימת קורסים" style="width: 160px;height:50px;" class="button">
 </form>
