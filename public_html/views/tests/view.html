@@ -2,7 +2,7 @@
 <hr>
    <b> פקולטה </b>
 
-    <input type="text" ng-model="test.faculty.name"  disabled="disabled">
+    <input type="text" ng-model="test.course.faculty.name"  disabled="disabled">
 
     <b>קורס </b>
     <input type="text" ng-model="test.course.name" disabled="disabled">
@@ -65,19 +65,32 @@
     <div style="clear:both;height:10px;"></div>
     <div class="questionsview_userbox">
         <div class="userbox">
-            <a href="#users/view?id={{x.userName}}">{{x.userName}} | {{x.comments}}</a>
+            <a href="#users/view?id={{x.user.id}}">{{x.user.firstName}} {{x.user.lastName}}</a>
         </div>
     </div>
     <div class="questionsview_details">
-        <span style="color:#999" title="{{x.createdAt}}">{{x.timeAgo}}</span>
+        <span style="color:#999">{{x.time | date:'dd-MM-yyyy HH:mm'}}</span>
+    </div>
+    <div class="questionsview_details" style="float:right">
+        <span style="color:#999">
+            
+            - {{x.testQuestion.test.moed}}- 
+            {{x.testQuestion.test.semester}} -
+            {{x.testQuestion.test.year}}- 
+            {{x.testQuestion.questionNumber}}
+        
+        </span>
     </div>
     <div class="questionsview_details q">
-        {{x.comments}} ans | {{x.likes}} votes
+        {{x.answers}} ans | {{x.votes}} votes
     </div>
     <div class="questionsview_answer" id="a445">
         <div class="questionsgrid_title">
             <a href="#questions/view/{{x.id}}">{{x.title}}</a>
-            <br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}">{{x.content}}</a></span>
+            <br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}"> 
+                    <div class="markdown" style="border: bold" ng-bind-html="x.content"></div>
+            <span class="markdown" style="border: bold">...</span>
+                </a></span>
             <div style="clear:both"></div>
         </div>
 

@@ -68,7 +68,7 @@
 </div>
 <hr>
 <br/>
-<div ng-repeat="x in questions">
+<div ng-repeat="x in filteredquestions">
     <div style="clear:both"></div>
     <div style="clear:both;height:10px;"></div>
     <div class="questionsview_userbox">
@@ -107,4 +107,13 @@
 
         <div style="clear:both;"></div>
     </div>
+    
+    <pagination 
+  ng-model="currentPage"
+      total-items="questions.length"
+      max-size="maxSize"  
+      boundary-links="true">
+</pagination>
+
+    
 </div>

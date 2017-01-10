@@ -12,8 +12,8 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
     
        $scope.searchQuestions = function() {
         var data = {
-            facultyId: $scope.test.facultyId,
-            courseId: $scope.test.courseId ,
+            facultyId: $scope.test.course.faculty.Id,
+            courseId: $scope.test.course.id ,
             year: $scope.test.year,
             semester: $scope.test.semester,
             moed: $scope.test.moed,
