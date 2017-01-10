@@ -176,7 +176,7 @@ div#preview {
 
 .noborder {
 	border: 0px !important;
-	float:left;
+	float:right;
 	margin-top:10px !important;
 	padding: 0px !important;
 }

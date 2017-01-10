@@ -60,17 +60,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
 
         })
     };
-    $scope.loadFacultiesWithId = function(id) {
-        $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
-        }).success(function(result) {
-            $scope.faculties = result.allData;
-            var fac= {id: id}; 
-            $scope.faculty=fac;        
-            $scope.facultySelected($scope.faculty);
-        });
-    };
+    
     
     $scope.loadFaculties(); // first call to get faculties 
 
@@ -88,6 +78,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             $scope.courses = result.allData;
         });
     };
+    
 
     $scope.onAddQuestionNumber = function() {
         var data = {
@@ -138,11 +129,46 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         });
     };
     
+    
+    $scope.facultySelectedWithId = function(item,courseId) {
+        //$scope.item.size.code = $scope.selectedItem.code
+        var id = item.id;
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
+        }).success(function(result) {
+            $scope.courses = result.allData;
+            for(var i in $scope.courses){
+                if($scope.courses[i].id==courseId){
+                    $scope.course=$scope.courses[i];
+                    $scope.courseSelected($scope.course);
+                break;
+                }
+            }
+            
+        });
+    };
+    
+    
+    $scope.loadFacultiesWithId = function(facid,couid) {
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+        }).success(function(result) {
+            $scope.faculties = result.allData;
+            for(var i in $scope.faculties){
+                if($scope.faculties[i].id==facid){
+                    $scope.faculty=$scope.faculties[i];
+                    break;
+                }
+            }
+            $scope.facultySelectedWithId($scope.faculty,couid);
+            
+        });
+    };
        $scope.loadFromSearch= function(params){
-                $scope.loadFacultiesWithId(parseInt(params.split('faculty=')[1].split('&')[0]));
-                var cor= {id: parseInt(params.split('course=')[1].split('&')[0])};
-                $scope.course= cor;
-                $scope.courseSelected($scope.course);
+                
+           $scope.loadFacultiesWithId(params.split('faculty=')[1].split('&')[0],params.split('course=')[1].split('&')[0]);     
                 $scope.year=parseInt(params.split('year=')[1].split('&')[0]);
                 $scope.selectedSemester=params.split('semester=')[1].split('&')[0];
                 $scope.selectedMoed=params.split('moed=')[1].split('&')[0];
