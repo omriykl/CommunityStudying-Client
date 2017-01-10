@@ -68,7 +68,7 @@
 </div>
 <hr>
 <br/>
-<div ng-repeat="x in filteredquestions">
+<div ng-repeat="x in questions  | startFrom:currentPage*pageSize | limitTo:pageSize">
     <div style="clear:both"></div>
     <div style="clear:both;height:10px;"></div>
     <div class="questionsview_userbox">
@@ -108,12 +108,14 @@
         <div style="clear:both;"></div>
     </div>
     
-    <pagination 
-  ng-model="currentPage"
-      total-items="questions.length"
-      max-size="maxSize"  
-      boundary-links="true">
-</pagination>
+</div>
 
-    
+<div ng-show="questions.length>pageSize">
+    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" style="background-color:  whitesmoke">
+        הקודם
+    </button>
+עמוד
+    {{currentPage+1}}/{{numberOfPages()}} 
+    <button ng-disabled="currentPage >= questions.length/pageSize - 1" ng-click="currentPage=currentPage+1" style="background-color:  whitesmoke">
+        הבא
 </div>

@@ -54,20 +54,20 @@ app.controller('TestsCtr', ['$scope', '$http','$routeParams', function($scope, $
             $scope.tests = result;
         });
     }
-$scope.tests=[{
-        userName : "guyyt",
-        comments : "3",
-        createdAt: "1.1.2016",
-        posts : "5",
-           title : "my quest",
-           content : "hdfhsdkhfk shkdfjhsdkfj hsdkj",
-           timeAgo: "1.1.2016",
-           year: "2016",
-           semester: "A",
-           moed: "B",
-            hasTestFile: true
-           
-}];
+//$scope.tests=[{
+//        userName : "guyyt",
+//        comments : "3",
+//        createdAt: "1.1.2016",
+//        posts : "5",
+//           title : "my quest",
+//           content : "hdfhsdkhfk shkdfjhsdkfj hsdkj",
+//           timeAgo: "1.1.2016",
+//           year: "2016",
+//           semester: "A",
+//           moed: "B",
+//            hasTestFile: true
+//           
+//}];
 
     $scope.selectedFaculty = null;
     $scope.faculties = [];
@@ -104,7 +104,7 @@ $scope.tests=[{
         return item.name;
     };
     $scope.showHebName = function(item) {
-        return item.hebrewName;
+        return item.nameHebrew;
     };
     
     $scope.submit = function() {

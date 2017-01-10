@@ -5,7 +5,8 @@ var toggleSearch = function() {
 };
 app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
    
-        
+        toggleSearch();
+
         $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
     });
@@ -44,50 +45,22 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
 		$scope.test = data;
                 $scope.searchQuestions();
 	});     
-    $scope.test={
-        files : [{type: "word"},{type: "pdf"}],
-        semester: "A",
-        moed: "B",
-        year: "2016"       
-    };
-    $scope.questions=[{
-        userName : "guyyt",
-        comments : "3",
-        createdAt: "1.1.2016",
-        likes : "5",
-           title : "my quest",
-           content : "hdfhsdkhfk shkdfjhsdkfj hsdkj",
-           timeAgo: "yesterday"    
-}];
+//    $scope.test={
+//        files : [{type: "word"},{type: "pdf"}],
+//        semester: "A",
+//        moed: "B",
+//        year: "2016"       
+//    };
+//    $scope.questions=[{
+//        userName : "guyyt",
+//        comments : "3",
+//        createdAt: "1.1.2016",
+//        likes : "5",
+//           title : "my quest",
+//           content : "hdfhsdkhfk shkdfjhsdkfj hsdkj",
+//           timeAgo: "yesterday"    
+//}];
         
-      $scope.onAddQuestionNumber = function() {
-        var data = {
-            facultyId: $scope.faculty.id,
-            courseId: $scope.course.id,
-            year: $scope.year,
-            semester: $scope.selectedSemester,
-            moed: $scope.selectedMoed,
-            questionNumber: $scope.qnumber
-        };
-        var config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        $http.post(SERVER_APP_BASE_URL + 'post/checkByQuestion', data, config)
-            .success(function(data, status, headers, config) {
-                $scope.PostDataResponse = data;
-            })
-            .error(function(data, status, header, config) {
-                //   $scope.ResponseDetails = "Data: " + data +
-                //	<hr />status: " + status +
-                //       "<hr />headers: " + header +
-                //       "<hr />config: " + config;
-            });
-
-    };
-    
      $scope.submit = function() {
         $scope.searchQuestions();
     };

@@ -66,6 +66,8 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              $scope.userPic=user.pictureUrl;
              $scope.isConnected = true;
              $scope.userId=user.id;
+             $scope.userRating=user.userRating;
+             $scope.userCourses= user.courses;
              USER_TOKEN = id_token;
              USER_ID= user.id;
              IS_CONNECTED = true;
@@ -83,6 +85,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
     
      $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
+        $scope.USER_ID=USER_ID;
     });
      $scope.freesearch=function(){
           window.location = "#questions/search/" + $scope.searchInput;

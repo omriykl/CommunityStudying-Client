@@ -4,8 +4,21 @@ var toggleSearch = function() {
     });
 };
 
+app.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+});
+
 app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scope, $http, $routeParams) {
     toggleSearch();
+    
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.questions.length/$scope.pageSize);                
+    };
     
      $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
@@ -36,6 +49,8 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         $http.post(SERVER_APP_BASE_URL + 'post/search', data, config)
             .success(function(data, status, headers, config) {
                 $scope.questions = data;
+          $scope.filteredquestions=$scope.questions;
+
             })
             .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +

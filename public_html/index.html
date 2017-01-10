@@ -125,11 +125,11 @@
                 <ol>
                      <li><a href="index.html#about"><i class="material-icons">help_outline</i>  מי אנחנו</a>
                     </li>
-                    <li ng-show="isConnected"><a href="index.html#tests/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  מבחנים שלי</a>
+                    <li ng-show="isConnected"><a href="index.html#tests/search/userId={{USER_ID}}"><i class="material-icons">assignment_ind</i>  מבחנים שלי</a>
                     </li>
                      <li><a href="index.html#tests"><i class="material-icons">assignment</i>חיפוש מבחנים</a>
                     </li>
-                    <li ng-show="isConnected"><a href="index.html#questions/search/userId={{USER_TOKEN}}"><i class="material-icons">assignment_ind</i>  שאלות שלי</a>
+                    <li ng-show="isConnected"><a href="index.html#questions/search/userId={{USER_ID}}"><i class="material-icons">assignment_ind</i>  שאלות שלי</a>
                     </li>
                     <li><a href="index.html#questions"><i class="material-icons">assignment</i>חיפוש שאלות</a>
                     </li>
@@ -160,10 +160,23 @@
 		<div ng-show="isConnected">
 			<div style="float:left; margin-bottom:10px;"><img ng-src={{userPic}} style="border:1px solid #ccc; width:72px;"></div>
 			<div style="float:right;padding:10px;">
-				<div style="padding-bottom:5px" class="h3s">{{userName}}</div>
-				<a href="#user/edit/{{userId}}" >ערוך משתמש</a><br/>
+                            <div style="padding-bottom:5px" class="h3s"> {{userName}} - (<img src="img/star.png" style="width: 15px"></img> {{userRating}})</div>
+                            
 				<a href="#" onclick="signOut();">התנתק</a><br><br>
 			</div>
+                        </br>
+                        <div ng-show="userCourses.length > 0">
+                            <u>קורסים:</u>
+                            </br>
+                                <div ng-repeat="x in userCourses">
+                                    {{x.nameHebrew}}
+                                </div>
+                            </div>
+                            <div ng-show="userCourses.length <= 0">
+                                טרם עדכנת את רשימת הקורסים שלך
+                            </div>
+                         <a href="#user/edit/{{userId}}" >ערוך קורסים</a><br/>
+
 		</div>
                     <center><div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="230" data-height="40" data-longtitle="true" style="margin-top: 10px;"></center>
                     <script>
