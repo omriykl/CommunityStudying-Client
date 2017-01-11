@@ -331,12 +331,12 @@ body {
 
 #bodypanel {
 	width: 658px;
-	float: right;
+	float: left;
 }
 
 #userpanel {
 	width: 250px;
-	float:left; 
+	float:right; 
 }
 
 .userdetails {
