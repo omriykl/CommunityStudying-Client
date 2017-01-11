@@ -112,8 +112,8 @@
 
 </head>
 
-<body onload="prettyPrint()" dir="rtl">
-    <div id="navigation">
+<body onload="prettyPrint()" >
+    <div id="navigation" dir="rtl">
         <div class="navcenter" ng-controller="HomeCtr">
 
             <form ng-submit="freesearch()" style="float:left;width:20%;text-align:left;" >
@@ -145,7 +145,7 @@
     </div>
 
     <div id="container">
-        <div id="bodypanel">
+        <div id="bodypanel" dir="rtl">
             <div ng-view></div>
             <!--<div ng-include="includeUrl"></div>-->
         </div>
