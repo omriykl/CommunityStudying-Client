@@ -5,7 +5,29 @@ var toggleSearch = function() {
 };
 app.controller('TestsCtr', ['$scope', '$http','$routeParams', function($scope, $http, $routeParams) {
     toggleSearch();
+     var newTestModal = document.getElementById('newTestModal');
 
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeModel");
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            newTestModal.style.display = "block";
+        };
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            newTestModal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          //  if (event.target == modal) {
+          //      modal.style.display = "none";
+          //  }
+        };
+    
     $scope.tests = [];
     
     
@@ -27,6 +49,9 @@ app.controller('TestsCtr', ['$scope', '$http','$routeParams', function($scope, $
         $http.post(SERVER_APP_BASE_URL + 'test/search', data, config)
             .success(function(data, status, headers, config) {
                 $scope.tests = data;
+                if(data.length==0){
+                    newTestModal.style.display = "block";
+                }
             })
             .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
@@ -110,6 +135,36 @@ app.controller('TestsCtr', ['$scope', '$http','$routeParams', function($scope, $
     $scope.submit = function() {
         $scope.searchTests();
     };
+    
+     $scope.addTest = function() {
+        $('#loading_image').show();
+        var data = {
+            facultyId: $scope.faculty.id,
+            courseId: $scope.course.id,
+            year: $scope.year,
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed 
+        };
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        $http.post(SERVER_APP_BASE_URL + 'test/?userTokenId='+USER_TOKEN, data, config)
+            .success(function(data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                newTestModal.style.display = "none";
+            })
+            .error(function(data, status, header, config) {
+                //   $scope.ResponseDetails = "Data: " + data +
+                //	<hr />status: " + status +
+                //       "<hr />headers: " + header +
+                //       "<hr />config: " + config;
+            });
+    };
+    
+    
 
 
 }]);
