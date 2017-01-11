@@ -10,7 +10,8 @@
 <div class="questionsview_userbox" style="float: right;padding-left: 50px">
   <img src="{{question.user.pictureUrl}}" style="width: 75px;border-radius: 50%;">
   <br/>
-  <small>{{question.user.firstName}} {{question.user.lastName}}</small> 
+  <small>{{question.user.firstName}} {{question.user.lastName}}</small> </br>
+  (<img src="img/star.png" style="width: 15px"></img> {{question.user.userRating}})
 </div>
 
 
@@ -126,7 +127,8 @@
     <div class="questionsview_userbox" style="float: right">
   <img src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
   <br/>
-  <small> {{answer.user.firstName}}</small>
+  <small> {{answer.user.firstName}} {{question.user.lastName}}</small></br>
+  (<img src="img/star.png" style="width: 15px"></img> {{answer.user.userRating}})
 </div>
 
 

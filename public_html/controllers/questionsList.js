@@ -28,7 +28,9 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     $scope.questions = [];
     $scope.loadUserQuestion = function() {
    
+   
       $scope.searchQuestions = function() {
+          $('#loading_image').show();
         var data = {
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
             courseId: $scope.course != null ? $scope.course.id : null,
@@ -37,7 +39,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             moed: $scope.selectedMoed,
             questionNumber: $scope.qnumber,
             inContentText: $scope.freeText,
-            tags: $scope.tags
+            tags: $scope.selectedTags
                 //files: $scope.files
         };
         var config = {
@@ -49,7 +51,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         $http.post(SERVER_APP_BASE_URL + 'post/search', data, config)
             .success(function(data, status, headers, config) {
                 $scope.questions = data;
-          $scope.filteredquestions=$scope.questions;
+                $('#loading_image').hide();
 
             })
             .error(function(data, status, header, config) {
@@ -138,7 +140,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
         }).success(function(result) {
-            $scope.options = result;
+            $scope.optionsTags = result;
             document.getElementById('tagsDiv').style.display="inline";
 
         });

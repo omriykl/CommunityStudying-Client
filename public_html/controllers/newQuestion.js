@@ -13,16 +13,19 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
         btn.onclick = function() {
             newTestModal.style.display = "block";
         };
+        $scope.openNewTestDialog=function(){
+            newTestModal.style.display = "block";
+        };
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             newTestModal.style.display = "none";
-        }
+        };
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-          //  if (event.target == modal) {
-          //      modal.style.display = "none";
-          //  }
+            if (event.target == newTestModal) {
+                newTestModal.style.display = "none";
+            }
         };
         
         var questionExistModel = document.getElementById('questionExistModel');
@@ -74,6 +77,41 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
             }
         });
     };
+    
+    
+       $scope.searchTests = function() {
+        var data = {
+            facultyId: $scope.faculty != null ? $scope.faculty.id : null,
+            courseId: $scope.course != null ? $scope.course.id : null,
+            year: $scope.year,
+            semester: $scope.selectedSemester,
+            moed: $scope.selectedMoed, 
+
+        };
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        $http.post(SERVER_APP_BASE_URL + 'test/search', data, config)
+            .success(function(data, status, headers, config) {
+                if(data==null || data.length==0){
+                    $("#testNotExistModel").fadeIn();
+                    $scope.mustAddFile=true; 
+                }
+                else{
+                     $("#testNotExistModel").fadeOut();
+                     $scope.mustAddFile=false; 
+                }
+            })
+            .error(function(data, status, header, config) {
+                //   $scope.ResponseDetails = "Data: " + data +
+                //	<hr />status: " + status +
+                //       "<hr />headers: " + header +
+                //       "<hr />config: " + config;
+            });
+    };
 
     $scope.onAddQuestionNumber = function() {
         var data = {
@@ -94,6 +132,7 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
             .success(function(data, status, headers, config) {
                 if(data==true){
                    $("#questionExistModel").fadeIn();
+                   
                 }
                 else{
                     $("#questionExistModel").fadeOut();
@@ -145,8 +184,13 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
 
 
     $scope.submit = function() {
-        $('#loading_image').show();
-        var data = {
+        if($scope.mustAddFile){
+             $("#testNotExistModel").focus();
+             $("#testNotExistModel").fadeTo('slow', 0.5).fadeTo('slow', 1.0);
+        }
+        else{
+              $('#loading_image').show();
+            var data = {
             facultyId: $scope.faculty.id,
             courseId: $scope.course.id,
             year: $scope.year,
@@ -175,64 +219,12 @@ app.controller('newQuestion', ['$scope', '$http', function($scope, $http) {
                 //       "<hr />headers: " + header +
                 //       "<hr />config: " + config;
             });
+        }
+      
     };
 
 }]);
-//
-//app.controller("TestCtrl", function($scope) {
-//
-//        $scope.options = ["Text", "Markdown", "HTML", "PHP", "Python", "Java", "JavaScript", "Ruby", "VHDL", "Verilog", "C#", "C/C++"]
-//        $scope.tags = ["Markdown", "Ruby"]
-//
-//        $scope.font = null
-//        $scope.fonts = [{
-//                id: 1,
-//                name: "Lucida"
-//            },
-//            {
-//                id: 2,
-//                name: "DejaVu"
-//            },
-//            {
-//                id: 3,
-//                name: "Bitstream"
-//            },
-//            {
-//                id: 4,
-//                name: "Liberation"
-//            },
-//            //  {id: 5, name: "Verdana"}
-//        ]
-//
-//        $scope.font2 = $scope.fonts[1]
-//
-//        $scope.showName = function(font) {
-//            return font.name;
-//        }
-//        $scope.createName = function(name) {
-//            return {
-//                name: name
-//            }
-//        }
-//
-//        var optionalTags = [];
-//
-//        $scope.tags = {
-//            value: [],
-//            options: [],
-//            addOption: function() {
-//                $scope.tags.options.push(Math.random())
-//            }
-//        }
-//
-//        $scope.selected = function(item) {
-//            console.log("SELECTED ", item)
-//        }
-//
-//        $scope.foc = function() {
-//            document.getElementById("s1").focus()
-//        }
-//    });
+
 
 app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
     $scope.$watch('files', function() {

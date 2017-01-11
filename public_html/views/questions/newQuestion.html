@@ -114,6 +114,33 @@
     on file change multiple:
     <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
  -->
+     <div id="testNotExistModel" style="display:none;border-color: #800" tabindex='1' >
+    <br/>
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 100%">
+      <p>    
+    <b> 
+        אופס !  
+    </b>
+    לצערינו אין לנו במאגר המבחנים את המבחן שעליו אתה רוצה לשאול!
+    </br>
+    <font color="red">
+    <b> 
+    שים לב
+    </b></font>
+         אם ברשותך קובץ המבחן או קובץ התשובות,
+         <a href="" ng-click="openNewTestDialog()">לחץ כאן</a> 
+         כדי לעלותם.
+         </br>
+         אחרת, הינך מתבקש לעלות את השאלה עצמה כקובץ מצורף
+         </br>
+         על מנת שאחרים יוכלו לעזור לך.
+    </p> 
+  </div>
+  
+  <br/>
+
+</div>
         <b>Drop File:</b>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
              style="width: 250px;height: 130px; padding: 0">
@@ -148,11 +175,9 @@
         <div ng-app="fileUpload" ng-controller="MyCtrl">
         <b>Drop File:</b>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
-             style="width: 400px;height: 200px; padding: 0">
-            <img  src="img/drag-drop-file.gif" width="400px"> </div>
-        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser
-            
-        </div>
+             style="width: 250px;height: 130px; padding: 0">
+            <img  src="img/drag-drop-file.gif" width="230px"> </div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
         <b>Files Uploaded</b>
         <ul>
             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>

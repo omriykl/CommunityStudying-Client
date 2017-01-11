@@ -149,7 +149,7 @@
             <div ng-view></div>
             <!--<div ng-include="includeUrl"></div>-->
         </div>
-        <div id="userpanel">
+        <div id="userpanel" dir="rtl">
             <div style="text-align:right;">
                 <a href="#" style="border-bottom:0px;"><img src="img/logo.png" style="width:160px;" />
                 </a>
@@ -160,7 +160,7 @@
 		<div ng-show="isConnected">
 			<div style="float:left; margin-bottom:10px;"><img ng-src={{userPic}} style="border:1px solid #ccc; width:72px;"></div>
 			<div style="float:right;padding:10px;">
-                            <div style="padding-bottom:5px" class="h3s"> {{userName}} - (<img src="img/star.png" style="width: 15px"></img> {{userRating}})</div>
+                            <div style="padding-bottom:5px" class="h3s" title="הדירוג שלך = סכום ההצבעות שקיבלת עבור שאלות ותגובות שלך"> {{userName}} - (<img src="img/star.png" style="width: 15px"></img> {{userRating}})</div>
                             
 				<a href="#" onclick="signOut();">התנתק</a><br><br>
 			</div>

@@ -52,7 +52,8 @@
         <div id="tagsDiv">
             <b>תגיות  </b>
         
-        <tagger ng-model="tags" options="options" placeholder="Select tags"></tagger>
+        <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
+        </multiple-autocomplete>
 
         </div>
 

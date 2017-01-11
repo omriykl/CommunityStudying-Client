@@ -20,7 +20,7 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
             moed: $scope.test.moed,
             questionNumber: $scope.qnumber,
             text: $scope.freeText,
-            tags: $scope.tags
+            tags: $scope.selectedTags
         };
         var config = {
             headers: {
@@ -43,7 +43,15 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
      var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'test/?id=' + currentId).success(function(data){
 		$scope.test = data;
+                
                 $scope.searchQuestions();
+                $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat($scope.test.course.id),
+            }).success(function(result) {
+                $scope.optionsTags = result;
+            });
+            
 	});     
 //    $scope.test={
 //        files : [{type: "word"},{type: "pdf"}],

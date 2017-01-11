@@ -55,7 +55,8 @@
         <div id="tagsDiv" style="display: none">
         תגיות
 
-        <tagger ng-model="tags" options="options" placeholder="Select tags"></tagger>
+        <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
+        </multiple-autocomplete>
 
         </div>
         <br/>
@@ -63,7 +64,10 @@
         
         <input type="text" ng-model="freeText">
         <br/>
+        
         <input type="submit" style="width: 100px;height: 30px;" id="submit" value="חפש" />
+         <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
+
     </form>
 </div>
 <hr>

@@ -23,9 +23,9 @@ app.controller('TestsCtr', ['$scope', '$http','$routeParams', function($scope, $
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-          //  if (event.target == modal) {
-          //      modal.style.display = "none";
-          //  }
+            if (event.target == newTestModal) {
+                newTestModal.style.display = "none";
+            }
         };
     
     $scope.tests = [];
