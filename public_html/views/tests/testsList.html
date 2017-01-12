@@ -111,12 +111,6 @@
         </select>
         <br/>
         
-       <div ng-app="fileUpload" ng-controller="MyCtrl">
-        <!--   watching model:
-    <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
-    on file change multiple:
-    <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
- -->
         <b>Drop File:</b>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
              style="width: 250px;height: 130px; padding: 0">
@@ -126,14 +120,18 @@
         <ul>
             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
         </ul>
-        <b>Files Upload Status:</b>
+        <div class="progress" style="background-color: #5cb85c;width: 0%">
+            <div class="bar"></div >
+            <div class="percent">0%</div >
+        </div>
+ <!--       
+ <b>Files Upload Status:</b>
         <pre>{{log}}</pre>
-    </div>
-        
-        
+    </div>--> 
+
         <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
 
-        <input type="submit" style="width: 100px;height: 30px;" id="submit" value="הוסף" />
+        <input type="submit" style="width: 100px;height: 30px;" id="submitTest" value="הוסף" />
         
         </form>
     
