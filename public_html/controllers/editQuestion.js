@@ -304,7 +304,7 @@ app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scop
                 }
             };
 
-            $http.post(SERVER_APP_BASE_URL + 'post/?userTokenId=' + USER_TOKEN, data, config)
+            $http.post(SERVER_APP_BASE_URL + 'post/update/'+$scope.question.id+'?userTokenId=' + USER_TOKEN, data, config)
                 .success(function(data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     window.location = "#questions/view/" + data.id;
