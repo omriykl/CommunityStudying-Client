@@ -14,8 +14,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
             $scope.isConnected=true;
             $scope.USER_ID = USER_ID;
          });
-        
-        $scope.questionVoteUp = function () {   
+        $scope.questionVoteUp = function () {  
         $http.get(SERVER_APP_BASE_URL+'post/like?id=' + currentId).success(function(){ //still not connected!
             $scope.question.votes++;
 	});};
@@ -27,9 +26,9 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         
         $scope.answerVoteUp = function (ansId) {   
         $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId).success(function(){ //still not connected!
-		for(var i in $scope.comments.length){
-                    if($scope.comments[i].id===ansId){
-                        $scope.comments[i].answerRate=$scope.comments[i].answerRate+1;
+		for(var i in $scope.comments){
+                    if($scope.comments[i].id==ansId){
+                        $scope.comments[i].answerRate++;
                         break;
                     }
                 }
@@ -37,7 +36,12 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         
          $scope.answerVoteDown = function (ansId) {   
         $http.get(SERVER_APP_BASE_URL+'comment/dislike?id=' + ansId).success(function(){ //still not connected!
-		location.reload();
+		for(var i in $scope.comments){
+                    if($scope.comments[i].id==ansId){
+                        $scope.comments[i].answerRate--;
+                        break;
+                    }
+                }
 	});};
         
          $scope.acceptAnswer = function (ansId) {   
@@ -48,13 +52,16 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
         $http.get(SERVER_APP_BASE_URL+'comment/unaccept/' + ansId+"?userTokenId="+USER_TOKEN).success(function(){
 		location.reload();
 	});};
-        
+    
+        $scope.filesIds = []; //empty file ids
+
 
         $scope.submitAnswar = function () {
             $('#loading_image').show();
             var data = {
                 content: $scope.htmlContent,
-                postId: $scope.question.id
+                postId: $scope.question.id,
+                files: $scope.filesIds
             };
             var config = {
                 headers: {
@@ -74,48 +81,58 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams', function ($scop
                     //       "<hr />config: " + config;
                 });
         };
-
-}]);
-
-
-app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
-    $scope.$watch('files', function () {
+        
+        
+    $scope.$watch('files', function() {
         $scope.upload($scope.files);
     });
-    $scope.$watch('file', function () {
+    $scope.$watch('file', function() {
         if ($scope.file != null) {
             $scope.files = [$scope.file];
         }
     });
     $scope.log = '';
 
-    $scope.upload = function (files) {
+    $scope.upload = function(files) {
+        var bar = $('.progress');
+        var percent = $('.percent');
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 if (!file.$error) {
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
                     Upload.upload({
                         url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
                         data: {
-                            username: $scope.username,
+                            USER_TOKEN: USER_TOKEN,
                             file: file
                         }
-                    }).then(function (resp) {
-                        $timeout(function () {
+                    }).then(function(resp) {
+                        $timeout(function() {
+                            $scope.filesIds.push(resp.id);
+                            $scope.mustAddFile = false;
                             $scope.log = 'file: ' +
                                 resp.config.data.file.name +
                                 ', Response: ' + JSON.stringify(resp.data) +
                                 '\n' + $scope.log;
                         });
-                    }, null, function (evt) {
+                    }, null, function(evt) {
                         var progressPercentage = parseInt(100.0 *
                             evt.loaded / evt.total);
                         $scope.log = 'progress: ' + progressPercentage +
                             '% ' + evt.config.data.file.name + '\n' +
                             $scope.log;
+
+                        var percentVal = progressPercentage + '%';
+                        bar.width(percentVal);
+                        percent.html(percentVal);
+
                     });
                 }
             }
         }
     };
+
 }]);
