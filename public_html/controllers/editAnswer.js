@@ -2,7 +2,7 @@ app.controller('editAnswere', ['$scope','$http','$routeParams', function ($scope
         
      var currentId = $routeParams.param;
 
-    $http.get(SERVER_APP_BASE_URL+'comment/getById?id=' + currentId).success(function(data){
+    $http.get(SERVER_APP_BASE_URL+'comment/?id=' + currentId).success(function(data){
 		$scope.answer = data;
                 $scope.htmlContent = data.content;
 	});

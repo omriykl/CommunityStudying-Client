@@ -63,21 +63,21 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         });
     };
 
-    $scope.moedSelected = function(item) {
-        var params = "facultyId=" + $scope.faculty.id +
-            "&courseId=" + $scope.course.id +
-            "&year=" + $scope.year +
-            "&semester=" + $scope.selectedSemester +
-            "&moed=" + $scope.selectedMoed;
-        $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'post/checkByMoed?'.concat(params),
-        }).success(function(result) {
-            if (result == false) {
-                newTestModal.style.display = "block";
-            }
-        });
-    };
+//    $scope.moedSelected = function(item) {
+//        var params = "facultyId=" + $scope.faculty.id +
+//            "&courseId=" + $scope.course.id +
+//            "&year=" + $scope.year +
+//            "&semester=" + $scope.selectedSemester +
+//            "&moed=" + $scope.selectedMoed;
+//        $http({
+//            method: 'GET',
+//            url: SERVER_APP_BASE_URL + 'post/checkByMoed?'.concat(params),
+//        }).success(function(result) {
+//            if (result == false) {
+//                newTestModal.style.display = "block";
+//            }
+//        });
+//    };
 
 
     $scope.searchTests = function() {
@@ -156,7 +156,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
             $scope.optionsTags = result;
             document.getElementById('tagsDiv').style.display = "inline";
         });
-    }
+    };
 
     $scope.addTag = function() {
         var name = $scope.newTag;
@@ -175,10 +175,10 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
 
     $scope.showName = function(item) {
         return item.name;
-    }
+    };
     $scope.showHebName = function(item) {
         return item.nameHebrew;
-    }
+    };
 
     $scope.filesIds = []; //empty file ids
 

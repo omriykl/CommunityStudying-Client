@@ -1,19 +1,22 @@
-<h1>Edit Question</h1>
+<h1>שאלה חדשה <button id="myBtn">Open Modal</button>
+</h1>
 
 
 
-<form ng-submit="submit()">
-    <b> Faculty:</b>
+<form ng-submit="submit()" class="form-group">
+    <b> פקולטה</b>
 
-    <tagger tabindex="-1" id="s1" ng-model="faculty" options="faculties" placeholder="Select Faculty" single display-fun="showName" create-fun="createName" on-select="facultySelected"></tagger>
+    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="בחר פקולטה" single 
+            display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
     <!--
          <select ng-model="selectedFaculty" 
         ng-options="item.name for item in faculties track by item.id" ng-change="facultySelected(selectedFaculty)">
             <option value="">Select Faculty</option>
 	</select>
 	-->
-    <b>Course:</b>
-    <tagger tabindex="-1" id="s1" ng-model="course" options="courses" placeholder="Select Course" single display-fun="showName" create-fun="createName" on-select="courseSelected"></tagger>
+    <b>קורס </b>
+    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="בחר קורס" 
+            single display-fun="showHebName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
     <!--
 	<select ng-model="selectedCourse" 
         ng-options="item.name for item in courses track by item.id" ng-change="courseSelected(selectedCourse)">
@@ -21,35 +24,51 @@
 	</select>
 -->
     <br/>
-    <br/>
-    <b>Year:</b>
-    <input type="number" ng-model="year" min="1970" max="2020">
 
-    <b>Semester:</b>
-    <select ng-model="selectedSemester" style="width: 50px">
+    <b>שנה </b>
+    <input type="number" ng-model="year" min="1970" max="2020" required>
+
+    <b>סמסטר </b>
+    <select ng-model="selectedSemester" style="width: 50px" required>
         <option value="">--
             <option value="A">A
                 <option value="B">B
                     <option value="C">C
     </select>
 
-    <b>Moed:</b>
-    <select ng-model="selectedMoed" style="width: 50px">
+    <b>מועד </b>
+    <select ng-model="selectedMoed" style="width: 50px" required on-select="searchTests()">
         <option value="">--
             <option value="A">A
                 <option value="B">B
                     <option value="C">C
     </select>
-    <b>Question Number:</b>
+    <b>מספר שאלה </b>
     <input type="number" ng-model="qnumber" min="0" max="100" ng-blur="onAddQuestionNumber()">
 
     <br/>
+    
+    <div id="questionExistModel" style="display:none;" >
+    <br/>
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 100%">
+      
+    <span class="close" id="closeQuestModel">&times;</span>
+    
+    <b>היי ! <b>
+    אנשים שאלו בעבר על שאלה זו בידיוק !
+    <a href="#questions/search/faculty={{faculty.id}}&course={{course.id}}&year={{year}}&semester={{selectedSemester}}&moed={{selectedMoed}}&qnum={{qnumber}}">לחץ כאן</a> כדי לצפות
+    
+  </div>
+  
+  <br/>
+
+</div>
+
+    <b>כותרת </b>
+    <input type="text" ng-model="title" placeholder="הכנס כותרת לשאלה..." class="textbox" name="title" id="title" tabindex="1" />
     <br/>
 
-    <b>Title:</b>
-    <input type="text" ng-model="title" placeholder="Title for your question" class="textbox" name="title" id="title" tabindex="1" />
-    <br/>
-    <br/>
     <!--        
    OTHER STYLES OF TAGS
    <tagger ng-model="tags1" options="options" placeholder="Select some tags"></tagger>
@@ -63,51 +82,158 @@
     <pre>{{ font | json }}</pre>
     <button ng-click='foc()'>Focus</button>
 -->
-    <b>Tags:</b>
+<div id="tagsDiv" style="display: none">
+    <b>תגיות </b>
+    
     <!-- <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>-->
     <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
+        
+        
     </multiple-autocomplete>
-
+    <div>
+    <input type="text" ng-model="newTag" placeholder="תגית חדשה..."  name="newTag" id="newTag" tabindex="1" />
+    <button type=button ng-click="addTag()" style="background-color: whitesmoke">הוסף</button>
+    </div>
+</div>
     <!--  <pre>{{ tags | json }}</pre>-->
 
     <!--  <button ng-click="empty.addOption()">Add option</button>-->
 
     <br/>
-    <b>Content:</b>
+
+    <b>תוכן ההודעה </b>
     <text-angular ng-model="htmlContent" name="content">
-        <p>Write Here...</p>
+        
     </text-angular>
 
 
 
-    <div ng-app="fileUpload" ng-controller="MyCtrl">
+<!--    <div ng-app="fileUpload" ng-controller="MyCtrl">-->
         <!--   watching model:
     <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
     on file change multiple:
     <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
  -->
+     <div id="testNotExistModel" style="display:none;border-color: #800" tabindex='1' >
+    <br/>
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 100%">
+      <p>    
+    <b> 
+        אופס !  
+    </b>
+    לצערינו אין לנו במאגר המבחנים את המבחן שעליו אתה רוצה לשאול!
+    </br>
+    <font color="red">
+    <b> 
+    שים לב
+    </b></font>
+         אם ברשותך קובץ המבחן או קובץ התשובות,
+         <a href="" ng-click="openNewTestDialog()">לחץ כאן</a> 
+         כדי לעלותם.
+         </br>
+         אחרת, הינך מתבקש לעלות את השאלה עצמה כקובץ מצורף
+         </br>
+         על מנת שאחרים יוכלו לעזור לך.
+    </p> 
+  </div>
+  
+  <br/>
+
+</div>
         <b>Drop File:</b>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
-             style="width: 400px;height: 200px; padding: 0">
-            <img  src="img/drag-drop-file.gif" width="400px"> </div>
+             style="width: 250px;height: 130px; padding: 0">
+            <img  src="img/drag-drop-file.gif" width="230px"> </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
         <b>Files Uploaded</b>
         <ul>
             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
         </ul>
-        <b>Files Upload Status:</b>
+        <div class="progress" style="background-color: #5cb85c;width: 0%">
+            <div class="bar"></div >
+            <div class="percent">0%</div >
+        </div>
+ <!--       
+ <b>Files Upload Status:</b>
         <pre>{{log}}</pre>
-    </div>
+    </div>-->
 
+    <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
 
-    <input type="submit" style="width: 100px;height: 30px;" id="submit" value="Update" />
+    <input type="submit" style="width: 100px;height: 30px;" id="submit" value="פרסם שאלה" />
     <!--  <button ng-click="reset()">RESET</button>-->
 </form>
 
 <hr>
 
 
+<div id="newTestModal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" id="closeModel">&times;</span>
+    <h2>היי  !</h2>
+    <h3>לאחר חיפוש מעמיק, גילינו שאין לנו בכלל קבצים הקשורים למבחן זה</h3>
+    <h3>נעריך מאד אם תוכל לעלות את קובץ המבחן, הפתרונות, או כל דבר אחר רלוונטי </h3>
+    
+        <form ng-submit="addTest()">
+
+    <b> פקולטה </b>
+    
+    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="בחר פקולטה" single 
+            display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
+
+    <b>קורס </b>
+    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="בחר קורס" 
+            single display-fun="showHebName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
+        <br/>
+
+        <b>שנה </b>
+        <input type="number" ng-model="year" min="1970" max="2020">
+
+        <b>סמסטר </b>
+        <select ng-model="selectedSemester" style="width: 50px">
+            <option value="">--
+                <option value="A">A
+                    <option value="B">B
+                        <option value="C">C
+        </select>
+
+        <b>מועד </b>
+        <select ng-model="selectedMoed" style="width: 50px">
+            <option value="">--
+                <option value="A">A
+                    <option value="B">B
+                        <option value="C">C
+        </select>
+        <br/>
+        
+        <b>Drop File:</b>
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
+             style="width: 250px;height: 130px; padding: 0">
+            <img  src="img/drag-drop-file.gif" width="230px"> </div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        <b>Files Uploaded</b>
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+        </ul>
+        <div class="progress" style="background-color: #5cb85c;width: 0%">
+            <div class="bar"></div >
+            <div class="percent">0%</div >
+        </div>
+ <!--       
+ <b>Files Upload Status:</b>
+        <pre>{{log}}</pre>
+    </div>--> 
+
+        <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
+
+        <input type="submit" style="width: 100px;height: 30px;" id="submitTest" value="הוסף" />
+        
+        </form>        
+  </div> 
+</div>
 
 <!--
 <form action="<?php echo generateLink("questions","post");?>" method="post" onsubmit="javascript:return cform();">
