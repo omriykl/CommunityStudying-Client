@@ -285,10 +285,10 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                     bar.width(percentVal);
                     percent.html(percentVal);
                     Upload.upload({
-                        url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                        url: SERVER_APP_BASE_URL + 'upload/',
                         data: {
                             USER_TOKEN: USER_TOKEN,
-                            file: file
+                            uploadingFiles: file
                         }
                     }).then(function(resp) {
                         $timeout(function() {
