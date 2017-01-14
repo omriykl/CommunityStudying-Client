@@ -180,11 +180,11 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         return item.nameHebrew;
     };
 
-    $scope.filesIds = []; //empty file ids
+    $scope.fileUrls = []; //empty file ids
 
 
     $scope.addTest = function() {
-        if ($scope.filesIds.length == 0) {
+        if ($scope.fileUrls.length == 0) {
 
         } else {
             $('#loading_image').show();
@@ -194,7 +194,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 year: $scope.year,
                 semester: $scope.selectedSemester,
                 moed: $scope.selectedMoed,
-                files: $scope.filesIds
+                files: $scope.fileUrls
             };
             var config = {
                 headers: {
@@ -234,7 +234,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 title: $scope.title,
                 content: $scope.htmlContent,
                 tags: $scope.selectedTags,
-                files: $scope.filesIds
+                files: $scope.fileUrls
                 //files: $scope.files
             };
             var config = {
@@ -292,21 +292,15 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                         }
                     }).then(function(resp) {
                         $timeout(function() {
-                            $scope.filesIds.push(resp.id);
+                            $scope.fileUrls.push(resp.data[0]);                    
                             $scope.mustAddFile = false;
                             submit.disabled = false;
                             submit2.disabled = false;
-                            $scope.log = 'file: ' +
-                                resp.config.data.file.name +
-                                ', Response: ' + JSON.stringify(resp.data) +
-                                '\n' + $scope.log;
+                            
                         });
                     }, null, function(evt) {
                         var progressPercentage = parseInt(100.0 *
                             evt.loaded / evt.total);
-                        $scope.log = 'progress: ' + progressPercentage +
-                            '% ' + evt.config.data.file.name + '\n' +
-                            $scope.log;
 
                         var percentVal = progressPercentage + '%';
                         bar.width(percentVal);
