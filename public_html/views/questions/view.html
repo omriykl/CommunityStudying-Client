@@ -125,7 +125,7 @@
 
 <div  ng-repeat="answer in comments" >
     <div class="questionsview_userbox" style="float: right">
-  <img src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
+  <img ng-src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
   <br/>
   <small> {{answer.user.firstName}} {{question.user.lastName}}</small></br>
   (<img src="img/star.png" style="width: 15px"></img> {{answer.user.userRating}})
