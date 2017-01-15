@@ -14,18 +14,25 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
             $scope.isConnected=true;
             $scope.USER_ID = USER_ID;
          });
+         
+        var config = {
+               headers: {
+                   'Accept': 'text/plain'
+               }
+           };
+         
         $scope.questionVoteUp = function () {  
-        $http.get(SERVER_APP_BASE_URL+'post/like?id=' + currentId).success(function(){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'post/like?id=' + currentId,config).success(function(data){ //still not connected!
             $scope.question.votes++;
 	});};
     
          $scope.questionVoteDown = function () {   
-        $http.get(SERVER_APP_BASE_URL+'post/dislike?id=' + currentId).success(function(){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'post/dislike?id=' + currentId,config).success(function(){ //still not connected!
             $scope.question.votes--;
 	});};
         
         $scope.answerVoteUp = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId).success(function(){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId,config).success(function(){ //still not connected!
 		for(var i in $scope.comments){
                     if($scope.comments[i].id==ansId){
                         $scope.comments[i].answerRate++;
@@ -35,7 +42,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
 	});};
         
          $scope.answerVoteDown = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'comment/dislike?id=' + ansId).success(function(){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'comment/dislike?id=' + ansId,config).success(function(){ //still not connected!
 		for(var i in $scope.comments){
                     if($scope.comments[i].id==ansId){
                         $scope.comments[i].answerRate--;
