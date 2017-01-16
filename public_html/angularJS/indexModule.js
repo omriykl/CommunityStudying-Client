@@ -4,6 +4,11 @@ var USER_TOKEN = "";
 var USER_ID="";
 var IS_CONNECTED = false;
 app.config(function ($routeProvider) {
+    $routeProvider.when("/", {  
+        templateUrl: "questionsList.html",
+        controller: "QuestionsCtr",
+        controllerAs: "app"
+    });
     $routeProvider.when("/questions", {  
         templateUrl: "questionsList.html",
         controller: "QuestionsCtr",
