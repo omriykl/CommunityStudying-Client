@@ -3,7 +3,7 @@ var toggleSearch = function() {
         jQuery('#searchPanel').toggle('show');
     });
 };
-app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeout', function($scope, $http, $routeParams,Upload, $timeout) {
     toggleSearch();
     var newTestModal = document.getElementById('newTestModal');
 
@@ -163,7 +163,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
     $scope.fileUrls = []; //empty file ids
 
     $scope.addTest = function() {
-        if ($scope.filesIds.length == 0) {
+        if ($scope.fileUrls.length == 0) {
 
         } else {
             $('#loading_image').show();
@@ -196,6 +196,16 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
 
     };
 
+
+    $scope.$watch('files', function() {
+        $scope.upload($scope.files);
+    });
+    $scope.$watch('file', function() {
+        if ($scope.file != null) {
+            $scope.files = [$scope.file];
+        }
+    });
+    $scope.log = '';
 
 
     $scope.upload = function(files) {
