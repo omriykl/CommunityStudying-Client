@@ -230,6 +230,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         if ($scope.mustAddFile) {
             $("#testNotExistModel").focus();
             $("#testNotExistModel").fadeTo('slow', 0.5).fadeTo('slow', 1.0);
+            $("#haveToAddFileLine").show();
         } else {
             $('#loading_image').show();
             var data = {

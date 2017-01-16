@@ -5,6 +5,8 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
         var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
 		$scope.question = data;
+                window.scrollTo(0, 0);
+
 	});
         $http.get(SERVER_APP_BASE_URL+'comment/getByPost/' + currentId).success(function(data){
 		$scope.comments = data;

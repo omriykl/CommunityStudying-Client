@@ -164,7 +164,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         var id = item.id;
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat(id),
+            url: SERVER_APP_BASE_URL + 'tag/getAllByCourseId/?courseId='.concat(id),
         }).success(function(result) {
             $scope.optionsTags = result;
             document.getElementById('tagsDiv').style.display="inline";
