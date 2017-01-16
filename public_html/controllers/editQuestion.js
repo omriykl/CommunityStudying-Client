@@ -1,310 +1,28 @@
 app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
 
      var currentId = $routeParams.param;
-
-        // Get the modal
-    var newTestModal = document.getElementById('newTestModal');
-
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementById("closeModel");
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        newTestModal.style.display = "block";
-    };
-    $scope.openNewTestDialog = function() {
-        newTestModal.style.display = "block";
-    };
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        newTestModal.style.display = "none";
-    };
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == newTestModal) {
-            newTestModal.style.display = "none";
-        }
-    };
-
-    var questionExistModel = document.getElementById('questionExistModel');
-
-    var span2 = document.getElementById("closeQuestModel");
-    span2.onclick = function() {
-        //questionExistModel.style.display = "none";
-        $("#questionExistModel").fadeOut();
-    };
-
-    $scope.mustAddFile = false; //on default
-
-    $scope.loadFaculties = function() {
-        $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
-        }).success(function(result) {
-            $scope.faculties = result.allData;
-        });
-    };
-    $scope.loadFaculties(); // first call to get faculties 
-
-    $scope.$on('user-loaded', function(event, args) {
-        $scope.loadFaculties(); // second call to get faculties, but this time after user is signed in! 
-        $scope.isConnected = true;
-    });
-
-    $scope.facultySelected = function(item) {
-        //$scope.item.size.code = $scope.selectedItem.code
-        var id = item.id;
-        $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
-        }).success(function(result) {
-            $scope.courses = result.allData;
-        });
-    };
-
-//    $scope.moedSelected = function(item) {
-//        var params = "facultyId=" + $scope.faculty.id +
-//            "&courseId=" + $scope.course.id +
-//            "&year=" + $scope.year +
-//            "&semester=" + $scope.selectedSemester +
-//            "&moed=" + $scope.selectedMoed;
-//        $http({
-//            method: 'GET',
-//            url: SERVER_APP_BASE_URL + 'post/checkByMoed?'.concat(params),
-//        }).success(function(result) {
-//            if (result == false) {
-//                newTestModal.style.display = "block";
-//            }
-//        });
-//    };
-
-
-    $scope.searchTests = function() {
-        var data = {
-            facultyId: $scope.faculty != null ? $scope.faculty.id : null,
-            courseId: $scope.course != null ? $scope.course.id : null,
-            year: $scope.year,
-            semester: $scope.selectedSemester,
-            moed: $scope.selectedMoed,
-
-        };
-        var config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        $http.post(SERVER_APP_BASE_URL + 'test/search', data, config)
-            .success(function(data, status, headers, config) {
-                if (data == null || data.length == 0) {
-                    $("#testNotExistModel").fadeIn();
-                    $scope.mustAddFile = true;
-                } else {
-                    $("#testNotExistModel").fadeOut();
-                    $scope.mustAddFile = false;
-                }
-            })
-            .error(function(data, status, header, config) {
-                //   $scope.ResponseDetails = "Data: " + data +
-                //	<hr />status: " + status +
-                //       "<hr />headers: " + header +
-                //       "<hr />config: " + config;
-            });
-    };
-
-    $scope.onAddQuestionNumber = function() {
-        var data = {
-            facultyId: $scope.faculty.id,
-            courseId: $scope.course.id,
-            year: $scope.year,
-            semester: $scope.selectedSemester,
-            moed: $scope.selectedMoed,
-            questionNumber: $scope.qnumber
-        };
-        var config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        $http.post(SERVER_APP_BASE_URL + 'post/checkByQuestion', data, config)
-            .success(function(data, status, headers, config) {
-                if (data == true) {
-                    $("#questionExistModel").fadeIn();
-
-                } else {
-                    $("#questionExistModel").fadeOut();
-                }
-            })
-            .error(function(data, status, header, config) {
-                //   $scope.ResponseDetails = "Data: " + data +
-                //	<hr />status: " + status +
-                //       "<hr />headers: " + header +
-                //       "<hr />config: " + config;
-            });
-
-    };
-
-    $scope.courseSelected = function(item) {
-        //$scope.item.size.code = $scope.selectedItem.code
-        var id = item.id;
-        $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'tag/getAllByCourseId/?courseId='.concat(id),
-        }).success(function(result) {
-            $scope.optionsTags = result;
-            document.getElementById('tagsDiv').style.display = "inline";
-        });
-    };
-
-    $scope.addTag = function() {
-        var name = $scope.newTag;
-        var id = $scope.course.id;
-        if (name != null && name != "") {
-            $http({
-                method: 'GET',
-                url: SERVER_APP_BASE_URL + 'tag/addTagToCourse/?courseId=' + id + "&tagName=" + name,
-            }).success(function(result) {
-                $scope.optionsTags.push(result);
-                $scope.selectedTags.push(result);
-                $scope.newTag = "";
-            });
-        }
-    };
-
-    $scope.showName = function(item) {
-        return item.name;
-    };
-    $scope.showHebName = function(item) {
-        return item.nameHebrew;
-    };
-
-    $scope.filesIds = []; //empty file ids
-
-
-    $scope.addTest = function() {
-        if ($scope.filesIds.length == 0) {
-
-        } else {
-            $('#loading_image').show();
-            var data = {
-                facultyId: $scope.faculty.id,
-                courseId: $scope.course.id,
-                year: $scope.year,
-                semester: $scope.selectedSemester,
-                moed: $scope.selectedMoed,
-                files: $scope.filesIds
-            };
-            var config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            };
-
-            $http.post(SERVER_APP_BASE_URL + 'test/?userTokenId=' + USER_TOKEN, data, config)
-                .success(function(data, status, headers, config) {
-                    $scope.PostDataResponse = data;
-                    newTestModal.style.display = "none";
-                })
-                .error(function(data, status, header, config) {
-                    //   $scope.ResponseDetails = "Data: " + data +
-                    //	<hr />status: " + status +
-                    //       "<hr />headers: " + header +
-                    //       "<hr />config: " + config;
-                });
-        }
-
-    };
-    
-        $scope.facultySelectedWithId = function(item,courseId) {
-        //$scope.item.size.code = $scope.selectedItem.code
-        var id = item.id;
-        $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
-        }).success(function(result) {
-            $scope.courses = result.allData;
-            for(var i in $scope.courses){
-                if($scope.courses[i].id==courseId){
-                    $scope.course=$scope.courses[i];
-                    $scope.courseSelected($scope.course);
-                break;
-                }
-            }
-            
-        });
-    };
-    
-    
-    $scope.loadFacultiesWithId = function(facid,couid) {
-        $http({
-            method: 'GET',
-            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
-        }).success(function(result) {
-            $scope.faculties = result.allData;
-            for(var i in $scope.faculties){
-                if($scope.faculties[i].id==facid){
-                    $scope.faculty=$scope.faculties[i];
-                    break;
-                }
-            }
-            $scope.facultySelectedWithId($scope.faculty,couid);
-            
-        });
-    };
-    
-     $scope.loadQuestion= function(){
-                
-           $scope.loadFacultiesWithId($scope.question.course.faculty.id,$scope.question.course.id);     
-                $scope.year=parseInt($scope.question.testQuestion.test.year);
-                $scope.selectedSemester=$scope.question.testQuestion.test.semester;
-                $scope.selectedMoed=$scope.question.testQuestion.test.moed;
-                $scope.qnumber=$scope.question.questionNumber;
-                
-    };
-    
-    	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
-            if(data!=null){
+     $scope.isConnected=IS_CONNECTED;
+        $scope.USER_ID = USER_ID;
+        var currentId = $routeParams.param;
+	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
 		$scope.question = data;
-                $scope.loadQuestion();
-	}
-        else{
-           window.location = "#questions/view/" + currentId;
-        }
-    }).error(function(){
-            //window.location = "/question/view/" + currentId;
-        });
+	});
+    
     
 
     $scope.submit = function() {
-        if ($scope.mustAddFile) {
-            $("#testNotExistModel").focus();
-            $("#testNotExistModel").fadeTo('slow', 0.5).fadeTo('slow', 1.0);
-        } else {
             $('#loading_image').show();
             var data = {
-                facultyId: $scope.faculty.id,
-                courseId: $scope.course.id,
-                year: $scope.year,
-                semester: $scope.selectedSemester,
-                moed: $scope.selectedMoed,
-                questionNumber: $scope.qnumber,
-                title: $scope.title,
-                content: $scope.htmlContent,
-                tags: $scope.selectedTags,
-                files: $scope.filesIds
-                //files: $scope.files
+                title: $scope.question.title,
+                content: $scope.question.content
             };
             var config = {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             };
-
-            $http.post(SERVER_APP_BASE_URL + 'post/update/'+$scope.question.id+'?userTokenId=' + USER_TOKEN, data, config)
+            console.log(data);
+            $http.put(SERVER_APP_BASE_URL + 'post/update/'+$scope.question.id+'?userTokenId=' + USER_TOKEN, data, config)
                 .success(function(data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     window.location = "#questions/view/" + data.id;
@@ -315,7 +33,6 @@ app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scop
                     //       "<hr />headers: " + header +
                     //       "<hr />config: " + config;
                 });
-        }
 
     };
 

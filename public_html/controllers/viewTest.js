@@ -10,10 +10,18 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
         $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
     });
+    $scope.getFileSrc= function(file){
+            var types=file.url.split(".");
+            var type=types[types.length-1];
+            if(type=="jpg" || type=="png" || type=="bmp") return file.url;
+            else if(type=="pdf") return "img/pdf.jfif";
+            else if(type=="docx" || type=="doc") return "img/pdf.jfif";
+            else return "img/file_icon.png";
+        };
     
        $scope.searchQuestions = function() {
         var data = {
-            facultyId: $scope.test.course.faculty.Id,
+            facultyId: $scope.test.course.faculty.id,
             courseId: $scope.test.course.id ,
             year: $scope.test.year,
             semester: $scope.test.semester,
@@ -41,13 +49,13 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
     };
     
      var currentId = $routeParams.param;
-	$http.get(SERVER_APP_BASE_URL+'test/?id=' + currentId).success(function(data){
+	$http.get(SERVER_APP_BASE_URL+'test/' + currentId).success(function(data){
 		$scope.test = data;
                 
                 $scope.searchQuestions();
                 $http({
                 method: 'GET',
-                url: SERVER_APP_BASE_URL + 'course/getCousreTags/?courseId='.concat($scope.test.course.id),
+                url: SERVER_APP_BASE_URL + 'tag/getAllByCourseId/?courseId='.concat($scope.test.course.id),
             }).success(function(result) {
                 $scope.optionsTags = result;
             });

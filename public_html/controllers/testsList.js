@@ -29,9 +29,14 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
     };
 
     $scope.tests = [];
-
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.totalCount/$scope.pageSize);                
+    };
 
     $scope.searchTests = function() {
+        $('#loading_image').show();
         var data = {
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
             courseId: $scope.course != null ? $scope.course.id : null,
@@ -46,10 +51,11 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
             }
         };
 
-        $http.post(SERVER_APP_BASE_URL + 'test/search', data, config)
+        $http.post(SERVER_APP_BASE_URL + 'test/search?page='+$scope.currentPage+"&size="+$scope.pageSize, data, config)
             .success(function(data, status, headers, config) {
                 $scope.tests = data;
-                if (data.length == 0) {
+                $('#loading_image').hide();
+                if (data==null || data.length == 0) {
                     newTestModal.style.display = "block";
                 }
             })
@@ -59,6 +65,15 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
                 //       "<hr />headers: " + header +
                 //       "<hr />config: " + config;
             });
+            
+            $http.post(SERVER_APP_BASE_URL + 'test/count', data, config)
+            .success(function(data, status, headers, config) {
+                $scope.totalCount = data;
+                if ($scope.totalCount == 0) {
+                    newTestModal.style.display = "block";
+                }
+            })
+            
     };
 
     if ($routeParams.param != null) {
@@ -105,7 +120,12 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN
         }).success(function(result) {
-            $scope.faculties = result.allData;
+            if(result.userData!=null && result.userData.length>0){
+                    $scope.faculties= result.userData;
+                    $scope.faculties.push({id:-1, name: "--------------"});
+            }        
+            $scope.faculties= $scope.faculties.concat(result.allData);
+
         });
     };
     $scope.loadFaculties(); // first call to get faculties 
@@ -119,9 +139,13 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
         var id = item.id;
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id)
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='+id+'&idTokenString=' + USER_TOKEN
         }).success(function(result) {
-            $scope.courses = result.allData;
+            if(result.userData!=null && result.userData.length>0){
+                    $scope.courses= result.userData;
+                    $scope.courses.push({id:-1, nameHebrew: "--------------"});
+            }           
+            $scope.courses= $scope.courses.concat(result.allData);
         });
     };
 
@@ -136,7 +160,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
         $scope.searchTests();
     };
 
-    $scope.filesIds = []; //empty file ids
+    $scope.fileUrls = []; //empty file ids
 
     $scope.addTest = function() {
         if ($scope.filesIds.length == 0) {
@@ -149,7 +173,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
                 year: $scope.year,
                 semester: $scope.selectedSemester,
                 moed: $scope.selectedMoed,
-                files: $scope.filesIds
+                files: $scope.fileUrls
             };
             var config = {
                 headers: {
@@ -177,37 +201,34 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', function($scope, 
     $scope.upload = function(files) {
         var bar = $('.progress');
         var percent = $('.percent');
+        var submit = document.getElementById("submit");
         var submit2 = document.getElementById("submitTest");
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 if (!file.$error) {
+                    submit.disabled = true;
                     submit2.disabled = true;
                     var percentVal = '0%';
                     bar.width(percentVal);
                     percent.html(percentVal);
                     Upload.upload({
-                        url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                        url: SERVER_APP_BASE_URL + 'upload/',
                         data: {
                             USER_TOKEN: USER_TOKEN,
-                            file: file
+                            uploadingFiles: file
                         }
                     }).then(function(resp) {
                         $timeout(function() {
-                            $scope.filesIds.push(resp.id);
+                            $scope.fileUrls.push(resp.data[0]);                    
                             $scope.mustAddFile = false;
+                            submit.disabled = false;
                             submit2.disabled = false;
-                            $scope.log = 'file: ' +
-                                resp.config.data.file.name +
-                                ', Response: ' + JSON.stringify(resp.data) +
-                                '\n' + $scope.log;
+                            
                         });
                     }, null, function(evt) {
                         var progressPercentage = parseInt(100.0 *
                             evt.loaded / evt.total);
-                        $scope.log = 'progress: ' + progressPercentage +
-                            '% ' + evt.config.data.file.name + '\n' +
-                            $scope.log;
 
                         var percentVal = progressPercentage + '%';
                         bar.width(percentVal);

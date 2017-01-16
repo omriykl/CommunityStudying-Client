@@ -73,6 +73,13 @@
 <li ng-repeat="tag in question.tags" class="bit-box nopadding">{{tag.name}}</li>
 </ul>
 
+ <div id="filesDiv">
+    <b style="float: right">קבצים: </b>
+    <div ng-repeat="x in question.files" style="float: right" >
+        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>
+    </div>
+     <div style="clear:both"></div>
+ </div>
 
 
 <!--<div class="comments">
@@ -127,7 +134,7 @@
     <div class="questionsview_userbox" style="float: right">
   <img ng-src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
   <br/>
-  <small> {{answer.user.firstName}} {{question.user.lastName}}</small></br>
+  <small> {{answer.user.firstName}} {{answer.user.lastName}}</small></br>
   (<img src="img/star.png" style="width: 15px"></img> {{answer.user.userRating}})
 </div>
 
@@ -165,6 +172,11 @@
 
     </div>
     <div class="questionsview_answerdescription">
+     
+     <div ng-repeat="x in answer.files" style="float: left">
+         <a href="{{x.url}}" target="_blank"><img ng-src="{{getCommentFileSrc(x)}}" src="img/file_icon.png" style="width: 40px" title="{{x.url}}"></a>
+    </div>
+        
     <div class="markdown" ng-bind-html="answer.content"></div>
 
     <!--

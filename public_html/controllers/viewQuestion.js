@@ -15,24 +15,19 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
             $scope.USER_ID = USER_ID;
          });
          
-        var config = {
-               headers: {
-                   'Accept': 'text/plain'
-               }
-           };
-         
+
         $scope.questionVoteUp = function () {  
-        $http.get(SERVER_APP_BASE_URL+'post/like?id=' + currentId,config).success(function(data){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'post/like?id=' + currentId).success(function(data){ //still not connected!
             $scope.question.votes++;
 	});};
     
          $scope.questionVoteDown = function () {   
-        $http.get(SERVER_APP_BASE_URL+'post/dislike?id=' + currentId,config).success(function(){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'post/dislike?id=' + currentId).success(function(){ //still not connected!
             $scope.question.votes--;
 	});};
         
         $scope.answerVoteUp = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId,config).success(function(){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'comment/like?id=' + ansId).success(function(){ //still not connected!
 		for(var i in $scope.comments){
                     if($scope.comments[i].id==ansId){
                         $scope.comments[i].answerRate++;
@@ -42,7 +37,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
 	});};
         
          $scope.answerVoteDown = function (ansId) {   
-        $http.get(SERVER_APP_BASE_URL+'comment/dislike?id=' + ansId,config).success(function(){ //still not connected!
+        $http.get(SERVER_APP_BASE_URL+'comment/dislike?id=' + ansId).success(function(){ //still not connected!
 		for(var i in $scope.comments){
                     if($scope.comments[i].id==ansId){
                         $scope.comments[i].answerRate--;
@@ -59,6 +54,24 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
         $http.get(SERVER_APP_BASE_URL+'comment/unaccept/' + ansId+"?userTokenId="+USER_TOKEN).success(function(){
 		location.reload();
 	});};
+    
+        $scope.getFileSrc= function(file){
+            var types=file.url.split(".");
+            var type=types[types.length-1];
+            if(type=="jpg" || type=="png" || type=="bmp") return file.url;
+            else if(type=="pdf") return "img/pdf.jfif";
+            else if(type=="docx" || type=="doc") return "img/pdf.jfif";
+            else return "img/file_icon.png";
+        };
+        
+        $scope.getCommentFileSrc= function(file){
+            var types=file.url.split(".");
+            var type=types[types.length-1];
+            if(type=="jpg" || type=="png" || type=="bmp") return "img/file_icon.png";
+            else if(type=="pdf") return "img/pdf.jfif";
+            else if(type=="docx" || type=="doc") return "img/pdf.jfif";
+            else return "img/file_icon.png";
+        };
     
         $scope.fileUrls = []; //empty file ids
 

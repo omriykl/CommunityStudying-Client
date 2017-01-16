@@ -5,7 +5,7 @@
     <input type="text" ng-model="test.course.faculty.name"  disabled="disabled">
 
     <b>קורס </b>
-    <input type="text" ng-model="test.course.name" disabled="disabled">
+    <input type="text" ng-model="test.course.nameHebrew" disabled="disabled">
 
     <br/>
     <br/>
@@ -24,14 +24,9 @@
     </select>
  <hr>
  <div id="filesDiv">
-    <h3>קבצים: </h3>
-    <div ng-repeat="x in test.files" style="float: right">
-        <div ng-show="x.type == 'word'">
-            <a href="{{x.filePath}}"><img src="img/word.png" style="width: 60px"></a>
-        </div>
-        <div ng-show="x.type == 'pdf'">
-            <a href="{{x.filePath}}"><img src="img/pdf.jfif" style="width: 60px"></a>
-        </div>
+    <b style="float: right">קבצים: </b>
+    <div ng-repeat="x in test.files" style="float: right" >
+        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>
     </div>
      <div style="clear:both"></div>
  </div>
@@ -74,20 +69,21 @@
     </div>
     <div class="questionsview_details" style="float:right">
         <span style="color:#999">
-            
-            - {{x.testQuestion.test.moed}}- 
-            {{x.testQuestion.test.semester}} -
-            {{x.testQuestion.test.year}}- 
+            <b>{{x.testQuestion.test.course.nameHebrew}}</b> - 
+             {{x.testQuestion.test.year}}-
+             {{x.testQuestion.test.semester}} -
+            {{x.testQuestion.test.moed}}-    
             {{x.testQuestion.questionNumber}}
         
         </span>
     </div>
     <div class="questionsview_details q">
-        {{x.answers}} ans | {{x.votes}} votes
+        {{x.numOfComments}} תגובות | {{x.votes}} הצבעות
     </div>
     <div class="questionsview_answer" id="a445">
         <div class="questionsgrid_title">
             <a href="#questions/view/{{x.id}}">{{x.title}}</a>
+            <img ng-show="x.files.length>0" src="img/attachment.png" style="width: 40px;float: left" title="יש קבצים מצורפים">
             <br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}"> 
                     <div class="markdown" style="border: bold" ng-bind-html="x.content"></div>
             <span class="markdown" style="border: bold">...</span>

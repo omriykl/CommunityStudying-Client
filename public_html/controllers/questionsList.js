@@ -17,7 +17,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     $scope.currentPage = 0;
     $scope.pageSize = 10;
     $scope.numberOfPages=function(){
-        return Math.ceil($scope.questions.length/$scope.pageSize);                
+        return Math.ceil($scope.totalCount/$scope.pageSize);                
     };
     
      $scope.$on('user-loaded', function(event, args) {
@@ -27,11 +27,12 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     
     $scope.questions = [];
     $scope.loadUserQuestion = function() {
-   
+    $scope.userId=null;
    
       $scope.searchQuestions = function() {
           $('#loading_image').show();
         var data = {
+            userId: $scope.userId,
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
             courseId: $scope.course != null ? $scope.course.id : null,
             year: $scope.year,
@@ -48,7 +49,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             }
         };
 
-        $http.post(SERVER_APP_BASE_URL + 'post/search', data, config)
+        $http.post(SERVER_APP_BASE_URL + 'post/search?page='+$scope.currentPage+"&size="+$scope.pageSize, data, config)
             .success(function(data, status, headers, config) {
                 $scope.questions = data;
                 $('#loading_image').hide();
@@ -60,7 +61,23 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
                 //       "<hr />headers: " + header +
                 //       "<hr />config: " + config;
             });
+            
+            $http.post(SERVER_APP_BASE_URL + 'post/count', data, config)
+            .success(function(data, status, headers, config) {
+                $scope.totalCount = data;
+            });
     };
+    
+    $scope.pageBack= function(){
+        $scope.currentPage--;
+        $scope.searchQuestions();
+    };
+    
+    $scope.pageNext= function(){
+        $scope.currentPage++;
+        $scope.searchQuestions();
+    };
+    
     
     $scope.selectedFaculty = null;
     $scope.faculties = [];
@@ -73,7 +90,11 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
         }).success(function(result) {
-            $scope.faculties = result.allData;
+            if(result.userData!=null && result.userData.length>0){
+                    $scope.faculties= result.userData;
+                    $scope.faculties.push({id:-1, name: "--------------"});
+            }        
+            $scope.faculties= $scope.faculties.concat(result.allData);
 
         })
     };
@@ -90,9 +111,14 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         var id = item.id;
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='+id+'&idTokenString=' + USER_TOKEN,
         }).success(function(result) {
-            $scope.courses = result.allData;
+                   if(result.userData!=null && result.userData.length>0){
+                    $scope.courses= result.userData;
+                    $scope.courses.push({id:-1, nameHebrew: "--------------"});
+            }           
+            $scope.courses= $scope.courses.concat(result.allData);
+
         });
     };
     
@@ -104,7 +130,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             year: $scope.year,
             semester: $scope.selectedSemester,
             moed: $scope.selectedMoed,
-            questionNumber: $scope.qnumber
+            questionNumber: $scope.qnumber,   
         };
         var config = {
             headers: {
@@ -129,7 +155,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     };
       $scope.showHebName = function(item) {
         return item.nameHebrew;
-    }
+    };
 
 
 
@@ -196,13 +222,8 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
          if($routeParams.param!=null){
             if($routeParams.param.includes("userId=")){
                 var id=$routeParams.param.split('userId=')[1];
-               $http({
-                method: 'GET',
-                url: SERVER_APP_BASE_URL + 'post/getByUser?id='+id,
-            }).success(function(result) {
-                $scope.questions = result;
-            });
-
+                $scope.userId=id;
+                $scope.searchQuestions();
             }
             else if($routeParams.param.includes("qnum=")){
                 $scope.loadFromSearch($routeParams.param);

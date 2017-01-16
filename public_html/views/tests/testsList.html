@@ -1,4 +1,4 @@
-<h1>חיפוש מבחנים <i> </i></h1>
+<h1>- חיפוש מבחנים - <i> </i></h1>
 
 <button id="myBtn">Open Modal</button>
 <input type='button' id='hideshow' value='הצג\הסתר חיפוש '>
@@ -36,6 +36,7 @@
         </select>
         <br/>
         <input type="submit" style="width: 100px;height: 30px;" id="submit" value="חפש" />
+        <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
     </form>
 </div>
 <hr>
@@ -47,8 +48,13 @@
 <!--    <div class="questionsview_details">
         <span style="color:#999" title="{{x.createdAt}}">הועלה ב : {{x.timeAgo}}</span>
     </div>-->
-    <div class="questionsview_details q">
+<!--    <div class="questionsview_details q">
         {{x.comments}} ans | {{x.posts}} posts
+    </div>-->
+    <div class="questionsview_details" style="float:right">
+        <span style="color:#999">
+            <b>{{x.course.nameHebrew}}</b> -      
+        </span>
     </div>
     <div class="questionsview_answer" id="a445">
         <div class="questionsgrid_title">
@@ -68,6 +74,16 @@
     </div>
 </div>
 
+<div ng-show="totalCount>pageSize">
+    <button ng-disabled="currentPage == 0" ng-click="pageBack()" style="background-color:  whitesmoke">
+        הקודם
+    </button>
+עמוד
+    {{currentPage+1}}/{{numberOfPages()}} 
+    <button ng-disabled="currentPage >= totalCount/pageSize - 1" ng-click="pageNext()" style="background-color:  whitesmoke">
+        הבא
+</div>
+
 
 
 <div id="newTestModal" class="modal">
@@ -76,8 +92,8 @@
   <div class="modal-content">
     <span class="close" id="closeModel">&times;</span>
     <h2>היי  !</h2>
-    <h3>לאחר חיפוש מעמיק, גילינו שאין לנו בכלל קבצים הקשורים למבחן זה</h3>
-    <h3>נעריך מאד אם תוכל לעלות את קובץ המבחן, הפתרונות, או כל דבר אחר רלוונטי </h3>
+    <h3>לאחר חיפוש מעמיק, גילינו שאין לנו בכלל קבצים הקשורים לקריטריונים שחיפשת</h3>
+    <h3>נעריך מאד אם תוכל לעלות קבצי מבחנים, פתרונות, או כל דבר אחר רלוונטי </h3>
     
         <form ng-submit="addTest()">
 
@@ -92,10 +108,10 @@
         <br/>
 
         <b>שנה </b>
-        <input type="number" ng-model="year" min="1970" max="2020">
+        <input type="number" required ng-model="year" min="1970" max="2020">
 
         <b>סמסטר </b>
-        <select ng-model="selectedSemester" style="width: 50px">
+        <select ng-model="selectedSemester" required  style="width: 50px">
             <option value="">--
                 <option value="A">A
                     <option value="B">B
@@ -103,7 +119,7 @@
         </select>
 
         <b>מועד </b>
-        <select ng-model="selectedMoed" style="width: 50px">
+        <select ng-model="selectedMoed" required style="width: 50px">
             <option value="">--
                 <option value="A">A
                     <option value="B">B

@@ -1,24 +1,10 @@
 
-<h1>Edit Your Answer</h1>
+<h1>ערוך את תשובתך</h1>
 <form ng-submit="submit()">
 
-    <text-angular ng-model="htmlContent" name="content">
+    <text-angular ng-model="answer.content" name="content">
     </text-angular>
 <br/>
 
- <b>Drop File:</b>
-        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
-             style="width: 250px;height: 130px; padding: 0">
-            <img  src="img/drag-drop-file.gif" width="230px"> </div>
-        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        <b>Files Uploaded</b>
-        <ul>
-            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-        </ul>
-        <div class="progress" style="background-color: #5cb85c;width: 0%">
-            <div class="bar"></div >
-            <div class="percent">0%</div >
-        </div>
-<br/>
-<input type="submit" value="Update Answer" style="width: 100px;height: 30px;">
+<input type="submit" value="עדכן" style="width: 100px;height: 30px;">
 </form>

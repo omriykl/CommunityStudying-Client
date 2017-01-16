@@ -1,6 +1,8 @@
-app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function($scope, $http, Upload, $timeout) {
+app.controller('editQuestion', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
 
-    // Get the modal
+     var currentId = $routeParams.param;
+
+        // Get the modal
     var newTestModal = document.getElementById('newTestModal');
 
     var btn = document.getElementById("myBtn");
@@ -42,11 +44,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
         }).success(function(result) {
-            if(result.userData!=null && result.userData.length>0){
-                    $scope.faculties= result.userData;
-                    $scope.faculties.push({id:-1, name: "--------------"});
-            }        
-            $scope.faculties= $scope.faculties.concat(result.allData);
+            $scope.faculties = result.allData;
         });
     };
     $scope.loadFaculties(); // first call to get faculties 
@@ -61,13 +59,9 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         var id = item.id;
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='+id+'&idTokenString=' + USER_TOKEN,
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
         }).success(function(result) {
-            if(result.userData!=null && result.userData.length>0){
-                    $scope.courses= result.userData;
-                    $scope.courses.push({id:-1, nameHebrew: "--------------"});
-            }           
-            $scope.courses= $scope.courses.concat(result.allData);
+            $scope.courses = result.allData;
         });
     };
 
@@ -103,9 +97,9 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
             }
         };
 
-        $http.post(SERVER_APP_BASE_URL + 'test/count', data, config)
+        $http.post(SERVER_APP_BASE_URL + 'test/search', data, config)
             .success(function(data, status, headers, config) {
-                if (data == null || data == 0) {
+                if (data == null || data.length == 0) {
                     $("#testNotExistModel").fadeIn();
                     $scope.mustAddFile = true;
                 } else {
@@ -188,11 +182,11 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         return item.nameHebrew;
     };
 
-    $scope.fileUrls = []; //empty file ids
+    $scope.filesIds = []; //empty file ids
 
 
     $scope.addTest = function() {
-        if ($scope.fileUrls.length == 0) {
+        if ($scope.filesIds.length == 0) {
 
         } else {
             $('#loading_image').show();
@@ -202,7 +196,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 year: $scope.year,
                 semester: $scope.selectedSemester,
                 moed: $scope.selectedMoed,
-                files: $scope.fileUrls
+                files: $scope.filesIds
             };
             var config = {
                 headers: {
@@ -224,7 +218,66 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         }
 
     };
-
+    
+        $scope.facultySelectedWithId = function(item,courseId) {
+        //$scope.item.size.code = $scope.selectedItem.code
+        var id = item.id;
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
+        }).success(function(result) {
+            $scope.courses = result.allData;
+            for(var i in $scope.courses){
+                if($scope.courses[i].id==courseId){
+                    $scope.course=$scope.courses[i];
+                    $scope.courseSelected($scope.course);
+                break;
+                }
+            }
+            
+        });
+    };
+    
+    
+    $scope.loadFacultiesWithId = function(facid,couid) {
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+        }).success(function(result) {
+            $scope.faculties = result.allData;
+            for(var i in $scope.faculties){
+                if($scope.faculties[i].id==facid){
+                    $scope.faculty=$scope.faculties[i];
+                    break;
+                }
+            }
+            $scope.facultySelectedWithId($scope.faculty,couid);
+            
+        });
+    };
+    
+     $scope.loadQuestion= function(){
+                
+           $scope.loadFacultiesWithId($scope.question.course.faculty.id,$scope.question.course.id);     
+                $scope.year=parseInt($scope.question.testQuestion.test.year);
+                $scope.selectedSemester=$scope.question.testQuestion.test.semester;
+                $scope.selectedMoed=$scope.question.testQuestion.test.moed;
+                $scope.qnumber=$scope.question.questionNumber;
+                
+    };
+    
+    	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
+            if(data!=null){
+		$scope.question = data;
+                $scope.loadQuestion();
+	}
+        else{
+           window.location = "#questions/view/" + currentId;
+        }
+    }).error(function(){
+            //window.location = "/question/view/" + currentId;
+        });
+    
 
     $scope.submit = function() {
         if ($scope.mustAddFile) {
@@ -242,7 +295,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 title: $scope.title,
                 content: $scope.htmlContent,
                 tags: $scope.selectedTags,
-                files: $scope.fileUrls
+                files: $scope.filesIds
                 //files: $scope.files
             };
             var config = {
@@ -251,7 +304,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 }
             };
 
-            $http.post(SERVER_APP_BASE_URL + 'post/?userTokenId=' + USER_TOKEN, data, config)
+            $http.post(SERVER_APP_BASE_URL + 'post/update/'+$scope.question.id+'?userTokenId=' + USER_TOKEN, data, config)
                 .success(function(data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     window.location = "#questions/view/" + data.id;
@@ -293,22 +346,28 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                     bar.width(percentVal);
                     percent.html(percentVal);
                     Upload.upload({
-                        url: SERVER_APP_BASE_URL + 'upload/',
+                        url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
                         data: {
                             USER_TOKEN: USER_TOKEN,
-                            uploadingFiles: file
+                            file: file
                         }
                     }).then(function(resp) {
                         $timeout(function() {
-                            $scope.fileUrls.push(resp.data[0]);                    
+                            $scope.filesIds.push(resp.id);
                             $scope.mustAddFile = false;
                             submit.disabled = false;
                             submit2.disabled = false;
-                            
+                            $scope.log = 'file: ' +
+                                resp.config.data.file.name +
+                                ', Response: ' + JSON.stringify(resp.data) +
+                                '\n' + $scope.log;
                         });
                     }, null, function(evt) {
                         var progressPercentage = parseInt(100.0 *
                             evt.loaded / evt.total);
+                        $scope.log = 'progress: ' + progressPercentage +
+                            '% ' + evt.config.data.file.name + '\n' +
+                            $scope.log;
 
                         var percentVal = progressPercentage + '%';
                         bar.width(percentVal);
@@ -319,48 +378,4 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
             }
         }
     };
-
 }]);
-
-//
-//app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
-//    $scope.$watch('files', function() {
-//        $scope.upload($scope.files);
-//    });
-//    $scope.$watch('file', function() {
-//        if ($scope.file != null) {
-//            $scope.files = [$scope.file];
-//        }
-//    });
-//    $scope.log = '';
-//
-//    $scope.upload = function(files) {
-//        if (files && files.length) {
-//            for (var i = 0; i < files.length; i++) {
-//                var file = files[i];
-//                if (!file.$error) {
-//                    Upload.upload({
-//                        url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-//                        data: {
-//                            username: $scope.username,
-//                            file: file
-//                        }
-//                    }).then(function(resp) {
-//                        $timeout(function() {
-//                            $scope.log = 'file: ' +
-//                                resp.config.data.file.name +
-//                                ', Response: ' + JSON.stringify(resp.data) +
-//                                '\n' + $scope.log;
-//                        });
-//                    }, null, function(evt) {
-//                        var progressPercentage = parseInt(100.0 *
-//                            evt.loaded / evt.total);
-//                        $scope.log = 'progress: ' + progressPercentage +
-//                            '% ' + evt.config.data.file.name + '\n' +
-//                            $scope.log;
-//                    });
-//                }
-//            }
-//        }
-//    };
-//}]);
