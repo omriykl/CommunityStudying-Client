@@ -185,6 +185,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
                 .success(function(data, status, headers, config) {
                     $scope.PostDataResponse = data;
                     newTestModal.style.display = "none";
+                    $('#loading_image').hide();
                 })
                 .error(function(data, status, header, config) {
                     //   $scope.ResponseDetails = "Data: " + data +
