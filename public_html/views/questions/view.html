@@ -73,9 +73,20 @@
 <li ng-repeat="tag in question.tags" class="bit-box nopadding">{{tag.name}}</li>
 </ul>
 
- <div id="filesDiv">
-    <b style="float: right">קבצים: </b>
+<div id="filesDiv" ng-show="question.files.length>0">
+    <br/>
+    <b style="float: right">קבצים מצורפים לשאלה: </b>
     <div ng-repeat="x in question.files" style="float: right" >
+        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>
+    </div>
+     <div style="clear:both"></div>
+ </div>
+
+
+<div id="filesDiv" ng-show="question.testQuestion.files.length>0">
+    <br/>
+    <b style="float: right">קבצים מצורפים למבחן </b>
+    <div ng-repeat="x in question.testQuestion.files" style="float: right" >
         <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>
     </div>
      <div style="clear:both"></div>

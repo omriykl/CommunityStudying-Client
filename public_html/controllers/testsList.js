@@ -19,7 +19,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         newTestModal.style.display = "none";
-    }
+    };
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
@@ -72,7 +72,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
                 if ($scope.totalCount == 0) {
                     newTestModal.style.display = "block";
                 }
-            })
+            });
             
     };
 
@@ -136,6 +136,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
 
     $scope.facultySelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
+        $scope.courses=[];
         var id = item.id;
         $http({
             method: 'GET',
@@ -224,7 +225,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
                     bar.width(percentVal);
                     percent.html(percentVal);
                     Upload.upload({
-                        url: SERVER_APP_BASE_URL + 'upload/',
+                        url: SERVER_APP_BASE_URL + 'upload?userTokenId='+USER_TOKEN,
                         data: {
                             USER_TOKEN: USER_TOKEN,
                             uploadingFiles: file

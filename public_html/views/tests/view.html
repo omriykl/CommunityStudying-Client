@@ -23,7 +23,8 @@
 
     </select>
  <hr>
- <div id="filesDiv">
+<div id="filesDiv" ng-show="test.files.length>0">
+    <br/>
     <b style="float: right">קבצים: </b>
     <div ng-repeat="x in test.files" style="float: right" >
         <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>

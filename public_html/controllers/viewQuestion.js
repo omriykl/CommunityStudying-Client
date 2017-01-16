@@ -126,7 +126,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
                     bar.width(percentVal);
                     percent.html(percentVal);
                     Upload.upload({
-                        url: SERVER_APP_BASE_URL + 'upload/',
+                        url: SERVER_APP_BASE_URL + 'upload?userTokenId='+USER_TOKEN,
                         data: {
                             USER_TOKEN: USER_TOKEN,
                             uploadingFiles: file

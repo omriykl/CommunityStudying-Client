@@ -108,6 +108,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
 
     $scope.facultySelected = function(item) {
         //$scope.item.size.code = $scope.selectedItem.code
+        $scope.courses=[];
         var id = item.id;
         $http({
             method: 'GET',
