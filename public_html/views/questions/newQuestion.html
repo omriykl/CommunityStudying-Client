@@ -37,7 +37,7 @@
     </select>
 
     <b>מועד </b>
-    <select ng-model="selectedMoed" style="width: 50px" required ng-change="searchTests()">
+    <select ng-model="selectedMoed" style="width: 50px" required ng-change="searchTests()" >
         <option value="">--
             <option value="A">א
                 <option value="B">ב
@@ -161,8 +161,9 @@
 
     <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
 
-    <input type="submit" style="width: 100px;height: 30px;" id="submit" value="פרסם שאלה" />
+    <input type="submit" style="width: 120px;height: 50px;" id="submit" value="פרסם שאלה" />
     <div id="haveToAddFileLine" style="display: none;color: red">
+        <br/>
         * שים לב, אתה חייב לעלות קובץ
     </div>
     <!--  <button ng-click="reset()">RESET</button>-->

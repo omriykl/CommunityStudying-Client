@@ -45,15 +45,13 @@
     <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{question.testQuestion.test.year}}">
 
     <b>סמסטר </b>
-    <select ng-model="selectedSemester" style="width: 50px" disabled="disabled">
-        <option value="">{{question.testQuestion.test.semester}}
-    </select>
+    <input type="text" ng-model="question.testQuestion.test.semester" style="width: 50px" disabled="disabled">
+
 
     <b>מועד </b>
-    <select ng-model="selectedMoed" style="width: 50px" disabled="disabled">
-        <option value="">{{question.testQuestion.test.moed}}
+         <input type="text" ng-model="question.testQuestion.test.moed" style="width: 50px" disabled="disabled">
 
-    </select>
+         
     <b>מספר שאלה </b>
     <input type="number" ng-model="qnumber" min="0" max="100"  disabled="disabled" value="{{question.testQuestion.questionNumber}}">
 

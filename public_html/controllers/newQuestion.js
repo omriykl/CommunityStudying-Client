@@ -36,7 +36,9 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
     };
 
     $scope.mustAddFile = false; //on default
-
+    $scope.faculties=[];
+    $scope.courses=[];
+    
     $scope.loadFaculties = function() {
         $http({
             method: 'GET',

@@ -29,7 +29,7 @@ app.config(function ($routeProvider) {
         controller: "viewQuestion",
         controllerAs: "app"
     });
-    $routeProvider.when("/user/edit/:param", {
+    $routeProvider.when("/user/edit", {
         templateUrl: "views/users/edit.html",
         controller: "editUser",
         controllerAs: "app"
@@ -77,6 +77,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              USER_ID= user.id;
              IS_CONNECTED = true;
              $rootScope.$broadcast('user-loaded');
+             window.location = "#user/edit";
 
          });
      };

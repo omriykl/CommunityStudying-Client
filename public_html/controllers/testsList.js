@@ -11,9 +11,10 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
 
     // Get the <span> element that closes the modal
     var span = document.getElementById("closeModel");
-
+    $scope.pressNewTest=false;
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
+        $scope.pressNewTest=true;
         newTestModal.style.display = "block";
     };
     // When the user clicks on <span> (x), close the modal

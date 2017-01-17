@@ -28,35 +28,35 @@
             single display-fun="showHebName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
 
         <br/>
-
-        <b>שנה</b>
-        <input type="number" ng-model="year" min="1970" max="2020">
-
-        <b>סמסטר</b>
-        <select ng-model="selectedSemester" style="width: 50px">
-            <option value="">--
-                <option value="A">א
-                    <option value="B">ב
-                        <option value="C">קיץ
-        </select>
-
-        <b>מועד</b>
-        <select ng-model="selectedMoed" style="width: 50px">
-            <option value="">--
-                <option value="A">א
-                    <option value="B">ב
-                        <option value="C">ג
-        </select>
-        <b>מספר שאלה</b>
-        <input type="number" ng-model="qnumber" min="1" max="100" ng-blur="onAddQuestionNumber()">
-
-        
-        <br/>
         <div id="tagsDiv" style="display: none">
-        תגיות
+            <b>שנה</b>
+            <input type="number" ng-model="year" min="1970" max="2020">
 
-        <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
-        </multiple-autocomplete>
+            <b>סמסטר</b>
+            <select ng-model="selectedSemester" style="width: 50px">
+                <option value="">--
+                    <option value="A">א
+                        <option value="B">ב
+                            <option value="C">קיץ
+            </select>
+
+            <b>מועד</b>
+            <select ng-model="selectedMoed" style="width: 50px">
+                <option value="">--
+                    <option value="A">א
+                        <option value="B">ב
+                            <option value="C">ג
+            </select>
+            <b>מספר שאלה</b>
+            <input type="number" ng-model="qnumber" min="1" max="100" ng-blur="onAddQuestionNumber()">
+
+
+            <br/>
+
+            תגיות
+
+            <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
+            </multiple-autocomplete>
 
         </div>
         <br/>
@@ -77,7 +77,7 @@
     <div style="clear:both;height:10px;"></div>
     <div class="questionsview_userbox">
         <div class="userbox">
-            <a href="#users/view?id={{x.user.id}}">{{x.user.firstName}} {{x.user.lastName}}</a>
+            {{x.user.firstName}} {{x.user.lastName}}
         </div>
     </div>
     <div class="questionsview_details">
@@ -113,6 +113,10 @@
         <div style="clear:both;"></div>
     </div>
     
+</div>
+<div ng-show="questions.length==0">
+    <h2>אין תוצאות...</h2>
+    <h4>אולי תשנה את קריטריוני החיפוש שלך?</h4>
 </div>
 
 <div ng-show="totalCount>pageSize">

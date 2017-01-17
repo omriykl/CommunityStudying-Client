@@ -13,15 +13,11 @@
     <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{test.year}}">
 
     <b>סמסטר </b>
-    <select ng-model="selectedSemester" style="width: 50px" disabled="disabled">
-        <option value="">{{test.semester}}
-    </select>
+    <input type="text" ng-model="test.semester" style="width: 50px" disabled="disabled">
 
     <b>מועד </b>
-    <select ng-model="selectedMoed" style="width: 50px" disabled="disabled">
-        <option value="">{{test.moed}}
+     <input type="text" ng-model="test.moed" style="width: 50px" disabled="disabled">
 
-    </select>
  <hr>
 <div id="filesDiv" ng-show="test.files.length>0">
     <br/>
@@ -62,7 +58,7 @@
     <div style="clear:both;height:10px;"></div>
     <div class="questionsview_userbox">
         <div class="userbox">
-            <a href="#users/view?id={{x.user.id}}">{{x.user.firstName}} {{x.user.lastName}}</a>
+            {{x.user.firstName}} {{x.user.lastName}}
         </div>
     </div>
     <div class="questionsview_details">
@@ -97,4 +93,7 @@
 
         <div style="clear:both;"></div>
     </div>
+</div>
+<div ng-show="questions.length==0">
+    <h4>לא נמצאו הודעות בנוגע למבחן זה...</h4>
 </div>

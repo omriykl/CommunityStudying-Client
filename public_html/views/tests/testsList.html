@@ -1,6 +1,6 @@
 <h1>- חיפוש מבחנים - <i> </i></h1>
 
-<button id="myBtn">Open Modal</button>
+<button id="myBtn" style="float: left;background-color: whitesmoke">הוסף מבחן חדש</button>
 <input type='button' id='hideshow' value='הצג\הסתר חיפוש '>
 
 <div id="searchPanel">
@@ -17,7 +17,7 @@
         <br/>
 
         <b>שנה </b>
-        <input type="number" ng-model="year" min="1970" max="2020">
+        <input type="number" ng-model="year" placeholder="2017" min="1970" max="2017">
 
         <b>סמסטר </b>
         <select ng-model="selectedSemester" style="width: 50px">
@@ -73,6 +73,10 @@
         <div style="clear:both;"></div>
     </div>
 </div>
+<div ng-show="test.length==0">
+    <h2>אין תוצאות...</h2>
+    <h4>אולי תשנה את קריטריוני החיפוש שלך?</h4>
+</div>
 
 <div ng-show="totalCount>pageSize">
     <button ng-disabled="currentPage == 0" ng-click="pageBack()" style="background-color:  whitesmoke">
@@ -91,10 +95,18 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close" id="closeModel">&times;</span>
-    <h2>היי  !</h2>
+    <div ng-show="pressNewTest">
+        
+         <h2>הוספת מבחן חדש</h2>
+      
+    </div>
+    <div ng-hide="pressNewTest">
+            <h2>היי  !</h2>
     <h3>לאחר חיפוש מעמיק, גילינו שאין לנו בכלל קבצים הקשורים לקריטריונים שחיפשת</h3>
     <h3>נעריך מאד אם תוכל לעלות קבצי מבחנים, פתרונות, או כל דבר אחר רלוונטי </h3>
-    
+  
+    </div>
+
         <form ng-submit="addTest()">
 
     <b> פקולטה </b>
