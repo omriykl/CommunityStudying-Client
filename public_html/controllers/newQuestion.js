@@ -11,19 +11,23 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
         newTestModal.style.display = "block";
+         $scope.pressNewTest=true;
     };
+     $scope.pressNewTest=false;
     $scope.openNewTestDialog = function() {
         newTestModal.style.display = "block";
     };
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         newTestModal.style.display = "none";
+        $scope.pressNewTest=false;
     };
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == newTestModal) {
             newTestModal.style.display = "none";
+            $scope.pressNewTest=false;
         }
     };
 

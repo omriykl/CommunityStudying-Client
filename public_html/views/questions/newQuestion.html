@@ -1,5 +1,6 @@
-<h1>שאלה חדשה <button id="myBtn">Open Modal</button>
-</h1>
+<button id="myBtn" style="float: left;background-color: whitesmoke">הוסף מבחן חדש</button>
+
+<h1>שאלה חדשה </h1>
 
 
 
@@ -177,10 +178,17 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close" id="closeModel">&times;</span>
-    <h2>היי  !</h2>
-    <h3>לאחר חיפוש מעמיק, גילינו שאין לנו בכלל קבצים הקשורים למבחן זה</h3>
-    <h3>נעריך מאד אם תוכל לעלות את קובץ המבחן, הפתרונות, או כל דבר אחר רלוונטי </h3>
-    
+    <div ng-show="pressNewTest">
+        
+         <h2>הוספת מבחן חדש</h2>
+      
+    </div>
+    <div ng-hide="pressNewTest">
+            <h2>היי  !</h2>
+    <h3>לאחר חיפוש מעמיק, גילינו שאין לנו בכלל קבצים הקשורים לקריטריונים שחיפשת</h3>
+    <h3>נעריך מאד אם תוכל לעלות קבצי מבחנים, פתרונות, או כל דבר אחר רלוונטי </h3>
+  
+    </div>
         <form ng-submit="addTest()">
 
     <b> פקולטה </b>

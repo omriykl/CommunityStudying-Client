@@ -75,8 +75,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              USER_ID= user.id;
              IS_CONNECTED = true;
              $rootScope.$broadcast('user-loaded');
-             window.location = "#user/edit";
-
+             
          });
      };
      $scope.logout = function () {

@@ -84,8 +84,7 @@
         <span style="color:#999">{{x.time | date:'dd-MM-yyyy HH:mm'}}</span>
     </div>
     <div class="questionsview_details" style="float:right">
-        <span style="color:#999">
-            {{getQuesDescription(x)}}
+        <span style="color:#999" ng-bind="{{getQuesDescription(x)}}">
         </span>
     </div>
     <div class="questionsview_details q">

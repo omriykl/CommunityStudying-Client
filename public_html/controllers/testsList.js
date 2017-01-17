@@ -20,12 +20,14 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         newTestModal.style.display = "none";
+        $scope.pressNewTest=false;
     };
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == newTestModal) {
             newTestModal.style.display = "none";
+            $scope.pressNewTest=false;
         }
     };
 
@@ -77,6 +79,16 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
             
     };
 
+    $scope.pageBack= function(){
+        $scope.currentPage--;
+        $scope.searchTests();
+    };
+    
+    $scope.pageNext= function(){
+        $scope.currentPage++;
+        $scope.searchTests();
+    };
+    
     if ($routeParams.param != null) {
         if ($routeParams.param.includes("userId=")) {
             var id = $routeParams.param.split('userId=')[1];
