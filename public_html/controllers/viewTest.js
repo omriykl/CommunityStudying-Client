@@ -57,15 +57,15 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
 
             })
             .error(function(data, status, header, config) {
-                //   $scope.ResponseDetails = "Data: " + data +
-                //	<hr />status: " + status +
-                //       "<hr />headers: " + header +
-                //       "<hr />config: " + config;
+                $scope.questions=[];
             });
             
             $http.post(SERVER_APP_BASE_URL + 'post/count', data, config)
             .success(function(data, status, headers, config) {
                 $scope.totalCount = data;
+            })
+            .error(function(data, status, header, config) {
+                $scope.questions=[];
             });
     };
     

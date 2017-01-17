@@ -63,10 +63,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
                 }
             })
             .error(function(data, status, header, config) {
-                //   $scope.ResponseDetails = "Data: " + data +
-                //	<hr />status: " + status +
-                //       "<hr />headers: " + header +
-                //       "<hr />config: " + config;
+                $scope.tests=[];
             });
             
             $http.post(SERVER_APP_BASE_URL + 'test/count', data, config)
@@ -75,6 +72,8 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
                 if ($scope.totalCount == 0) {
                     newTestModal.style.display = "block";
                 }
+            }).error(function(data, status, header, config) {
+                $scope.tests=[];
             });
             
     };
