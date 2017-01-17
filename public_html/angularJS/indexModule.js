@@ -1,8 +1,9 @@
 var SERVER_APP_BASE_URL = "http://localhost:8080/";
-var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect','ui.bootstrap' ]);
+var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload' ,'tagger', 'multipleSelect','ui.bootstrap','localytics.directives']);
 var USER_TOKEN = "";
 var USER_ID="";
 var IS_CONNECTED = false;
+
 app.config(function ($routeProvider) {
     $routeProvider.when("/", {
         templateUrl: "welcome.htm",
