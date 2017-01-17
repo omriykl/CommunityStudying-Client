@@ -78,15 +78,34 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         $scope.searchQuestions();
     };
     
+    $scope.getSemHebrew = function(sem) {
+        switch (sem) {
+            case "A": return "א'";
+            case "B": return "ב'";
+            case "C": return "קיץ";
+            default: return sem;
+        }
+    };
+    
+    $scope.getMoedHebrew = function(moed) {
+        switch (moed) {
+            case "A": return "א'";
+            case "B": return "ב'";
+            case "C": return "ג'";
+            default: return sem;
+        }
+    };
+    
     $scope.getQuesDescription = function(x){
         var srt=x.testQuestion.test.course.nameHebrew;
         if(srt==null) srt="";
-        if(x.testQuestion.test.year!=null){srt+= "-"+x.testQuestion.test.year;}
-        if(x.testQuestion.test.semester!=null){srt+= "- סמסט' "+x.testQuestion.test.semester;}
-        if(x.testQuestion.test.moed!=null){srt+= "- מועד' "+x.testQuestion.test.moed;}
-        if(x.testQuestion.questionNumber!=null && x.testQuestion.questionNumber!=-1){srt+= "- שאלה' "+x.testQuestion.test.questionNumber;}
+        if(x.testQuestion.test.year!=null){srt+= " - "+x.testQuestion.test.year;}
+        if(x.testQuestion.test.semester!=null){srt+= " - סמסט "+$scope.getSemHebrew(x.testQuestion.test.semester);}
+        if(x.testQuestion.test.moed!=null){srt+= " - מועד "+ $scope.getMoedHebrew(x.testQuestion.test.moed);}
+        if(x.testQuestion.questionNumber!=null && x.testQuestion.questionNumber!=-1){srt+= " - שאלה "+x.testQuestion.questionNumber;}
         return srt;
     };
+   
     
     $scope.selectedFaculty = null;
     $scope.faculties = [];
@@ -171,8 +190,9 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
 
 
     $scope.courseSelected = function() {
-        //$scope.item.size.code = $scope.selectedItem.code
         item = $scope.course;
+        if (item == undefined)
+            return;
         var id = item.id;
         $http({
             method: 'GET',
