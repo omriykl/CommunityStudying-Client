@@ -91,3 +91,13 @@
 <div ng-show="questions.length==0">
     <h4>לא נמצאו הודעות בנוגע למבחן זה...</h4>
 </div>
+
+<div ng-show="totalCount>pageSize">
+    <button ng-disabled="currentPage == 0" ng-click="pageBack()" style="background-color:  whitesmoke">
+        הקודם
+    </button>
+עמוד
+    {{currentPage+1}}/{{numberOfPages()}} 
+    <button ng-disabled="currentPage >= totalCount/pageSize - 1" ng-click="pageNext()" style="background-color:  whitesmoke">
+        הבא
+</div>

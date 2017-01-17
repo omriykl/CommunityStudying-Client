@@ -5,8 +5,12 @@ var toggleSearch = function() {
 };
 app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $http, $routeParams) {
    
-        toggleSearch();
-
+    toggleSearch();
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.totalCount/$scope.pageSize);                
+    };
         $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
     });
@@ -27,6 +31,8 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
         return str;
     };
     
+ 
+    
        $scope.searchQuestions = function() {
         var data = {
             facultyId: $scope.test.course.faculty.id,
@@ -44,9 +50,11 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
             }
         };
 
-        $http.post(SERVER_APP_BASE_URL + 'post/search', data, config)
+       $http.post(SERVER_APP_BASE_URL + 'post/search?page='+$scope.currentPage+"&size="+$scope.pageSize, data, config)
             .success(function(data, status, headers, config) {
                 $scope.questions = data;
+                $('#loading_image').hide();
+
             })
             .error(function(data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
@@ -54,8 +62,22 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
                 //       "<hr />headers: " + header +
                 //       "<hr />config: " + config;
             });
+            
+            $http.post(SERVER_APP_BASE_URL + 'post/count', data, config)
+            .success(function(data, status, headers, config) {
+                $scope.totalCount = data;
+            });
     };
     
+     $scope.pageBack= function(){
+        $scope.currentPage--;
+        $scope.searchQuestions();
+    };
+    
+    $scope.pageNext= function(){
+        $scope.currentPage++;
+        $scope.searchQuestions();
+    };
      var currentId = $routeParams.param;
 	$http.get(SERVER_APP_BASE_URL+'test/' + currentId).success(function(data){
 		$scope.test = data;
