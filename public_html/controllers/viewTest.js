@@ -18,6 +18,14 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
             else if(type=="docx" || type=="doc") return "img/word.png";
             else return "img/file_icon.png";
         };
+    $scope.getQuesDescription = function(x){
+        var srt=x.testQuestion.test.course.nameHebrew;
+        if(x.testQuestion.test.year!=null) srt+="-"+x.testQuestion.test.year;
+        if(x.testQuestion.test.semester!=null) srt+="- סמסט' "+x.testQuestion.test.semester;
+        if(x.testQuestion.test.moed!=null) srt+="- מועד' "+x.testQuestion.test.moed;
+        if(x.testQuestion.questionNumber!=null && x.testQuestion.questionNumber!=-1)  srt+="- שאלה' "+x.testQuestion.test.questionNumber;
+        return str;
+    };
     
        $scope.searchQuestions = function() {
         var data = {

@@ -125,7 +125,8 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
     };
 
     $scope.onAddQuestionNumber = function() {
-        var data = {
+        if($scope.qnumber!=null && $scope.qnumber!=0){
+           var data = {
             facultyId: $scope.faculty.id,
             courseId: $scope.course.id,
             year: $scope.year,
@@ -154,6 +155,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 //       "<hr />headers: " + header +
                 //       "<hr />config: " + config;
             });
+        }
 
     };
 

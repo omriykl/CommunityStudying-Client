@@ -78,6 +78,14 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         $scope.searchQuestions();
     };
     
+    $scope.getQuesDescription = function(x){
+        var srt=x.testQuestion.test.course.nameHebrew;
+        if(x.testQuestion.test.year!=null) srt+="-"+x.testQuestion.test.year;
+        if(x.testQuestion.test.semester!=null) srt+="- סמסט' "+x.testQuestion.test.semester;
+        if(x.testQuestion.test.moed!=null) srt+="- מועד' "+x.testQuestion.test.moed;
+        if(x.testQuestion.questionNumber!=null && x.testQuestion.questionNumber!=-1)  srt+="- שאלה' "+x.testQuestion.test.questionNumber;
+        return str;
+    };
     
     $scope.selectedFaculty = null;
     $scope.faculties = [];

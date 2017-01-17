@@ -34,7 +34,7 @@
 
             <b>סמסטר</b>
             <select ng-model="selectedSemester" style="width: 50px">
-                <option value="">--
+                <option value="">הכל
                     <option value="A">א
                         <option value="B">ב
                             <option value="C">קיץ
@@ -42,7 +42,7 @@
 
             <b>מועד</b>
             <select ng-model="selectedMoed" style="width: 50px">
-                <option value="">--
+                <option value="">הכל
                     <option value="A">א
                         <option value="B">ב
                             <option value="C">ג
@@ -85,12 +85,7 @@
     </div>
     <div class="questionsview_details" style="float:right">
         <span style="color:#999">
-            <b>{{x.testQuestion.test.course.nameHebrew}}</b> - 
-             {{x.testQuestion.test.year}}-
-             {{x.testQuestion.test.semester}} -
-            {{x.testQuestion.test.moed}}-    
-            {{x.testQuestion.questionNumber}}
-        
+            {{getQuesDescription(x)}}
         </span>
     </div>
     <div class="questionsview_details q">

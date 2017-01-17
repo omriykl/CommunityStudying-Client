@@ -36,7 +36,7 @@
     <form ng-submit="submit()">
  
         <b>מספר שאלה </b>
-        <input type="number" ng-model="qnumber" min="0" max="100">
+        <input type="number" ng-model="qnumber" min="1" max="100">
 
         <b>טקסט חופשי  </b>
         <input type="text" ng-model="freeText">
@@ -66,12 +66,7 @@
     </div>
     <div class="questionsview_details" style="float:right">
         <span style="color:#999">
-            <b>{{x.testQuestion.test.course.nameHebrew}}</b> - 
-             {{x.testQuestion.test.year}}-
-             {{x.testQuestion.test.semester}} -
-            {{x.testQuestion.test.moed}}-    
-            {{x.testQuestion.questionNumber}}
-        
+            {{getQuesDescription(x)}}    
         </span>
     </div>
     <div class="questionsview_details q">
