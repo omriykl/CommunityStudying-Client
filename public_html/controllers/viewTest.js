@@ -15,7 +15,7 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
             var type=types[types.length-1];
             if(type=="jpg" || type=="png" || type=="bmp") return file.url;
             else if(type=="pdf") return "img/pdf.jfif";
-            else if(type=="docx" || type=="doc") return "img/pdf.jfif";
+            else if(type=="docx" || type=="doc") return "img/word.png";
             else return "img/file_icon.png";
         };
     

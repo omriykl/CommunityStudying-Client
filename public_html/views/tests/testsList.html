@@ -61,10 +61,7 @@
             <a href="#tests/view/{{x.id}}">- {{x.year}} -</a>
             <br/><span class="questionsgrid_description"><a href="#tests/view/{{x.id}}"> סמסטר:  {{x.semester}} - מועד:  {{x.moed}}</a>
             </span>
-            <div style="clear:both" ng-show="x.hasTestFile">
-                        <a href="{{x.testFileUrl}}"><img src="img/upload_pdf.png" style="width:60px;float: right;margin-right: 40%"/></a>
-            </div>
-            
+            <img ng-show="x.files.length>0" src="img/attachment.png" style="width: 40px;float: left" title="יש קבצים מצורפים">           
         </div>
 
         <ul class="holder noborder">
