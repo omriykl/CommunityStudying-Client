@@ -29,13 +29,15 @@
             </select>
         </div>
         
+      <div id="tagsDiv" style="display: none;">
+
         <div style="margin-top:10px; width:100%;">
             <b>שנה</b>
             <input type="number" ng-model="year" min="1970" max="2020">
 
             <b>סמסטר</b>
             <select chosen disable-search="true" ng-model="selectedSemester" style="width: 50px">
-                <option value="">--
+                <option value="">הכל
                 <option value="A">א
                 <option value="B">ב
                 <option value="C">קיץ
@@ -43,7 +45,7 @@
 
             <b>מועד</b>
             <select chosen disable-search="true" ng-model="selectedMoed" style="width: 50px">
-                    <option value="">--
+                    <option value="">הכל
                     <option value="A">א
                     <option value="B">ב
                     <option value="C">ג
@@ -54,7 +56,6 @@
         </div>
         
         <div style="margin-top:10px; width:100%;">
-            <div id="tagsDiv" style="display: ;">
             תגיות
             <select multiple chosen 
                 no-results-text="'sada'"
