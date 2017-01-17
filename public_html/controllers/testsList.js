@@ -188,6 +188,7 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
                     $scope.PostDataResponse = data;
                     newTestModal.style.display = "none";
                     $('#loading_image').hide();
+                    window.location = "#tests/view/" + data.id;
                 })
                 .error(function(data, status, header, config) {
                     //   $scope.ResponseDetails = "Data: " + data +

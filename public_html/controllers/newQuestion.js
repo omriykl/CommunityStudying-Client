@@ -218,7 +218,15 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
             $http.post(SERVER_APP_BASE_URL + 'test/?userTokenId=' + USER_TOKEN, data, config)
                 .success(function(data, status, headers, config) {
                     $scope.PostDataResponse = data;
+                    $scope.fileUrls=[];
+                    var bar = $('.progress');
+                    var percent = $('.percent');
+                    bar.width("0%");
+                    percent.html("0%");
+                    $scope.mustAddFile=false;
                     newTestModal.style.display = "none";
+
+                    
                 })
                 .error(function(data, status, header, config) {
                     //   $scope.ResponseDetails = "Data: " + data +
