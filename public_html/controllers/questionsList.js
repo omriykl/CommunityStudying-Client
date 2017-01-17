@@ -13,7 +13,7 @@ app.filter('startFrom', function() {
 
 app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scope, $http, $routeParams) {
     toggleSearch();
-    
+
     $scope.currentPage = 0;
     $scope.pageSize = 10;
     $scope.numberOfPages=function(){
@@ -106,9 +106,10 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         $scope.loadFaculties(); // second call to get faculties, but this time after user is signed in! 
     });
 
-    $scope.facultySelected = function(item) {
+    $scope.facultySelected = function() {
         //$scope.item.size.code = $scope.selectedItem.code
         $scope.courses=[];
+        item = $scope.faculty;
         var id = item.id;
         $http({
             method: 'GET',
@@ -160,8 +161,9 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
 
 
 
-    $scope.courseSelected = function(item) {
+    $scope.courseSelected = function() {
         //$scope.item.size.code = $scope.selectedItem.code
+        item = $scope.course;
         var id = item.id;
         $http({
             method: 'GET',
