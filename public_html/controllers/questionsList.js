@@ -116,7 +116,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     $scope.loadFaculties = function() {
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?userTokenId=' + USER_TOKEN,
         }).success(function(result) {
             if(result.userData!=null && result.userData.length>0){
                     $scope.faculties= result.userData;
@@ -135,7 +135,6 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     });
 
     $scope.facultySelected = function() {
-        //$scope.item.size.code = $scope.selectedItem.code
         $scope.courses=[];
         item = $scope.faculty;
         var id = item.id;
@@ -228,7 +227,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     $scope.loadFacultiesWithId = function(facid,couid) {
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?userTokenId=' + USER_TOKEN,
         }).success(function(result) {
             $scope.faculties = result.allData;
             for(var i in $scope.faculties){

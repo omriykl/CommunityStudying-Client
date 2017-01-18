@@ -5,116 +5,81 @@
 
 
 <form ng-submit="submit()" class="form-group">
-    <b> פקולטה</b>
-
-    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="בחר פקולטה" single 
-            display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
-    <!--
-         <select ng-model="selectedFaculty" 
-        ng-options="item.name for item in faculties track by item.id" ng-change="facultySelected(selectedFaculty)">
-            <option value="">Select Faculty</option>
-	</select>
-	-->
-    <b>קורס </b>
-    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="בחר קורס" 
-            single display-fun="showHebName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
-    <!--
-	<select ng-model="selectedCourse" 
-        ng-options="item.name for item in courses track by item.id" ng-change="courseSelected(selectedCourse)">
-    <option value="">Select Course</option>
-	</select>
--->
-    <br/>
-
-    <b>שנה </b>
-    <input type="number" ng-model="year" min="1970" placeholder="2017"  max="2017" required>
-
-    <b>סמסטר </b>
-    <select ng-model="selectedSemester" style="width: 50px" required>
-        <option value="">-בחר-
-            <option value="A">א
-                <option value="B">ב
-                    <option value="C">קיץ
-    </select>
-
-    <b>מועד </b>
-    <select ng-model="selectedMoed" style="width: 50px" required ng-change="searchTests()" >
-        <option value="">-בחר-
-            <option value="A">א
-                <option value="B">ב
-                    <option value="C">ג
-    </select>
-    <b>מספר שאלה </b>
-    <input type="number" ng-model="qnumber" min="1" max="100" ng-blur="onAddQuestionNumber()">
-
-    <br/>
-    
-    <div id="questionExistModel" style="display:none;" >
-    <br/>
-  <!-- Modal content -->
-  <div class="modal-content" style="width: 100%">
-      
-    <span class="close" id="closeQuestModel">&times;</span>
-    
-    <b>היי ! <b>
-    אנשים שאלו בעבר על שאלה זו בידיוק !
-    <a href="#questions/search/faculty={{faculty.id}}&course={{course.id}}&year={{year}}&semester={{selectedSemester}}&moed={{selectedMoed}}&qnum={{qnumber}}">לחץ כאן</a> כדי לצפות
-    
-  </div>
-  
-  <br/>
-
-</div>
-
-    <b>כותרת </b>
-    <input type="text" ng-model="title" placeholder="הכנס כותרת לשאלה..." class="textbox" name="title" id="title" tabindex="1" />
-    <br/>
-
-    <!--        
-   OTHER STYLES OF TAGS
-   <tagger ng-model="tags1" options="options" placeholder="Select some tags"></tagger>
-    <input type="text"/>
-    <tagger ng-model="tags1" options="options" disable-new></tagger>
-    <tagger ng-model="tags1" options="options" disable-new limit=3></tagger>
-    <pre>{{ tags1 | json }}</pre>
-
-    single: <tagger tabindex="-1" id="s1" ng-model="font2" options="fonts" placeholder="Choose font" single display-fun="showName" create-fun="createName" on-select="selected"></tagger>
-    single: <tagger tabindex="-1" id="s1" ng-model="font" options="fonts" placeholder="Choose font" single display-fun="showName" create-fun="createName" on-select="selected"></tagger>
-    <pre>{{ font | json }}</pre>
-    <button ng-click='foc()'>Focus</button>
--->
-<div id="tagsDiv" style="display: none;">
-    <b>תגיות </b>
-    
-    <!-- <tagger ng-model="tags.value" options="tags.options" placeholder="Select Tags"></tagger>-->
-    <multiple-autocomplete ng-model="selectedTags" object-property="name" suggestions-arr="optionsTags" class="select">
-        
-        
-    </multiple-autocomplete>
-    <div>
-    <input type="text" ng-model="newTag" placeholder="תגית חדשה..."  name="newTag" id="newTag" tabindex="1" />
-    <button type=button ng-click="addTag()" style="background-color: whitesmoke">הוסף</button>
+    <div style="margin-top:20px; width:100%; float:right;">
+        <b> פקולטה</b>
+        <select chosen ng-change="facultySelected()" placeholder-text-single="'בחר פקולטה'" no-results-text="'טוען..'" search-contains="true" ng-model="faculty" ng-options="s as s.name for s in faculties" > 
+            <option value=""></option>
+        </select>
+        <b>קורס </b>
+        <select chosen ng-change="courseSelected()" placeholder-text-single="'בחר קורס'" no-results-text="'אין נתונים'" search-contains="true" ng-model="course" ng-options="s as s.nameHebrew for s in courses" > 
+            <option value=""></option>
+        </select>
     </div>
-</div>
-    <!--  <pre>{{ tags | json }}</pre>-->
 
-    <!--  <button ng-click="empty.addOption()">Add option</button>-->
+    <div style="margin-top:20px; width:100%; float:right;">
+        <b>שנה</b>
+        <input type="number" ng-model="year" ng-disabled="course == undefined" min="1970" max="2020">
 
-    <br/>
+        <b>סמסטר</b>
+        <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedSemester" style="width: 70px">
+            <option value="">הכל
+            <option value="A">א
+            <option value="B">ב
+            <option value="C">קיץ
+        </select>
 
-    <b>תוכן ההודעה </b>
-    <text-angular ng-model="htmlContent" name="content">
-        
-    </text-angular>
+        <b>מועד</b>
+        <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedMoed" style="width: 70px">
+                <option value="">הכל
+                <option value="A">א
+                <option value="B">ב
+                <option value="C">ג
+        </select>
+        <b>מספר שאלה</b>
+        <input type="number" ng-model="qnumber" ng-disabled="course == undefined" min="1" max="100" ng-blur="onAddQuestionNumber()">
+    </div>
+    <div id="questionExistModel" style="display:none;" >
+        <br/>
+      <!-- Modal content -->
+      <div class="modal-content" style="width: 100%">
 
+        <span class="close" id="closeQuestModel">&times;</span>
 
+        <b>היי ! <b>
+        אנשים שאלו בעבר על שאלה זו בידיוק !
+        <a href="#questions/search/faculty={{faculty.id}}&course={{course.id}}&year={{year}}&semester={{selectedSemester}}&moed={{selectedMoed}}&qnum={{qnumber}}">לחץ כאן</a> כדי לצפות
 
-<!--    <div ng-app="fileUpload" ng-controller="MyCtrl">-->
-        <!--   watching model:
-    <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
-    on file change multiple:
-    <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
- -->
+      </div>
+      <br/>
+    </div>
+    
+    <div style="margin-top:20px; width:100%; float:right;">
+        <div style="float:right;">
+            תגיות
+            <select multiple chosen
+                ng-disabled="course == undefined"
+                no-results-text="'אין נתונים'"
+                placeholder-text-multiple="'בחר תגיות'"
+                ng-model="selectedTags" ng-options="s as s.name for s in optionsTags"
+                style="width:150px;">
+            </select>
+        </div>
+            <div style="margin-right:5px; float: right;">או הוסף חדשה
+            <input type="text" ng-disabled="course == undefined" ng-model="newTag" placeholder="" style="width:150px;" name="newTag" id="newTag" tabindex="1" />
+            <button ng-disabled="course == undefined" type=button ng-click="addTag()" style="background-color: whitesmoke">הוסף</button>
+            </div>
+    </div>
+    <div style="margin-top:20px; width:100%; float:right;">
+        <b>כותרת </b>
+        <input type="text" ng-model="title" placeholder="הכנס כותרת לשאלה..." class="textbox" name="title" id="title" tabindex="1" />
+    </div>
+    <div style="margin-top:20px; width:100%; float:right;">
+        <b>תוכן ההודעה </b>
+        <text-angular ng-model="htmlContent" name="content" ta-toolbar="[['bold','italics','underline','ul','ol','undo','redo','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]">
+
+        </text-angular>
+    </div>
+
      <div id="testNotExistModel" style="display:none;border-color: #800" tabindex='1' >
     <br/>
   <!-- Modal content -->

@@ -46,7 +46,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
     $scope.loadFaculties = function() {
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?userTokenId=' + USER_TOKEN,
         }).success(function(result) {
             if(result.userData!=null && result.userData.length>0){
                     $scope.faculties= result.userData;
@@ -62,9 +62,9 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         $scope.isConnected = true;
     });
 
-    $scope.facultySelected = function(item) {
-        //$scope.item.size.code = $scope.selectedItem.code
+    $scope.facultySelected = function() {
         $scope.courses=[];
+        item = $scope.faculty;
         var id = item.id;
         $http({
             method: 'GET',
@@ -163,15 +163,16 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
 
     };
 
-    $scope.courseSelected = function(item) {
-        //$scope.item.size.code = $scope.selectedItem.code
+    $scope.courseSelected = function() {
+        item = $scope.course;
+        if (item == undefined)
+            return;
         var id = item.id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'tag/getAllByCourseId/?courseId='.concat(id),
         }).success(function(result) {
             $scope.optionsTags = result;
-            document.getElementById('tagsDiv').style.display = "inline";
         });
     };
 
@@ -184,6 +185,8 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 url: SERVER_APP_BASE_URL + 'tag/addTagToCourse/?courseId=' + id + "&tagName=" + name,
             }).success(function(result) {
                 $scope.optionsTags.push(result);
+                if ($scope.selectedTags == undefined)
+                    $scope.selectedTags =[];
                 $scope.selectedTags.push(result);
                 $scope.newTag = "";
             });

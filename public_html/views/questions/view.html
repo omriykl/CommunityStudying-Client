@@ -242,7 +242,9 @@
   <form ng-submit="submitAnswar()">
 <h3 style="padding-top:0px;padding-bottom:16px;">הוסף תגובה :</h2>
 
-   <text-angular ng-model="htmlContent" name="content"></text-angular>
+   <text-angular ng-model="htmlContent" name="content" ta-toolbar="[['bold','italics','underline','ul','ol','undo','redo','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]">
+       
+   </text-angular>
 
 <br/>
         <b>Drop File:</b>

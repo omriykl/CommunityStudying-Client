@@ -10,7 +10,7 @@ app.controller('editUser', ['$scope', '$http', function($scope, $http) {
     $scope.loadFaculties = function() {
         $http({
             method: 'GET',
-            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?idTokenString=' + USER_TOKEN,
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?userTokenId=' + USER_TOKEN,
         }).success(function(result) {
             $scope.faculties = result.allData;
         });
