@@ -29,7 +29,7 @@
         </select>
 
         <b>מועד</b>
-        <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedMoed" style="width: 70px">
+        <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedMoed" style="width: 70px" ng-change="searchTests()">
                 <option value="">הכל
                 <option value="A">א
                 <option value="B">ב
