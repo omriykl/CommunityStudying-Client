@@ -4,6 +4,7 @@
          line-height: 16px;
          max-height: 55px;
          overflow: hidden;
+		 width:100%;
     }
     .show {
          overflow: visible;
@@ -102,8 +103,8 @@
     <div class="questionsview_answer" id="a445">
         <div class="questionsgrid_title">
             <img ng-show="x.files.length>0" src="img/attachment.png" style="width: 40px;float: left" title="יש קבצים מצורפים">
-            <a href="#questions/view/{{x.id}}">{{x.title}}</a>
-            <br/><span class="questionsgrid_description"><a href="#questions/view/{{x.id}}"> 
+            <a href="#questions/view/{{x.id}}" style="color:blue;">{{x.title}}</a>
+            <br/><span class="questionsgrid_description container"><a href="#questions/view/{{x.id}}"> 
                     <div class="markdown" style="border: bold" ng-bind-html="x.content"></div>
             <span class="markdown" style="border: bold">...</span>
                 </a></span>
