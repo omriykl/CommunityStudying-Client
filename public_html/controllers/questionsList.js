@@ -219,6 +219,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
                 break;
                 }
             }
+			$scope.searchQuestions();
             
         });
     };
@@ -241,12 +242,12 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         });
     };
        $scope.loadFromSearch= function(params){
-                
-           $scope.loadFacultiesWithId(params.split('faculty=')[1].split('&')[0],params.split('course=')[1].split('&')[0]);     
                 $scope.year=parseInt(params.split('year=')[1].split('&')[0]);
                 $scope.selectedSemester=params.split('semester=')[1].split('&')[0];
                 $scope.selectedMoed=params.split('moed=')[1].split('&')[0];
                 $scope.qnumber=parseInt(params.split('qnum=')[1]);
+				$scope.loadFacultiesWithId(params.split('faculty=')[1].split('&')[0],params.split('course=')[1].split('&')[0]);     
+                
                 $scope.searchQuestions();
     };
     
