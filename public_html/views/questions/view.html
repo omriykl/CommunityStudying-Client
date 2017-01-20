@@ -1,194 +1,195 @@
 
+<div style="width:80%">
 
+	<div class="questionsview_userbox" style="float: right;padding-left: 10px">
+	  <img src="{{question.user.pictureUrl}}" style="width: 75px;border-radius: 50%;">
+	  <br/>
+	  <small>{{question.user.firstName}} {{question.user.lastName}}</small> </br>
+	  (<img src="img/star.png" style="width: 15px"></img> {{question.user.userRating}})
+	</div>
 
-<div class="questionsview_userbox" style="float: right;padding-left: 10px">
-  <img src="{{question.user.pictureUrl}}" style="width: 75px;border-radius: 50%;">
-  <br/>
-  <small>{{question.user.firstName}} {{question.user.lastName}}</small> </br>
-  (<img src="img/star.png" style="width: 15px"></img> {{question.user.userRating}})
-</div>
+		<div class="questionsview_rating" style="float: right;padding-left: 50px">
+		<div class="questionsview_box">
+			
+			<div class="questionsview_up" ng-click="questionVoteUp()"><img src="img/up_arrow.jpg"  style="width: 20px"></div><div class="questionsview_vote">
+				{{question.votes}}</div><div class="questionsview_down" ng-click="questionVoteDown()"><img src="img/down_arrow.jpg" style="width: 20px"></div>
+		</div>
+		</div>
 
-    <div class="questionsview_rating" style="float: right;padding-left: 50px">
-    <div class="questionsview_box">
-        
-        <div class="questionsview_up" ng-click="questionVoteUp()"><img src="img/up_arrow.jpg"  style="width: 20px"></div><div class="questionsview_vote">
-            {{question.votes}}</div><div class="questionsview_down" ng-click="questionVoteDown()"><img src="img/down_arrow.jpg" style="width: 20px"></div>
-    </div>
-    </div>
+	<h1>{{question.title}}</h1>
 
-<h1>{{question.title}}</h1>
-
-<div style="clear:both"></div>
-
-
-
-<div class="questionsview_details"><span style="color:#999">{{question.time | date:'dd-MM-yyyy HH:mm'}}</span></div>
-
-<div ng-show="USER_ID==question.user.id" class="questionsview_options"><a href="#questions/edit/{{question.id}}">edit</a></div>
+	<div style="clear:both"></div>
 
 
 
-<div class="questionsview_question" id="q{{question.id}}">
+	<div class="questionsview_details"><span style="color:#999">{{question.time | date:'dd-MM-yyyy HH:mm'}}</span></div>
 
-
-    
-<div class="questionsview_questiondescription">
-
-        <b> פקלוטה </b>
-    <input type="text" ng-model="question.testQuestion.test.course.faculty.name"  disabled="disabled">
-
-    <b>קורס </b>
-    <input type="text" ng-model="question.testQuestion.test.course.nameHebrew" disabled="disabled">
-
-    <br/>
-    <br/>
-    <b>שנה </b>
-    <input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{question.testQuestion.test.year}}">
-
-    <b>סמסטר </b>
-    <input type="text" ng-model="question.testQuestion.test.semester" style="width: 50px" disabled="disabled">
-
-
-    <b>מועד </b>
-         <input type="text" ng-model="question.testQuestion.test.moed" style="width: 50px" disabled="disabled">
-
-         
-    <b>מספר שאלה </b>
-    <input type="number" ng-model="qnumber" min="0" max="100"  disabled="disabled" value="{{question.testQuestion.questionNumber}}">
-
-    <br/>
-    <br/>
- 
-    
-    <div class="markdown" style="background-color:  #f2f2f2" ng-bind-html="question.content"></div>
-
-<!--
-<?php if (!empty($link)):?>
-<p><br/><?php echo $link;?> <?php if ($cache):?><em><a href="<?php echo basePath();?>/questions/cache/<?php echo $id;?>" target="_blank">(view cache)</a></em><?php endif;?></p>
-<?php endif;?>
--->
-
-<ul class="holder noborder">
-<li ng-repeat="tag in question.tags" class="bit-box nopadding">{{tag.name}}</li>
-</ul>
-
-<div id="filesDiv" ng-show="question.files.length>0">
-    <br/><br/>
-    <b style="float: right">קבצים מצורפים לשאלה: </b>
-    <div ng-repeat="x in question.files" style="float: right" >
-        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
-    </div>
-     <div style="clear:both"></div>
- </div>
-
-
-<div id="filesDiv" ng-show="question.testQuestion.test.files.length>0">
-    <br/>
-    <b style="float: right">קבצים מצורפים למבחן </b>
-    <div ng-repeat="x in question.testQuestion.test.files" style="float: right" >
-        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
-    </div>
-     <div style="clear:both"></div>
- </div>
-
-
-<div style="height:10px;"></div>
-</div>
+	<div ng-show="USER_ID==question.user.id" class="questionsview_options"><a href="#questions/edit/{{question.id}}">edit</a></div>
 
 
 
-<div style="clear:both"></div>
-</div>
+	<div class="questionsview_question" id="q{{question.id}}">
 
 
-<div  ng-repeat="answer in comments" >
-    <div class="questionsview_userbox" style="float: right">
-  <img ng-src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
-  <br/>
-  <small> {{answer.user.firstName}} {{answer.user.lastName}}</small></br>
-  (<img src="img/star.png" style="width: 15px"></img> {{answer.user.userRating}})
-</div>
+		
+	<div class="questionsview_questiondescription">
+
+			<b> פקלוטה </b>
+		<input type="text" ng-model="question.testQuestion.test.course.faculty.name"  disabled="disabled">
+
+		<b>קורס </b>
+		<input type="text" ng-model="question.testQuestion.test.course.nameHebrew" disabled="disabled">
+
+		<br/>
+		<br/>
+		<b>שנה </b>
+		<input type="number"  min="1970" max="2020" ng-model="year"  disabled="disabled" value="{{question.testQuestion.test.year}}">
+
+		<b>סמסטר </b>
+		<input type="text" ng-model="question.testQuestion.test.semester" style="width: 50px" disabled="disabled">
 
 
-    <div class="questionsview_details"><span style="color:#999">{{answer.timeStamp | date:'dd-MM-yyyy HH:mm'}}</span>
-    </div>
+		<b>מועד </b>
+			 <input type="text" ng-model="question.testQuestion.test.moed" style="width: 50px" disabled="disabled">
 
-    <div ng-show="USER_ID==answer.user.id" class="questionsview_options"><a href="#answers/edit/{{answer.id}}">edit</a></div>
+			 
+		<b>מספר שאלה </b>
+		<input type="number" ng-model="qnumber" min="0" max="100"  disabled="disabled" value="{{question.testQuestion.questionNumber}}">
 
+		<br/>
+		<br/>
+	 
+		
+		<div class="markdown" style="background-color:  #f2f2f2" ng-bind-html="question.content"></div>
 
-    <div ng-show="answer.isAccepted" class="questionsview_accepted">
-        <span ng-click="unAcceptAnswer(answer.id)" title="Un-Accept">
-       <img src='img/accepted.png' style="width: 15px">
-        התשובה התקבלה
-        </span>
-    </div>
+	<!--
+	<?php if (!empty($link)):?>
+	<p><br/><?php echo $link;?> <?php if ($cache):?><em><a href="<?php echo basePath();?>/questions/cache/<?php echo $id;?>" target="_blank">(view cache)</a></em><?php endif;?></p>
+	<?php endif;?>
+	-->
 
-    <div ng-show="!answer.isAccepted && !question.acceptedComment && USER_ID==question.user.id" class="questionsview_accept">
-    <span ng-click="acceptAnswer(answer.id)">קבל תשובה זו</span>
-    </div>
+	<ul class="holder noborder">
+	<li ng-repeat="tag in question.tags" class="bit-box nopadding">{{tag.name}}</li>
+	</ul>
 
-
-    <div class="questionsview_answer" id="a{{answer.id}}">
-    <div class="questionsview_rating">
-    <div class="questionsview_box">
-        
-        <div class="questionsview_up" ng-click="answerVoteUp(answer.id)"><img src="img/up_arrow.jpg"  style="width: 20px"></div><div class="questionsview_vote">
-            <div ng-show="answer.isAccepted" style="padding-top: 10px;">
-<!--       <img src='img/liked-ans.png' style="width: 35px">-->
-    </div>
-            {{answer.answerRate}}</div><div class="questionsview_down" ng-click="answerVoteDown(answer.id)"><img src="img/down_arrow.jpg" style="width: 20px"></div>
-    </div>
-
-
-
-    </div>
-    <div class="questionsview_answerdescription">
-     
-     <div ng-repeat="x in answer.files" style="float: left">
-         <a href="{{x.url}}" target="_blank"><img ng-src="{{getCommentFileSrc(x)}}" src="img/file_icon.png" style="width: 40px" ng-attr-title="{{getFileName(x)}}"></a>
-    </div>
-        
-    <div class="markdown" ng-bind-html="answer.content"></div>
+	<div id="filesDiv" ng-show="question.files.length>0">
+		<br/><br/>
+		<b style="float: right">קבצים מצורפים לשאלה: </b>
+		<div ng-repeat="x in question.files" style="float: right" >
+			<a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
+		</div>
+		 <div style="clear:both"></div>
+	 </div>
 
 
-    <div style="height:20px;"></div>
-    </div>
+	<div id="filesDiv" ng-show="question.testQuestion.test.files.length>0">
+		<br/>
+		<b style="float: right">קבצים מצורפים למבחן </b>
+		<div ng-repeat="x in question.testQuestion.test.files" style="float: right" >
+			<a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
+		</div>
+		 <div style="clear:both"></div>
+	 </div>
 
 
-    <div style="clear:both;"></div>
-    </div>
-    
-</div>
+	<div style="height:10px;"></div>
+	</div>
 
 
 
-<div class="questionsview_form" ng-show="isConnected">
-  <form ng-submit="submitAnswar()">
-<h3 style="padding-top:0px;padding-bottom:16px;">הוסף תגובה :</h2>
+	<div style="clear:both"></div>
+	</div>
 
-   <text-angular ng-model="htmlContent" name="content" ta-toolbar="[['bold','italics','underline','ul','ol','undo','redo','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]">
-       
-   </text-angular>
 
-<br/>
-        <b>Drop File:</b>
-        <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
-             style="width: 250px;height: 130px; padding: 0">
-            <img  src="img/drag-drop-file.gif" width="230px"> </div>
-        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        <b>Files Uploaded</b>
-        <ul>
-            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-        </ul>
-        <div class="progress" style="background-color: #5cb85c;width: 0%">
-            <div class="bar"></div >
-            <div class="percent">0%</div >
-        </div>
+	<div  ng-repeat="answer in comments" >
+		<div class="questionsview_userbox" style="float: right">
+	  <img ng-src="{{answer.user.pictureUrl}}" style="width: 40px;border-radius: 50%;">
+	  <br/>
+	  <small> {{answer.user.firstName}} {{answer.user.lastName}}</small></br>
+	  (<img src="img/star.png" style="width: 15px"></img> {{answer.user.userRating}})
+	</div>
 
-<br/>
-<img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
 
-<input type="submit" value="הוסף תגובה" id="submit" style="width: 150px;height: 50px;" class="button">
+		<div class="questionsview_details"><span style="color:#999">{{answer.timeStamp | date:'dd-MM-yyyy HH:mm'}}</span>
+		</div>
 
-</form>
+		<div ng-show="USER_ID==answer.user.id" class="questionsview_options"><a href="#answers/edit/{{answer.id}}">edit</a></div>
+
+
+		<div ng-show="answer.isAccepted" class="questionsview_accepted">
+			<span ng-click="unAcceptAnswer(answer.id)" title="Un-Accept">
+		   <img src='img/accepted.png' style="width: 15px">
+			התשובה התקבלה
+			</span>
+		</div>
+
+		<div ng-show="!answer.isAccepted && !question.acceptedComment && USER_ID==question.user.id" class="questionsview_accept">
+		<span ng-click="acceptAnswer(answer.id)">קבל תשובה זו</span>
+		</div>
+
+
+		<div class="questionsview_answer" id="a{{answer.id}}">
+		<div class="questionsview_rating">
+		<div class="questionsview_box">
+			
+			<div class="questionsview_up" ng-click="answerVoteUp(answer.id)"><img src="img/up_arrow.jpg"  style="width: 20px"></div><div class="questionsview_vote">
+				<div ng-show="answer.isAccepted" style="padding-top: 10px;">
+	<!--       <img src='img/liked-ans.png' style="width: 35px">-->
+		</div>
+				{{answer.answerRate}}</div><div class="questionsview_down" ng-click="answerVoteDown(answer.id)"><img src="img/down_arrow.jpg" style="width: 20px"></div>
+		</div>
+
+
+
+		</div>
+		<div class="questionsview_answerdescription">
+		 
+		 <div ng-repeat="x in answer.files" style="float: left">
+			 <a href="{{x.url}}" target="_blank"><img ng-src="{{getCommentFileSrc(x)}}" src="img/file_icon.png" style="width: 40px" ng-attr-title="{{getFileName(x)}}"></a>
+		</div>
+			
+		<div class="markdown" ng-bind-html="answer.content"></div>
+
+
+		<div style="height:20px;"></div>
+		</div>
+
+
+		<div style="clear:both;"></div>
+		</div>
+		
+	</div>
+
+
+
+	<div class="questionsview_form" ng-show="isConnected">
+	  <form ng-submit="submitAnswar()">
+	<h3 style="padding-top:0px;padding-bottom:16px;">הוסף תגובה :</h2>
+
+	   <text-angular ng-model="htmlContent" name="content" ta-toolbar="[['bold','italics','underline','ul','ol','undo','redo','justifyLeft','justifyCenter','justifyRight','insertImage','insertLink','insertVideo']]">
+		   
+	   </text-angular>
+
+	<br/>
+			<b>Drop File:</b>
+			<div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
+				 style="width: 250px;height: 130px; padding: 0">
+				<img  src="img/drag-drop-file.gif" width="230px"> </div>
+			<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+			<b>Files Uploaded</b>
+			<ul>
+				<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+			</ul>
+			<div class="progress" style="background-color: #5cb85c;width: 0%">
+				<div class="bar"></div >
+				<div class="percent">0%</div >
+			</div>
+
+	<br/>
+	<img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
+
+	<input type="submit" value="הוסף תגובה" id="submit" style="width: 150px;height: 50px;" class="button">
+
+	</form>
+	</div>
 </div>
