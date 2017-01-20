@@ -129,6 +129,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
                 var file = files[i];
                 if (!file.$error) {
 					submit.disabled = true;
+					$('#loading_image').show();
                     var percentVal = '0%';
                     bar.width(percentVal);
                     percent.html(percentVal);
@@ -143,6 +144,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
                            $scope.fileUrls.push(resp.data[0]); 
                             $scope.mustAddFile = false;
 							submit.disabled = false;
+							$('#loading_image').hide();
                         });
                     }, null, function(evt) {
                         var progressPercentage = parseInt(100.0 *

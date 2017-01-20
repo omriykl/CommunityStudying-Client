@@ -310,6 +310,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                 if (!file.$error) {
                     submit.disabled = true;
                     submit2.disabled = true;
+					$('#loading_image').show();
                     var percentVal = '0%';
                     bar.width(percentVal);
                     percent.html(percentVal);
@@ -325,6 +326,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
                             $scope.mustAddFile = false;
                             submit.disabled = false;
                             submit2.disabled = false;
+							$('#loading_image').hide();
                             
                         });
                     }, null, function(evt) {
