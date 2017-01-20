@@ -123,10 +123,12 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
     $scope.upload = function(files) {
         var bar = $('.progress');
         var percent = $('.percent');
+		var submit = document.getElementById("submit");
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
                 if (!file.$error) {
+					submit.disabled = true;
                     var percentVal = '0%';
                     bar.width(percentVal);
                     percent.html(percentVal);
@@ -140,6 +142,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
                         $timeout(function() {
                            $scope.fileUrls.push(resp.data[0]); 
                             $scope.mustAddFile = false;
+							submit.disabled = false;
                         });
                     }, null, function(evt) {
                         var progressPercentage = parseInt(100.0 *
