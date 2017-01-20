@@ -37,7 +37,7 @@
     <br/>
     <b style="float: right">קבצים: </b>
     <div ng-repeat="x in test.files" style="float: right" >
-        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>
+        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
     </div>
      <div style="clear:both"></div>
  </div>

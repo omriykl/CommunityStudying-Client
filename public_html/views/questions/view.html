@@ -76,7 +76,7 @@
     <br/><br/>
     <b style="float: right">קבצים מצורפים לשאלה: </b>
     <div ng-repeat="x in question.files" style="float: right" >
-        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>
+        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
     </div>
      <div style="clear:both"></div>
  </div>
@@ -86,33 +86,12 @@
     <br/>
     <b style="float: right">קבצים מצורפים למבחן </b>
     <div ng-repeat="x in question.testQuestion.test.files" style="float: right" >
-        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" title="{{x.url}}"></a>
+        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
     </div>
      <div style="clear:both"></div>
  </div>
 
 
-<!--<div class="comments">
-    <div id="comments_q{{x.id}}">
-
-<?php foreach($comments as $comment):?>
-<div  ng-repeat="comment in x.comments" class="comment">
-<div class="comment_text"><?php echo $comment['comment'];?> - <a href="<?php echo basePath();?>/users/<?php echo $comment['userid'];?>/<?php echo $comment['username'];?>"><?php echo $comment['username'];?></a></div>
-
-<div class="commentdel" id="commentdel_<?php echo $comment['id'];?>"><?php if ($comment['userid'] == $_SESSION['userid']) { echo "x"; }?></div>
-
-<div class="commentfave <?php if ($comment['voted'] > 0) { echo "voteselected"; }?>" id="commentfave_<?php echo $comment['id'];?>">♥</div><div class="commentfavevotes"><?php if ($comment['votes'] != 0) { echo $comment['votes']; }?></div>
-<div style="clear:both;"></div>
-</div>
-<?php endforeach;?>
-
-</div>
-<div id="comment_q<?php echo $id;?>" class="commentsadd">
-<span style="float:left"><a href="javascript:void(0)" onclick="javascript:comment('q<?php echo $id;?>')">Add comment</a></span>
-
-<span style="float:right" style="display:none" class="viewallcomments"><a href="javascript:void(0)" onclick="javascript:viewallcomments('q<?php echo $id;?>')"></a></span>
-</div>
-</div>-->
 <div style="height:10px;"></div>
 </div>
 
@@ -120,24 +99,6 @@
 
 <div style="clear:both"></div>
 </div>
-
-
-<!--<?php if ($answerscount != 0):?>
-
-<div class="toppagination">
-<div style="clear:both"></div>
-<?php if($answerscount > ANSWERS_PER_PAGE):?>
-<div class="pagination" style="margin-left:5px;"><?php echo $pagination;?></div>
-<?php endif;?>
-<div class="pagination" style="margin-left:5px;float:right;margin-right:5px;"><?php echo $orderOptions;?></div>
-<div style="clear:both"></div>
-</div>-->
-<!--
-<div>
-<div style="float:left"><h2><?php echo $answerscount;?><?php if ($kb):?> Comments<?php else:?> Answers<?php endif;?></h2></div>
-
-<div style="clear:both"></div>
-</div>-->
 
 
 <div  ng-repeat="answer in comments" >
@@ -184,37 +145,11 @@
     <div class="questionsview_answerdescription">
      
      <div ng-repeat="x in answer.files" style="float: left">
-         <a href="{{x.url}}" target="_blank"><img ng-src="{{getCommentFileSrc(x)}}" src="img/file_icon.png" style="width: 40px" title="{{x.url}}"></a>
+         <a href="{{x.url}}" target="_blank"><img ng-src="{{getCommentFileSrc(x)}}" src="img/file_icon.png" style="width: 40px" ng-attr-title="{{getFileName(x)}}"></a>
     </div>
         
     <div class="markdown" ng-bind-html="answer.content"></div>
 
-    <!--
-    <div class="comments">
-    <div id="comments_a<?php echo $answer['id'];?>">
-
-    <?php foreach($answer['comments'] as $comment):?>
-    <div class="comment">
-    <div class="comment_text"><?php echo $comment['comment'];?> - <a href="<?php echo basePath();?>/users/<?php echo $comment['userid'];?>/<?php echo $comment['username'];?>"><?php echo $comment['username'];?></a></div>
-
-    <div class="commentdel" id="commentdel_<?php echo $comment['id'];?>"><?php if ($comment['userid'] == $_SESSION['userid']) { echo "x"; }?></div>
-
-    <div class="commentfave <?php if ($comment['voted'] > 0) { echo "voteselected"; }?>" id="commentfave_<?php echo $comment['id'];?>">♥</div><div class="commentfavevotes"><?php if ($comment['votes'] != 0) { echo $comment['votes']; }?></div>
-    <div style="clear:both;"></div>
-    </div>
-    <?php endforeach;?>
-
-
-
-    </div>
-    <div id="comment_a<?php echo $answer['id'];?>" class="commentsadd">
-
-    <span style="float:left"><a href="javascript:void(0)" onclick="javascript:comment('a<?php echo $answer['id'];?>')">Add comment</a></span>
-    <span style="float:right" style="display:none" class="viewallcomments"><a href="javascript:void(0)" onclick="javascript:viewallcomments('a<?php echo $answer['id'];?>')"></a></span>
-
-    </div>
-    </div>
-    -->
 
     <div style="height:20px;"></div>
     </div>
@@ -224,18 +159,7 @@
     </div>
     
 </div>
-<!--
-<div class="bottompagination">
-<div style="clear:both"></div>
-<?php if($answerscount > ANSWERS_PER_PAGE):?>
-<div class="pagination" style="margin-left:5px;"><?php echo $pagination;?></div>
-<?php endif;?>
-<div class="pagination" style="margin-left:5px;float:right;margin-right:5px;"><?php echo $orderOptions;?></div>
-<div style="clear:both"></div>
-</div>
 
-<?php else:?><h3><?php if ($kb):?>No comments on this article as yet.<?php else:?>No answers as yet. Be the first to write an answer.<?php endif;?></h3><?php endif;?>
--->
 
 
 <div class="questionsview_form" ng-show="isConnected">

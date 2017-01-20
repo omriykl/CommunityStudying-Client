@@ -22,6 +22,11 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
             else if(type=="docx" || type=="doc") return "img/word.png";
             else return "img/file_icon.png";
         };
+		
+		$scope.getFileName= function(file){
+            var types=file.url.split("/");
+            return types[types.length-1];          
+        };
     
     $scope.getSemHebrew = function(sem) {
         switch (sem) {
