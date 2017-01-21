@@ -25,8 +25,36 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
             $scope.USER_ID = USER_ID;
          });
          
-        
          
+             $scope.getSemHebrew = function(sem) {
+        switch (sem) {
+            case "A": return "א'";
+            case "B": return "ב'";
+            case "C": return "קיץ";
+            default: return sem;
+        }
+    };
+    
+    $scope.getMoedHebrew = function(moed) {
+        switch (moed) {
+            case "A": return "א'";
+            case "B": return "ב'";
+            case "C": return "ג'";
+            default: return sem;
+        }
+    };
+         
+        
+             $scope.getQuesDescription = function(x){
+        var srt=x.test.course.nameHebrew;
+        if(srt==null) srt="";
+        if(x.test.year!=null){srt+= " - "+x.test.year;}
+        if(x.test.semester!=null){srt+= " - סמסט "+$scope.getSemHebrew(x.test.semester);}
+        if(x.test.moed!=null){srt+= " - מועד "+ $scope.getMoedHebrew(x.test.moed);}
+        if(x.questionNumber!=null && x.questionNumber!=0){srt+= " - שאלה "+x.questionNumber;}
+        return srt;
+    };
+   
 
         $scope.questionVoteUp = function () {  
         $http.get(SERVER_APP_BASE_URL+'post/like?id=' + currentId).success(function(data){ //still not connected!

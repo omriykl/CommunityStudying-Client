@@ -102,7 +102,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         if(x.testQuestion.test.year!=null){srt+= " - "+x.testQuestion.test.year;}
         if(x.testQuestion.test.semester!=null){srt+= " - סמסט "+$scope.getSemHebrew(x.testQuestion.test.semester);}
         if(x.testQuestion.test.moed!=null){srt+= " - מועד "+ $scope.getMoedHebrew(x.testQuestion.test.moed);}
-        if(x.testQuestion.questionNumber!=null && x.testQuestion.questionNumber!=-1){srt+= " - שאלה "+x.testQuestion.questionNumber;}
+        if(x.testQuestion.questionNumber!=null && x.testQuestion.questionNumber!=0){srt+= " - שאלה "+x.testQuestion.questionNumber;}
         return srt;
     };
    
