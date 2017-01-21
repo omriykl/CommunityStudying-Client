@@ -3,9 +3,17 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
         $scope.isConnected=IS_CONNECTED;
         $scope.USER_ID = USER_ID;
         var currentId = $routeParams.param;
+        
+         $scope.similarQues=[];
+         $scope.getsimiarl= function() {$http.get(SERVER_APP_BASE_URL+'testQuestion/getSimilarQuestions/'+$scope.question.testQuestion.id+'?page=0&size=5').success(function(data){
+		$scope.similarQues = data;      
+	});};
+        
+        
 	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
 		$scope.question = data;
                 window.scrollTo(0, 0);
+                $scope.getsimiarl();
 
 	});
         $http.get(SERVER_APP_BASE_URL+'comment/getByPost/' + currentId).success(function(data){
@@ -16,6 +24,8 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
             $scope.isConnected=true;
             $scope.USER_ID = USER_ID;
          });
+         
+        
          
 
         $scope.questionVoteUp = function () {  
