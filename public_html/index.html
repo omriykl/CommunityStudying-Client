@@ -173,7 +173,7 @@
 		<div ng-show="isConnected">
 			<div style="float:left; margin-bottom:10px;"><img ng-src={{userPic}} style="border:1px solid #ccc; width:72px;"></div>
 			<div style="float:right;padding:10px;">
-                            <div style="padding-bottom:5px" class="h3s" title="הדירוג שלך = סכום ההצבעות שקיבלת עבור שאלות ותגובות שלך"> {{userName}} - (<img src="img/star.png" style="width: 15px"></img> {{userRating}})</div>
+                            <div style="padding-bottom:5px; direction: ltr;" class="h3s" title="הדירוג שלך = סכום ההצבעות שקיבלת עבור שאלות ותגובות שלך"> {{userName}} - (<img src="img/star.png" style="width: 15px"></img> {{userRating}})</div>
                             
 				<a href="#" onclick="signOut();">התנתק</a><br><br>
 			</div>
@@ -191,7 +191,7 @@
                          <a href="#user/edit" >ערוך קורסים</a><br/>
 
 		</div>
-                    <center><div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="230"  data-height="40" data-longtitle="true" style="margin-top: 10px;"></center>
+                    <center><div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="186"  data-height="40" data-longtitle="true" style="margin-top: 10px;"></center>
                     <script>
                       function signOut() {
                         var auth2 = gapi.auth2.getAuthInstance();
