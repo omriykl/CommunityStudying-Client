@@ -146,9 +146,9 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
         $scope.loadFaculties(); // second call to get faculties, but this time after user is signed in! 
     });
 
-    $scope.facultySelected = function(item) {
-        //$scope.item.size.code = $scope.selectedItem.code
+    $scope.facultySelected = function() {
         $scope.courses=[];
+        item = $scope.faculty;
         var id = item.id;
         $http({
             method: 'GET',

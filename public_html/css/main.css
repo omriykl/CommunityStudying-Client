@@ -337,6 +337,7 @@ body {
 #userpanel {
 	width: 22%;
 	float:right; 
+        max-width: 300px;
 }
 
 .userdetails {

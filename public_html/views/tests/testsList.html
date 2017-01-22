@@ -10,37 +10,42 @@
 <div id="searchPanel">
     <form ng-submit="submit()">
 
-    <b> פקולטה </b>
-    
-    <tagger tabindex="-1" id="s1" required ng-model="faculty" options="faculties" placeholder="בחר פקולטה" single 
-            display-fun="showName" create-fun="createName" on-select="facultySelected" style="border-radius: 10px"></tagger>
+        <div style="margin-top:10px; width:100%;">
+            <b> פקולטה </b>
 
-    <b>קורס </b>
-    <tagger tabindex="-1" id="s1" required ng-model="course" options="courses" placeholder="בחר קורס" 
-            single display-fun="showHebName" create-fun="createName" on-select="courseSelected" style="border-radius: 10px"></tagger>
-        <br/>
+            <select chosen ng-change="facultySelected()" placeholder-text-single="'בחר פקולטה'" no-results-text="'טוען..'" search-contains="true" ng-model="faculty" ng-options="s as s.name for s in faculties" > 
+                        <option value=""></option>
+                    </select>
 
-        <b>שנה </b>
-        <input type="number" ng-model="year" placeholder="----" min="1970" max="2017">
+            <b>קורס </b>
+            <select chosen ng-change="courseSelected()" placeholder-text-single="'בחר קורס'" no-results-text="'אין נתונים'" search-contains="true" ng-model="course" ng-options="s as s.nameHebrew for s in courses" > 
+                <option value=""></option>
+            </select>
+        </div>
+        <div style="margin-top:10px; width:100%;">
+            <b>שנה </b>
+            <input type="number" ng-model="year" placeholder="----" min="1970" max="2017">
 
-        <b>סמסטר </b>
-        <select ng-model="selectedSemester" style="width: 50px">
-            <option value="">הכל
+            <b>סמסטר </b>
+            <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedSemester" style="width: 70px">
+                <option value="">הכל
                 <option value="A">א
-                    <option value="B">ב
-                        <option value="C">קיץ
-        </select>
+                <option value="B">ב
+                <option value="C">קיץ
+            </select>
 
-        <b>מועד </b>
-        <select ng-model="selectedMoed" style="width: 50px">
-            <option value="">הכל
-                <option value="A">א
+            <b>מועד </b>
+            <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedMoed" style="width: 70px">
+                    <option value="">הכל
+                    <option value="A">א
                     <option value="B">ב
-                        <option value="C">ג
-        </select>
-        <br/>
-        <input type="submit" style="width: 100px;height: 30px;" id="submit" value="חפש" />
-        <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
+                    <option value="C">ג
+            </select>
+        </div>
+        <div style="margin-top:10px; width:100%;">
+            <input type="submit" style="width: 100px;height: 30px;" id="submit" value="חפש" />
+            <img src="img/myloadingimage.gif" style="display: none;" id="loading_image">
+        </div>
     </form>
 </div>
 <hr>
