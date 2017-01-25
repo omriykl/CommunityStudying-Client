@@ -237,7 +237,7 @@ div#preview {
 .questionsview_answer {
 	padding-top: 15px;
 	padding-bottom: 15px;
-	margin-top: 10px;
+	margin-top: 20px;
 	margin-bottom: 0px;
 	border-top: 1px solid #ccc;
 	width: 658px;
@@ -370,6 +370,7 @@ body {
 
 .questionsview_userbox {
 	float: left;
+        margin-top: 7px;
 }
 
 .userbox {
@@ -377,7 +378,7 @@ body {
 	padding-right: 10px;
 	padding-left: 10px;
 	background-color: #eee;
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: bold;
 	border: 1px solid #ccc;
 	-moz-border-radius-bottomright:6px;
@@ -394,7 +395,7 @@ body {
 	padding-right: 10px;
 	padding-left: 10px;
 	background-color: #eee;
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: bold;
 	border: 1px solid #ccc;
 	-moz-border-radius-bottomright:6px;
@@ -402,6 +403,7 @@ body {
 	color: #666;
 	float: left;
 	margin-right: 10px;
+        margin-top:7px;
 }
 
 .questionsview_details a {
@@ -529,7 +531,7 @@ pre {
 }
 
 .questionsgrid_title a {
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	border-bottom: 0px;
 	color: #666;
