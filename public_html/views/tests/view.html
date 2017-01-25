@@ -1,4 +1,4 @@
-<style>
+	<style>
     .container {
          font-size: 16px;
          line-height: 16px;
@@ -40,7 +40,12 @@
     <br/>
     <b style="float: right">קבצים: </b>
     <div ng-repeat="x in test.files" style="float: right" >
-        <a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
+        <a href="{{x.url}}" target="_blank">
+		<ul>
+		<img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}">
+		</ul>
+		<span>{{getFileName(x).split('.')[0]}}</span>
+		</a>
     </div>
      <div style="clear:both"></div>
  </div>
