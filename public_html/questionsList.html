@@ -99,7 +99,10 @@
             {{getQuesDescription(x)}}
         </span>
     </div>
-    <div class="questionsview_details q">
+    <div ng-show="x.numOfComments>0" class="questionsview_details q">
+        {{x.numOfComments}} תגובות | {{x.votes}} הצבעות
+    </div>
+	<div ng-show="x.numOfComments==0" class="questionsview_details q" style="background-color:darksalmon">
         {{x.numOfComments}} תגובות | {{x.votes}} הצבעות
     </div>
     <div class="questionsview_answer" id="a445">
