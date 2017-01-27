@@ -3,6 +3,7 @@ var app = angular.module('indexApp', ['ngRoute' , 'textAngular' , 'ngFileUpload'
 var USER_TOKEN = "";
 var USER_ID="";
 var IS_CONNECTED = false;
+var IS_ADMIN= false;
 
 app.config(function ($routeProvider) {
     $routeProvider.when("/", {
@@ -75,6 +76,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              USER_TOKEN = id_token;
              USER_ID= user.id;
              IS_CONNECTED = true;
+             IS_ADMIN = user.admin;
              $rootScope.$broadcast('user-loaded');
              
          });

@@ -2,12 +2,32 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
       
         $scope.isConnected=IS_CONNECTED;
         $scope.USER_ID = USER_ID;
+        $scope.IS_ADMIN = IS_ADMIN;
+        
+        
         var currentId = $routeParams.param;
         
          $scope.similarQues=[];
          $scope.getsimiarl= function() {$http.get(SERVER_APP_BASE_URL+'testQuestion/getSimilarQuestions/'+$scope.question.testQuestion.id+'?page=0&size=5').success(function(data){
 		$scope.similarQues = data;      
 	});};
+    
+        $scope.deletePost = function() {
+            if (confirm("האם אתם בטוחים שברצונכם למחוק פוסט זה?")) {
+                $http.delete(SERVER_APP_BASE_URL+'post/' + currentId+'?userTokenId='+USER_TOKEN).success(function(data){
+                    location.href="index.html#/questions";
+                });
+            }
+            
+        };
+        
+        $scope.deleteComment = function(id) {
+            if (confirm("האם אתם בטוחים שברצונכם למחוק תגובה זו?")) {
+                $http.delete(SERVER_APP_BASE_URL+'comment/' + id+'?userTokenId='+USER_TOKEN).success(function(data){
+                    location.reload();
+                });       
+            }
+        };
         
         
 	$http.get(SERVER_APP_BASE_URL+'post/' + currentId).success(function(data){
@@ -23,6 +43,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
         $scope.$on('user-loaded', function(event, args) {
             $scope.isConnected=true;
             $scope.USER_ID = USER_ID;
+            $scope.IS_ADMIN = IS_ADMIN;
          });
          
          
