@@ -31,6 +31,11 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
    
       $scope.searchQuestions = function() {
           $('#loading_image').show();
+          thisFacultyId: $scope.faculty != null ? $scope.faculty.id : null;
+            thisCourseId: $scope.course != null ? $scope.course.id : null;
+            thisYear: $scope.year;
+            thisSemester: $scope.selectedSemester;
+            thisMoed: $scope.selectedMoed;
         var data = {
             userId: $scope.userId,
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
@@ -137,7 +142,9 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     $scope.facultySelected = function() {
         $scope.courses=[];
         item = $scope.faculty;
+        
         var id = item.id;
+        thisFacultyId=id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='+id+'&idTokenString=' + USER_TOKEN,
@@ -193,6 +200,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         if (item == undefined)
             return;
         var id = item.id;
+        thisCourseId=id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'tag/getAllByCourseId/?courseId='.concat(id),
@@ -207,6 +215,8 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     $scope.facultySelectedWithId = function(item,courseId) {
         //$scope.item.size.code = $scope.selectedItem.code
         var id = item.id;
+        thisFacultyId=id;
+        thisCourseId=courseId;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
@@ -246,7 +256,7 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
                 $scope.selectedSemester=params.split('semester=')[1].split('&')[0];
                 $scope.selectedMoed=params.split('moed=')[1].split('&')[0];
                 $scope.qnumber=parseInt(params.split('qnum=')[1]);
-				$scope.loadFacultiesWithId(params.split('faculty=')[1].split('&')[0],params.split('course=')[1].split('&')[0]);     
+		$scope.loadFacultiesWithId(params.split('faculty=')[1].split('&')[0],params.split('course=')[1].split('&')[0]);     
                 
                 $scope.searchQuestions();
     };
@@ -260,6 +270,10 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             else if($routeParams.param.includes("qnum=")){
                 $scope.loadFromSearch($routeParams.param);
 
+            }
+            else if(thisFacultyId!=null){
+                var thisUserVars="faculty="+thisFacultyId+"&course="+thisCourseId+"&year="+thisYear+"&semester="+thisSemester+"&moed="+thisMoed+"&qnum=";
+                $scope.loadFromSearch(thisUserVars);     
             }
             else{
                $scope.freeText= $routeParams.param;        

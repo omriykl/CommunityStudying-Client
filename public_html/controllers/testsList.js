@@ -40,6 +40,11 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
 
     $scope.searchTests = function() {
         $('#loading_image').show();
+        thisFacultyId: $scope.faculty != null ? $scope.faculty.id : null;
+            thisCourseId: $scope.course != null ? $scope.course.id : null;
+            thisYear: $scope.year;
+            thisSemester: $scope.selectedSemester;
+            thisMoed: $scope.selectedMoed;
         var data = {
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
             courseId: $scope.course != null ? $scope.course.id : null,
@@ -172,6 +177,61 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
     $scope.submit = function() {
         $scope.searchTests();
     };
+
+    
+    
+    $scope.facultySelectedWithId = function(item,courseId) {
+        //$scope.item.size.code = $scope.selectedItem.code
+        var id = item.id;
+        thisFacultyId=id;
+        thisCourseId=courseId;
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='.concat(id),
+        }).success(function(result) {
+            $scope.courses = result.allData;
+            for(var i in $scope.courses){
+                if($scope.courses[i].id==courseId){
+                    $scope.course=$scope.courses[i];
+                    $scope.courseSelected($scope.course);
+                break;
+                }
+            }
+			$scope.searchQuestions();
+            
+        });
+    };
+    
+    
+    $scope.loadFacultiesWithId = function(facid,couid) {
+        $http({
+            method: 'GET',
+            url: SERVER_APP_BASE_URL + 'faculty/getUserAllData?userTokenId=' + USER_TOKEN,
+        }).success(function(result) {
+            $scope.faculties = result.allData;
+            for(var i in $scope.faculties){
+                if($scope.faculties[i].id==facid){
+                    $scope.faculty=$scope.faculties[i];
+                    break;
+                }
+            }
+            $scope.facultySelectedWithId($scope.faculty,couid);
+            
+        });
+    };
+       $scope.loadFromSearch= function(params){
+                $scope.year=parseInt(params.split('year=')[1].split('&')[0]);
+                $scope.selectedSemester=params.split('semester=')[1].split('&')[0];
+                $scope.selectedMoed=params.split('moed=')[1].split('&')[0];
+		$scope.loadFacultiesWithId(params.split('faculty=')[1].split('&')[0],params.split('course=')[1].split('&')[0]);     
+                
+                $scope.searchTests();
+    };
+    
+    if(thisFacultyId!=null){
+                var thisUserVars="faculty="+thisFacultyId+"&course="+thisCourseId+"&year="+thisYear+"&semester="+thisSemester+"&moed="+thisMoed;
+                $scope.loadFromSearch(thisUserVars); 
+            }
 
     $scope.fileUrls = []; //empty file ids
 
