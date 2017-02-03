@@ -37,6 +37,15 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
         }
     };
     
+    document.getElementById("newQuesBtn").onclick= function(){
+        thisFacultyId= $scope.test.course.faculty.id;
+            thisCourseId= $scope.test.course.id ;
+            thisYear= $scope.test.year;
+            thisSemester= $scope.test.semester;
+            thisMoed= $scope.test.moed;
+            window.location = "#questions/new";
+    };
+    
     $scope.getMoedHebrew = function(moed) {
         switch (moed) {
             case "A": return "א'";

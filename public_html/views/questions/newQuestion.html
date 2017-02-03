@@ -20,19 +20,19 @@
 
     <div style="margin-top:20px; width:100%; float:right;">
         <b>שנה</b>
-        <input type="number" ng-model="year" ng-disabled="course == undefined" min="1970" max="2020">
+        <input type="number" ng-model="year" required ng-disabled="course == undefined" min="1970" max="2020">
 
         <b>סמסטר</b>
-        <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedSemester" style="width: 70px">
-            <option value="">הכל
+        <select chosen disable-search="true" required ng-disabled="course == undefined" ng-model="selectedSemester" style="width: 70px">
+            <option value="">-בחר-</option>
             <option value="A">א
             <option value="B">ב
             <option value="C">קיץ
         </select>
 
         <b>מועד</b>
-        <select chosen disable-search="true" ng-disabled="course == undefined" ng-model="selectedMoed" style="width: 70px" ng-change="searchTests()">
-                <option value="">הכל
+        <select chosen disable-search="true" required ng-disabled="course == undefined" ng-model="selectedMoed" style="width: 70px" ng-change="searchTests()">
+                <option value="">-בחר-</option>
                 <option value="A">א
                 <option value="B">ב
                 <option value="C">ג

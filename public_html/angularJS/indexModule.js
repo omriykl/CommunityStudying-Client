@@ -6,9 +6,10 @@ var IS_CONNECTED = false;
 var IS_ADMIN= false;
 var thisFacultyId=null;
 var thisCourseId=null;
-var thisYear=null;
-var thisMoed=null;
-var thisSemester=null;
+var thisYear="----";
+var thisMoed="";
+var thisSemester="";
+var thisQuesNum="";
 
 app.config(function ($routeProvider) {
     $routeProvider.when("/", {

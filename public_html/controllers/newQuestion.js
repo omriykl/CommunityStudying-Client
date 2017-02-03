@@ -66,6 +66,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         $scope.courses=[];
         item = $scope.faculty;
         var id = item.id;
+        thisFacultyId=id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'course/getUserAllData/?facultyId='+id+'&idTokenString=' + USER_TOKEN,
@@ -168,6 +169,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
         if (item == undefined)
             return;
         var id = item.id;
+        thisCourseId=id;
         $http({
             method: 'GET',
             url: SERVER_APP_BASE_URL + 'tag/getAllByCourseId/?courseId='.concat(id),
@@ -205,7 +207,7 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
 
     $scope.addTest = function() {
         if ($scope.fileUrls.length == 0) {
-
+              alart("נא להוסיף קובץ");
         } else {
             $('#loading_image').show();
             var data = {
@@ -300,11 +302,11 @@ app.controller('newQuestion', ['$scope', '$http', 'Upload', '$timeout', function
 
 
     $scope.submit = function() {
-        thisFacultyId: $scope.faculty != null ? $scope.faculty.id : null;
-            thisCourseId: $scope.course != null ? $scope.course.id : null;
-            thisYear: $scope.year;
-            thisSemester: $scope.selectedSemester;
-            thisMoed: $scope.selectedMoed;
+        thisFacultyId= $scope.faculty != null ? $scope.faculty.id : null;
+            thisCourseId= $scope.course != null ? $scope.course.id : null;
+            thisYear= $scope.year;
+            thisSemester= $scope.selectedSemester;
+            thisMoed= $scope.selectedMoed;
             
         if ($scope.mustAddFile) {
             $("#testNotExistModel").focus();

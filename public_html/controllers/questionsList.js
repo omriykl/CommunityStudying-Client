@@ -31,11 +31,11 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
    
       $scope.searchQuestions = function() {
           $('#loading_image').show();
-          thisFacultyId: $scope.faculty != null ? $scope.faculty.id : null;
-            thisCourseId: $scope.course != null ? $scope.course.id : null;
-            thisYear: $scope.year;
-            thisSemester: $scope.selectedSemester;
-            thisMoed: $scope.selectedMoed;
+          thisFacultyId= $scope.faculty != null ? $scope.faculty.id : null;
+            thisCourseId= $scope.course != null ? $scope.course.id : null;
+            thisYear= $scope.year;
+            thisSemester= $scope.selectedSemester!= null ? $scope.selectedSemester : "";
+            thisMoed= $scope.selectedMoed!= null ? $scope.selectedMoed : "";
         var data = {
             userId: $scope.userId,
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
@@ -269,11 +269,6 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             }
             else if($routeParams.param.includes("qnum=")){
                 $scope.loadFromSearch($routeParams.param);
-
-            }
-            else if(thisFacultyId!=null){
-                var thisUserVars="faculty="+thisFacultyId+"&course="+thisCourseId+"&year="+thisYear+"&semester="+thisSemester+"&moed="+thisMoed+"&qnum=";
-                $scope.loadFromSearch(thisUserVars);     
             }
             else{
                $scope.freeText= $routeParams.param;        
@@ -281,6 +276,10 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
             }
 
         }
+        else if(thisFacultyId!=null){
+                var thisUserVars="faculty="+thisFacultyId+"&course="+thisCourseId+"&year="+thisYear+"&semester="+thisSemester+"&moed="+thisMoed+"&qnum=";
+                $scope.loadFromSearch(thisUserVars);     
+            }
         else{
         $http({
                 method: 'GET',

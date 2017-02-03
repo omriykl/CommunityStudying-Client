@@ -25,12 +25,15 @@
 
 
 <div style="width:80%; overflow:hidden;">
+    
+        <button id="newQuesBtn" style="float: left;background-color: whitesmoke;margin-left: 30%">הוסף שאלה נוספת</button>
+
 
 	<div class="questionsview_userbox" style="float: right;padding-left: 10px">
 	  <img src="{{question.user.pictureUrl}}" style="width: 75px;border-radius: 50%;">
 	  <br/>
 	  <small>{{question.user.firstName}} {{question.user.lastName}}</small> </br>
-	  (<img src="img/star.png" style="width: 15px"></img> {{question.user.userRating}})
+<!--	  (<img src="img/star.png" style="width: 15px"></img> {{question.user.userRating}})-->
 	</div>
 
 		<div class="questionsview_rating" style="float: right;padding-left: 50px">
@@ -96,12 +99,12 @@
 	<ul class="holder noborder">
 	<li ng-repeat="tag in question.tags" class="bit-box nopadding">{{tag.name}}</li>
 	</ul>
-
+        <br/><br/>
 	<div id="filesDiv" ng-show="question.files.length>0">
-		<br/><br/>
+		
 		<b style="float: right">קבצים מצורפים לשאלה: </b>
 		<div ng-repeat="x in question.files" style="float: right" >
-			<a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 60px" ng-attr-title="{{getFileName(x)}}"></a>
+			<a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 75px" ng-attr-title="{{getFileName(x)}}"></a>
 		</div>
 		 <div style="clear:both"></div>
 	 </div>
@@ -149,7 +152,7 @@
 			</span>
 		</div>
 
-		<div ng-show="!answer.isAccepted && !question.acceptedComment && USER_ID==question.user.id" class="questionsview_accept">
+		<div ng-show="!answer.isAccepted && !question.acceptedComment && (USER_ID==question.user.id || IS_ADMIN)" class="questionsview_accept">
 		<span ng-click="acceptAnswer(answer.id)">קבל תשובה זו</span>
 		</div>
 

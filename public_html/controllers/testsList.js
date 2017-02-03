@@ -40,11 +40,11 @@ app.controller('TestsCtr', ['$scope', '$http', '$routeParams', 'Upload', '$timeo
 
     $scope.searchTests = function() {
         $('#loading_image').show();
-        thisFacultyId: $scope.faculty != null ? $scope.faculty.id : null;
-            thisCourseId: $scope.course != null ? $scope.course.id : null;
-            thisYear: $scope.year;
-            thisSemester: $scope.selectedSemester;
-            thisMoed: $scope.selectedMoed;
+        thisFacultyId= $scope.faculty != null ? $scope.faculty.id : null;
+            thisCourseId= $scope.course != null ? $scope.course.id : null;
+            thisYear= $scope.year;
+            thisSemester= $scope.selectedSemester;
+            thisMoed= $scope.selectedMoed;
         var data = {
             facultyId: $scope.faculty != null ? $scope.faculty.id : null,
             courseId: $scope.course != null ? $scope.course.id : null,

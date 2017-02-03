@@ -8,10 +8,19 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
         var currentId = $routeParams.param;
         
          $scope.similarQues=[];
-         $scope.getsimiarl= function() {$http.get(SERVER_APP_BASE_URL+'testQuestion/getSimilarQuestions/'+$scope.question.testQuestion.id+'?page=0&size=5').success(function(data){
+         $scope.getsimiarl= function() {$http.get(SERVER_APP_BASE_URL+'testQuestion/getSimilarQuestions/'+$scope.question.testQuestion.id+'?page=0&size=6').success(function(data){
 		$scope.similarQues = data;      
 	});};
     
+        document.getElementById("newQuesBtn").onclick= function(){
+            thisFacultyId= $scope.question.testQuestion.test.course.faculty.id;
+            thisCourseId= $scope.question.testQuestion.test.course.id ;
+            thisYear= $scope.question.testQuestion.test.year;
+            thisSemester= $scope.question.testQuestion.test.semester;
+            thisMoed= $scope.question.testQuestion.test.moed;
+            thisQuesNum=$scope.question.testQuestion.questionNumber;
+            window.location = "#questions/new";
+    };
         $scope.deletePost = function() {
             if (confirm("האם אתם בטוחים שברצונכם למחוק פוסט זה?")) {
                 $http.delete(SERVER_APP_BASE_URL+'post/' + currentId+'?userTokenId='+USER_TOKEN).success(function(data){
