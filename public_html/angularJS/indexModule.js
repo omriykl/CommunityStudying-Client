@@ -95,6 +95,11 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
  
  app.controller('HomeCtr', function ($scope, $http,$rootScope) {
     
+    
+    $scope.OpenMyInfo=function(){
+        $("#userpanel").fadeToggle();
+    };
+    
      $scope.$on('user-loaded', function(event, args) {
         $scope.isConnected=true;
         $scope.USER_ID=USER_ID;

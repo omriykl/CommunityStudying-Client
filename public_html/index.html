@@ -151,7 +151,11 @@
                     <li ng-hide="isConnected"><a href="#/"><i class="material-icons">home</i>  ראשי</a>
                     </li>
                     <li ng-show="isConnected"><a href="#questions/new"><i class="material-icons">border_color</i>  שאלה חדשה</a>
-                    </li>          
+                    </li>
+                    <li ng-show="isConnected" ng-click="OpenMyInfo()"><i class="material-icons">face</i>  מידע אישי
+                    </li> 
+                    <li ng-hide="isConnected" ng-click="OpenMyInfo()"><i class="material-icons">face</i>  התחברות/הרשמה
+                    </li>
                 </ol>
             </div>
 
@@ -164,14 +168,14 @@
             <div ng-view></div>
             <!--<div ng-include="includeUrl"></div>-->
         </div>
-        <div id="userpanel" dir="rtl">
+        <div id="userpanel" dir="rtl" style="display: none">
             <div style="text-align:right;">
-                <a href="#/" style="border-bottom:0px;"><img src="img/logo.png" style="width:90%;" />
+                <a href="#/" style="border-bottom:0px;"><img id="logoimg" src="img/logo.png" style="width:90%;" />
                 </a>
             </div>
             <div style="clear:both"></div>
 
-		<div class="userlogin" ng-controller="LoginCtr" id="logInBox">
+		<div class="userlogin" ng-controller="LoginCtr" id="logInBox"  >
 		<div ng-show="isConnected">
 			<div style="float:left; margin-bottom:10px;"><img ng-src={{userPic}} style="border:1px solid #ccc; width:72px;"></div>
 			<div style="float:right;padding:10px;">
