@@ -33,7 +33,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5d3ee', end
 	  margin: 0 auto;
 	}
   </style>
-
+<script type="text/javascript">
+    var MyInfoModal = document.getElementById('userpanel');
+    var infoOpen=false;
+    function OpenInfo () {
+        if(infoOpen){
+            $("#userpanel").slideUp();
+            infoOpen=false;
+            MyInfoModal.style.display = "none";
+        }
+        else{
+            $("#userpanel").slideDown();
+            infoOpen=true;
+            MyInfoModal.style.display = "block";
+        }
+    }
+</script>
   <div class='center' style="margin-left: 30%">
 <h1>ברוכים הבאים !</h1>
 <h2>
@@ -46,7 +61,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5d3ee', end
 </h2>
   
   <h3>
-      באפשרותך להתחבר דרך חשבון הגוגל שלך, על ידי לחיצה על כפתור ההתחברות בתפריט בצד ימין
+      באפשרותך
+      <a href onclick="OpenInfo()">להתחבר</a>
+      באמצעות חשבון הגוגל שלך
       <br/>
       או
       <br/>

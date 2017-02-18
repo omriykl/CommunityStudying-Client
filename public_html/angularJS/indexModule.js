@@ -95,9 +95,20 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
  
  app.controller('HomeCtr', function ($scope, $http,$rootScope) {
     
+    var MyInfoModal = document.getElementById('userpanel');
+    var infoOpen=false;
     
     $scope.OpenMyInfo=function(){
-        $("#userpanel").fadeToggle();
+        if(infoOpen){
+            $("#userpanel").slideUp();
+            infoOpen=false;
+            MyInfoModal.style.display = "none";
+        }
+        else{
+            $("#userpanel").slideDown();
+            infoOpen=true;
+            MyInfoModal.style.display = "block";
+        }
     };
     
      $scope.$on('user-loaded', function(event, args) {

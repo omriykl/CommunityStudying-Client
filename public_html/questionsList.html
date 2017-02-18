@@ -12,7 +12,7 @@
     }
 </style>
 
-<div style="width:80%">
+<div style="width:90%">
 
 <h1 ng-show="userId==null">- שאלות - <i> </i></h1>
 <h1 ng-show="userId!=null">- שאלות שלי - </h1>
@@ -94,7 +94,7 @@
     <div class="questionsview_details">
         <span style="color:#999;">{{x.time | date:'dd-MM-yyyy HH:mm'}}</span>
     </div>
-    <div class="questionsview_details" style="float:right">
+    <div class="questionsview_details" style="float:right;max-width: 50%">
         <span style="color:black;" >
             {{getQuesDescription(x)}}
         </span>
