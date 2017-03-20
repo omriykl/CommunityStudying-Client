@@ -55,8 +55,8 @@
       
     <span class="close" id="closeQuestModel">&times;</span>
     
-    <b>היי ! <b>
-    אנשים שאלו בעבר על שאלה זו בידיוק !
+    <b>אהלן! <b>
+    אנשים שאלו בעבר על שאלה זו בדיוק!
     <a href="#questions/search/faculty={{faculty.id}}&course={{course.id}}&year={{year}}&semester={{selectedSemester}}&moed={{selectedMoed}}&qnum={{qnumber}}">לחץ כאן</a> כדי לצפות
     
   </div>
@@ -122,7 +122,7 @@
     <b> 
         אופס !  
     </b>
-    לצערינו אין לנו במאגר המבחנים את המבחן שעליו אתה רוצה לשאול!
+    לצערינו אין לנו במאגר המבחנים את המבחן המבוקש
     </br>
     <font color="red">
     <b> 
@@ -130,9 +130,9 @@
     </b></font>
          אם ברשותך קובץ המבחן או קובץ התשובות,
          <a href="" ng-click="openNewTestDialog()">לחץ כאן</a> 
-         כדי לעלותם.
+         כדי להעלותם.
          </br>
-         אחרת, הינך מתבקש לעלות את השאלה עצמה כקובץ מצורף
+         אחרת, הינך מתבקש להעלות את השאלה עצמה כקובץ מצורף
          </br>
          על מנת שאחרים יוכלו לעזור לך.
     </p> 
@@ -141,12 +141,14 @@
   <br/>
 
 </div>
-        <b>Drop File:</b>
+<br/>
+        <b>גרור קובץ לכאן:</b>
+		<br/>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
              style="width: 250px;height: 130px; padding: 0">
             <img  src="img/drag-drop-file.gif" width="230px"> </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        <b>Files Uploaded</b>
+    
         <ul>
             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
         </ul>
@@ -209,12 +211,13 @@
         </select>
         <br/>
         
-        <b>Drop File:</b>
+        <b>גרור קובץ:</b>
+		<br/>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
              style="width: 250px;height: 130px; padding: 0">
             <img  src="img/drag-drop-file.gif" width="230px"> </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        <b>Files Uploaded</b>
+      
         <ul>
             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
         </ul>

@@ -1,9 +1,9 @@
-<div style="width:80%">
+﻿<div style="width:80%">
 
 
 <button id="myBtn" style="float: left;background-color: whitesmoke;margin-left: 10%" class="btn-lg" >הוסף מבחן/קובץ חדש</button>
 
-<h1>- חיפוש מבחנים - <i> </i></h1>
+<h1> חיפוש מבחנים  <i> </i></h1>
 
 <!--<input type='button' id='hideshow' value='הצג\הסתר חיפוש '>-->
 
@@ -107,9 +107,9 @@
       
     </div>
     <div ng-hide="pressNewTest">
-            <h2>היי  !</h2>
-    <h3>לאחר חיפוש מעמיק, גילינו שאין לנו בכלל קבצים הקשורים לקריטריונים שחיפשת</h3>
-    <h3>נעריך מאד אם תוכל לעלות קבצי מבחנים, פתרונות, או כל דבר אחר רלוונטי </h3>
+            <h2>אהלן!</h2>
+    <h3>לא נמצאו במאגרים שלנו קבצים התואמים לקריטריון החיפוש שלך,</h3>
+    <h3>נעריך מאד אם תוכל לעלות קבצי מבחנים, פתרונות, או כל קובץ רלוונטי אחר.</h3>
   
     </div>
 
@@ -144,13 +144,13 @@
                         <option value="C">ג
         </select>
         <br/>
-        
-        <b>Drop File:</b>
+        <br/>
+        <b>גרור קובץ לכאן:</b>
+		<br/>
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
              style="width: 250px;height: 130px; padding: 0">
             <img  src="img/drag-drop-file.gif" width="230px"> </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        <b>Files Uploaded</b>
         <ul>
             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
         </ul>

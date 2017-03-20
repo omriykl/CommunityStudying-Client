@@ -199,12 +199,13 @@
 	   </text-angular>
 
 	<br/>
-			<b>Drop File:</b>
+			<b>גרור קובץ לכאן:</b>
+			<br/>
 			<div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true" accept="image/*,application/pdf" ngf-pattern="'image/*,application/pdf'"
 				 style="width: 250px;height: 130px; padding: 0">
 				<img  src="img/drag-drop-file.gif" width="230px"> </div>
 			<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-			<b>Files Uploaded</b>
+
 			<ul>
 				<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
 			</ul>
