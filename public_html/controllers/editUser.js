@@ -55,6 +55,21 @@ app.controller('editUser', ['$scope', '$http', function($scope, $http) {
         $http.post(SERVER_APP_BASE_URL + '/user/updateCourses?userTokenId=' + USER_TOKEN, data, config)
             .success(function(data, status, headers, config) {
                 $scope.PostDataResponse = data;
+
+            })
+            .error(function(data, status, header, config) {
+                //   $scope.ResponseDetails = "Data: " + data +
+                //	<hr />status: " + status +
+                //       "<hr />headers: " + header +
+                //       "<hr />config: " + config;
+            });
+            data = {
+            isEmailSubscribed: $scope.user.isEmailSubscribed,
+            isEmailSubscribedForNewPost: $scope.user.isEmailSubscribedForNewPost
+        };
+            $http.post(SERVER_APP_BASE_URL + '/user/updateEmailPref?userTokenId=' + USER_TOKEN, data, config)
+            .success(function(data, status, headers, config) {
+                $scope.PostDataResponse = data;
                 location.reload();
 
             })

@@ -34,21 +34,34 @@ function cform() {
 <div style="width:80%">
 
 
-<h1>עריכת הקורסים שלי</h1>
+<h1>עריכת משתמש</h1>
 
 <form ng-submit="submit()" onsubmit="javascript:return cform();">
 
-<h3>שם  :</h3>
+<b>שם  :</b>
 {{user.firstName}} {{user.lastName}}
-
-<h3>אימייל :</h3>
+&nbsp &nbsp &nbsp
+<b>אימייל :</b>
 {{user.email}}
+
+
+<hr>
+    <input type="checkbox" ng-model="user.isEmailSubscribed">
+<b>אפשר קבלת מיילים
+    </br>
+    <small>
+    ( ביטול אפשרות זאת יחסום באופן גורף את שליחת המיילים מאתר זה, כולל מיילים בנוגע לתשובה חדשה על שאלות שפרסמת)
+</small>
+    </b>
+</br></br>
+<input type="checkbox" ng-model="user.isEmailSubscribed">
+<b>אפשר קבלת מיילים עבור פוסטים חדשים בקורסים שלי</b>
 
 <!--<h3>Password <span style="font-size:10px">(Leave blank if you do not want to update)</span></h3> 
 <input type="password" class="textbox" name="password" id="password" ng-model="user.password" />
 -->
-
-<h3>הקורסים שלי :</h3>
+<hr>
+<h3><u>הקורסים שלי : </u></h3>
 
 <b> פקולטה</b>
     
@@ -60,7 +73,7 @@ function cform() {
     </multiple-autocomplete>
     
 <br/><br/>
-<input type="submit" value="שמור רשימת קורסים" style="width: 160px;height:50px;" class="button">
+<input type="submit" value="שמור פרטים" style="width: 160px;height:50px;" class="button">
 </form>
 
 </div>

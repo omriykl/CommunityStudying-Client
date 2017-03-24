@@ -334,9 +334,11 @@ body {
 }
 
 #userpanel {
-	width: 22%;
+	width: 15%;
 	float:right; 
         max-width: 300px;
+        min-width: 220px;
+        
 }
 
 .userdetails {
@@ -363,6 +365,8 @@ body {
 	font-weight: bold;
 	line-height:1.3em;
 	margin-top: 10px;
+        min-width: 186px;
+        
  
 
 }

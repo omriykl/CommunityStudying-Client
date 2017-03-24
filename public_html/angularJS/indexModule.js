@@ -72,7 +72,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
     $scope.login = function (googleUser) {
          var profile = googleUser.getBasicProfile();
          var id_token = googleUser.getAuthResponse().id_token;
-         $http.get(SERVER_APP_BASE_URL+'user/getOrCreate?idTokenString=' + id_token).success(function (user) {
+         $http.get(SERVER_APP_BASE_URL+'user/login?idTokenString=' + id_token).success(function (user) {
              $scope.userName = user.firstName+ " " +user.lastName;
              $scope.userPic=user.pictureUrl;
              $scope.isConnected = true;
