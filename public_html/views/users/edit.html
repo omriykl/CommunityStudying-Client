@@ -46,7 +46,7 @@ function cform() {
 
 
 <hr>
-    <input type="checkbox" ng-model="user.isEmailSubscribed">
+<input type="checkbox" id="check1" ng-model="user.emailSubscribed" ng-change="cTrig()">
 <b>אפשר קבלת מיילים
     </br>
     <small>
@@ -54,7 +54,7 @@ function cform() {
 </small>
     </b>
 </br></br>
-<input type="checkbox" ng-model="user.isEmailSubscribed">
+<input type="checkbox" id="check2" ng-model="user.getEmailForNewPost">
 <b>אפשר קבלת מיילים עבור פוסטים חדשים בקורסים שלי</b>
 
 <!--<h3>Password <span style="font-size:10px">(Leave blank if you do not want to update)</span></h3> 

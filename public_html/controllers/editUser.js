@@ -41,7 +41,22 @@ app.controller('editUser', ['$scope', '$http', function($scope, $http) {
             $scope.loadUser();
         });
     });
+    
+    $scope.cTrig= function() { 
+      if ($scope.user.emailSubscribed == true) {
+        return false;
+      } else {
+       var box= confirm("האם אתה בטוח? שים לב שפעולה זאת תחסום באופן גורף את קבלת ההתראות מאיתנו");
+        if (box==true){
+                $scope.user.getEmailForNewPost=false;
+                return true;   
+        }   
+        else
+           $scope.user.emailSubscribed = true;
 
+      }
+    };
+    
     $scope.showName = function(item) {
         return item.name;
     };
@@ -64,8 +79,8 @@ app.controller('editUser', ['$scope', '$http', function($scope, $http) {
                 //       "<hr />config: " + config;
             });
             data = {
-            isEmailSubscribed: $scope.user.isEmailSubscribed,
-            isEmailSubscribedForNewPost: $scope.user.isEmailSubscribedForNewPost
+            isEmailSubscribed: $scope.user.emailSubscribed,
+            isEmailSubscribedForNewPost: $scope.user.getEmailForNewPost
         };
             $http.post(SERVER_APP_BASE_URL + '/user/updateEmailPref?userTokenId=' + USER_TOKEN, data, config)
             .success(function(data, status, headers, config) {
