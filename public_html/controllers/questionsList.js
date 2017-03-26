@@ -283,9 +283,16 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
         else{
         $http({
                 method: 'GET',
-                url: SERVER_APP_BASE_URL + 'post/getByUserCourses?userTokenId='+USER_TOKEN,
+                url: SERVER_APP_BASE_URL + 'post/getByUserCourses?userTokenId='+USER_TOKEN+'&page='+$scope.currentPage+"&size="+$scope.pageSize
             }).success(function(result) {
                 $scope.questions = result;
+            });
+            
+            $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'post/getByUserCoursesCount?userTokenId='+USER_TOKEN+'&page='+$scope.currentPage+"&size="+$scope.pageSize
+            }).success(function(result) {
+                $scope.totalCount = result;
             });
         }
     };
