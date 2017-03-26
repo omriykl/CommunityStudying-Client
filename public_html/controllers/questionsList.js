@@ -16,6 +16,8 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
 
     $scope.currentPage = 0;
     $scope.pageSize = 10;
+    $scope.isRegularSearch=false;
+    
     $scope.numberOfPages=function(){
         return Math.ceil($scope.totalCount/$scope.pageSize);                
     };
@@ -31,6 +33,8 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
    
       $scope.searchQuestions = function() {
           $('#loading_image').show();
+            $scope.isRegularSearch=true;
+            $scope.currentPage = 0;
           thisFacultyId= $scope.faculty != null ? $scope.faculty.id : null;
             thisCourseId= $scope.course != null ? $scope.course.id : null;
             thisYear= $scope.year;
@@ -75,12 +79,32 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     
     $scope.pageBack= function(){
         $scope.currentPage--;
-        $scope.searchQuestions();
+        if($scope.isRegularSearch==true)
+            $scope.searchQuestions();
+        else {
+            $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'post/getByUserCourses?userTokenId='+USER_TOKEN+'&page='+$scope.currentPage+"&size="+$scope.pageSize
+            }).success(function(result) {
+                $scope.questions = result;
+            });
+            
+        }
     };
     
     $scope.pageNext= function(){
         $scope.currentPage++;
-        $scope.searchQuestions();
+        if($scope.isRegularSearch==true)
+            $scope.searchQuestions();
+        else {
+            $http({
+                method: 'GET',
+                url: SERVER_APP_BASE_URL + 'post/getByUserCourses?userTokenId='+USER_TOKEN+'&page='+$scope.currentPage+"&size="+$scope.pageSize
+            }).success(function(result) {
+                $scope.questions = result;
+            });
+            
+        }
     };
     
     $scope.getSemHebrew = function(sem) {
