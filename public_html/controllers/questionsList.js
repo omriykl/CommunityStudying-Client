@@ -34,7 +34,6 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
       $scope.searchQuestions = function() {
           $('#loading_image').show();
             $scope.isRegularSearch=true;
-            $scope.currentPage = 0;
           thisFacultyId= $scope.faculty != null ? $scope.faculty.id : null;
             thisCourseId= $scope.course != null ? $scope.course.id : null;
             thisYear= $scope.year;
@@ -325,6 +324,8 @@ app.controller('QuestionsCtr', ['$scope', '$http','$routeParams', function($scop
     
     
     $scope.submit = function() {
+        $scope.isRegularSearch=true;
+        $scope.currentPage = 0;
         $scope.searchQuestions();
     };
 
