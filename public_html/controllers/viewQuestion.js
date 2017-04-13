@@ -70,6 +70,7 @@ app.controller('viewQuestion', ['$scope','$http','$routeParams','Upload', '$time
             case "A": return "א'";
             case "B": return "ב'";
             case "C": return "ג'";
+            case "M": return "אמצע";
             default: return sem;
         }
     };

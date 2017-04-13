@@ -51,6 +51,7 @@ app.controller('ViewTest', ['$scope','$http','$routeParams', function ($scope, $
             case "A": return "א'";
             case "B": return "ב'";
             case "C": return "ג'";
+            case "M": return "אמצע";
             default: return sem;
         }
     };
