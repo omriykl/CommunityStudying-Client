@@ -107,7 +107,15 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
         };
         $http.post('https://store.student.co.il/ajax/student-login', data, config)
             .success(function (data, status, headers, config) {
-                debugger;
+                if(data.error){
+                    alert(data.msg);
+                }
+                else if(data.isLogedIn){
+                    alert("מחובר");
+                }
+                else{
+                    alert(data + "לא ברור מה התשובה");
+                }
             })
             .error(function (data, status, header, config) {
                 //   $scope.ResponseDetails = "Data: " + data +
