@@ -366,9 +366,50 @@ body {
 	line-height:1.3em;
 	margin-top: 10px;
         min-width: 186px;
-        
- 
+}
+DIV.searchBTNwrapper {
+	display: inline-block;
+	background: url(https://store.student.co.il/sites/all/themes/zentau/images/sprite.png) no-repeat right -2684px;
+	padding: 0 11px 0 22px;
+	float: left;
+	height: 31px;
+	margin-left: 13px;
+}
+DIV.searchBTNwrapper input {
+	display: inline-block;
+	cursor: pointer;
+	border: none;
+	background: url(https://store.student.co.il/sites/all/themes/zentau/images/sprite.png) no-repeat 0 -706px;
+	padding-left: 70px;
+	font: bold 1.5em/31px Arial, sans-serif;
+	color: #FFF;
+	height: 31px;
+}
+DIV.formFields {
+	padding-bottom: 12px;
+	display: block;
+}
+DIV.formFields LABEL {
+	width: 64px;
+	padding: 0 !important;
+	float: right;
+}
+.input148 {
+	background: url(https://store.student.co.il/sites/all/themes/zentau/images/sprite.png) no-repeat right -2901px;
+	padding: 8px 10px;
+	width: 128px;
+	height: 15px;
+	font: normal 14px/15px Arial, sans-serif;
+	color: #010101;
+	margin: 0;
+}
 
+.phoneNum{
+	background: url(https://store.student.co.il/sites/all/themes/zentau/images/sprite.png) no-repeat right -715px;
+	padding-right: 33px;
+	margin: 13px 20px 0 0;
+	font: normal 1.3em/20px Arial, sans-serif;
+	color: #868686;
 }
 
 .questionsview_userbox {
