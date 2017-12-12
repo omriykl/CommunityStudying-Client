@@ -273,10 +273,11 @@ div#preview {
 	margin-bottom: 30px;
 	color: #ffffff;
 	text-shadow: 0px 2px 3px #d3d4aa;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	border-bottom: 2px solid #21a5ca;
-
+	height: 70px;
+	padding-top: 10px;
 }
 
 #navigation a {
