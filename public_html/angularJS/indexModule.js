@@ -93,6 +93,30 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              
          });
      };
+
+    $scope.tauLogin = function(){
+        var data = {
+            student_username : $scope.student_username,
+            student_id : $scope.student_id,
+            student_password: $scope.student_password
+        };
+        var config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        $http.post('https://store.student.co.il/ajax/student-login', data, config)
+            .success(function (data, status, headers, config) {
+                debugger;
+            })
+            .error(function (data, status, header, config) {
+                //   $scope.ResponseDetails = "Data: " + data +
+                //	<hr />status: " + status +
+                //       "<hr />headers: " + header +
+                //       "<hr />config: " + config;
+            });
+    };
+
      $scope.logout = function () {
          $scope.isConnected = false;
          $scope.$apply();
@@ -125,29 +149,6 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
           window.location = "#questions/search/" + $scope.searchInput;
      };
 
-     $scope.tauLogin=function(){
-         debugger;
-         var data = {
-             student_username : $scope.student_username,
-             student_id : $scope.student_id,
-             student_password: $scope.student_password
-         };
-         var config = {
-             headers: {
-                 'Content-Type': 'application/json'
-             }
-         };
-         $http.post('https://store.student.co.il/ajax/student-login', data, config)
-             .success(function (data, status, headers, config) {
-                 debugger;
-             })
-             .error(function (data, status, header, config) {
-                 //   $scope.ResponseDetails = "Data: " + data +
-                 //	<hr />status: " + status +
-                 //       "<hr />headers: " + header +
-                 //       "<hr />config: " + config;
-             });
-     };
  });
 
 //example to use params. add to when :paramName. like that .when("/questions/:param1"
