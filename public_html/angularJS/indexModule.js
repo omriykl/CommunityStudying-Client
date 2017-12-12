@@ -65,6 +65,11 @@ app.config(function ($routeProvider) {
         controller: "TestsCtr",
         controllerAs: "app"
     });
+    $routeProvider.when("/newfiles", {
+        templateUrl: "views/managing/newFilesList.html",
+        controller: "FilesCtr",
+        controllerAs: "app"
+    });
 });
 
 app.controller('LoginCtr', function ($scope, $http,$rootScope) {
@@ -83,6 +88,7 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
              USER_ID= user.id;
              IS_CONNECTED = true;
              IS_ADMIN = user.admin;
+             $scope.isAdmin = user.admin;
              $rootScope.$broadcast('user-loaded');
              
          });
