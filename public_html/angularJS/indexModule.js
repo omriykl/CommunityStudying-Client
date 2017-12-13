@@ -76,6 +76,16 @@ app.controller('LoginCtr', function ($scope, $http,$rootScope) {
     $scope.isConnected = false;
     $scope.login = function (googleUser) {
          var profile = googleUser.getBasicProfile();
+         if(!(profile.U3.includes("tau") && profile.U3.includes("ac"))){
+             alert("ניתן להתחבר רק מחשבון המשוייך לאוניברסיטת תל אביב הנגמר ב tau.ac.il או mail.tau.ac.il. יש להתנתק מחשבון ה Gmail שלך ולהתחבר שוב עם חשבון אוניברסיטאי");
+
+             var auth2 = gapi.auth2.getAuthInstance();
+             auth2.signOut().then(function () {
+                 angular.element(document.getElementById('logInBox')).scope().logout();
+             });
+             return;
+         }
+
          var id_token = googleUser.getAuthResponse().id_token;
          $http.get(SERVER_APP_BASE_URL+'user/login?idTokenString=' + id_token).success(function (user) {
              $scope.userName = user.firstName+ " " +user.lastName;

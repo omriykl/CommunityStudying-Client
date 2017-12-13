@@ -46,7 +46,7 @@
             <td>{{ x.grade }}</td>
             <td title="{{x.user.email}}">{{ x.user.firstName}} {{ x.user.lastName}}</td>
             <td><a href="{{x.url}}" target="_blank"><img ng-src="{{getFileSrc(x)}}" src="img/file_icon.png" style="width: 75px" ng-attr-title="{{getFileName(x)}}"></a></td>
-            <td><span ng-click="approveFile(x.id)">אשר</span></td>
+            <td><span ng-click="approveFile(x.id)"><img src='img/accepted.png' style="width: 20px">אשר</span></td>
         </tr>
     </table>
 
