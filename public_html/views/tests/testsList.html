@@ -102,13 +102,11 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close" id="closeModel">&times;</span>
-    <div ng-show="pressNewTest">
-        
+    <div ng-hide="!pressNewTest">
          <h2>הוספת מבחן חדש</h2>
-      
     </div>
     <div ng-hide="pressNewTest">
-            <h2>אהלן!</h2>
+            <h2>אופס!</h2>
     <h3>לא נמצאו במאגרים שלנו קבצים התואמים לקריטריון החיפוש שלך,</h3>
     <h3>נעריך מאד אם תוכל לעלות קבצי מבחנים, פתרונות, או כל קובץ רלוונטי אחר.</h3>
   
